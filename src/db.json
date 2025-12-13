@@ -1,0 +1,29 @@
+{
+  "users": [],
+  "courses": [
+    {
+      "id": 1,
+      "title": "React Mastery",
+      "category": "frontend",
+      "videos": [
+        "https://www.youtube.com/embed/bMknfKXIFA8",
+        "https://www.youtube.com/embed/w7ejDZ8SWv8",
+        "https://www.youtube.com/embed/Ke90Tje7VS0",
+        "https://www.youtube.com/embed/dGcsHMXbSOA"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "JavaScript Complete",
+      "category": "javascript",
+      "videos": [
+        "https://www.youtube.com/embed/PkZNo7MFNFg",
+        "https://www.youtube.com/embed/hdI2bqOjy3c",
+        "https://www.youtube.com/embed/W6NZfCO5SIk",
+        "https://www.youtube.com/embed/Oive66jrwBs"
+      ]
+    }
+  ],
+  "ebooks": [],
+  "history": []
+}
