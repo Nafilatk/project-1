@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X, Cpu, ChevronRight, LogOut } from 'lucide-react';
 import { gsap } from 'gsap';
-// import authService from '@/services/auth';
+import authService from '../lib/auth';
 
 interface UserData {
   user: {
