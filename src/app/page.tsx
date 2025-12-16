@@ -1,42 +1,40 @@
 "use client";
 
 import Link from "next/link";
+import PrimaryButton from "./components/buttons";
 
 export default function HomePage() {
   return (
-    <div className="pt-24">
+    <div className="w-screen h-screen    bg-white">
+      <section className="w-screen h-screen bg-white pt-24">
+        <div className="mx-auto flex h-full max-w-6xl items-center px-6 gap-5">
+          <div className="w-full md:w-1/2 space-y-5">
+            <h1 className="hero-text text-4xl md:text-6xl font-bold leading-tight text-black">
+              Democratizing{" "} <br />
+              <span className="text-blue-800">AI Education</span>
+            </h1>
 
-      {/* ---------------- Hero Section ---------------- */}
-      <section className="max-w-7xl mx-auto px-6 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-          Learn Skills That Matter
-          <span className="text-blue-600">.</span>
-        </h1>
+            <p className="hero-text mt-2 text-gray-600 max-w-xl text-lg">
+              High-quality courses and ebooks to help you build real-world skills
+              and grow your career with confidence.
+            </p>
 
-        <p className="mt-5 text-gray-600 max-w-2xl mx-auto text-lg">
-          High-quality courses and ebooks to help you build real-world skills
-          and grow your career with confidence.
-        </p>
+            <div className="hero-text mt-6 flex flex-wrap gap-4">
+    <PrimaryButton href="/courses">
+    Explore Course
+    </PrimaryButton>
+   
 
-        <div className="mt-8 flex justify-center gap-4">
-          <Link
-            href="/courses"
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            Explore Courses
-          </Link>
+            <PrimaryButton href="/ebook" variant="ghost">
+            Browse Ebook
+            </PrimaryButton>
 
-          <Link
-            href="/ebook"
-            className="px-6 py-3 border rounded-lg hover:bg-gray-100 transition"
-          >
-            Browse Ebooks
-          </Link>
+            </div>
+          </div>
         </div>
       </section>
-
       {/* ---------------- Features ---------------- */}
-      <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-3 gap-8">
+      <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-3 gap-8 bg-blue-900">
         <div className="border rounded-xl p-6 hover:shadow-md transition">
           <h3 className="text-xl font-semibold">🎓 Expert Content</h3>
           <p className="text-gray-600 mt-2 text-sm">
