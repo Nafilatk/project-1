@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import PrimaryButton from "./components/buttons";
+import SparkleAnimation from "./components/SparkleAnimation";
 
 export default function HomePage() {
   return (
-    <div className="w-screen h-screen    bg-white">
-      <section className="w-screen h-screen bg-white pt-24">
-        <div className="mx-auto flex h-full max-w-6xl items-center px-6 gap-5">
-          <div className="w-full md:w-1/2 space-y-5">
-            <h1 className="hero-text text-4xl md:text-6xl font-bold leading-tight text-black">
+    <div className="w-screen h-screen bg-white">
+      <section className="w-screen h-screen bg-white">
+        <div className="mx-auto flex h-full max-w-6xl items-center px-3 gap-5">
+          <div className="w-full md:w-1/2 space-y-10">
+            <h1 className="hero-text text-7xl md:text-7xl font-bold leading-tight text-black">
               Democratizing{" "} <br />
               <span className="text-blue-800">AI Education</span>
             </h1>
@@ -20,21 +21,25 @@ export default function HomePage() {
             </p>
 
             <div className="hero-text mt-6 flex flex-wrap gap-4">
-    <PrimaryButton href="/courses">
-    Explore Course
-    </PrimaryButton>
-   
+              <PrimaryButton href="/courses">
+                Explore Course
+              </PrimaryButton>
 
-            <PrimaryButton href="/ebook" variant="ghost">
-            Browse Ebook
-            </PrimaryButton>
+
+              <PrimaryButton href="/ebook" variant="ghost">
+                Browse Ebook
+              </PrimaryButton>
 
             </div>
           </div>
+
+          <div className="hidden md:block w-full md:w-1/2">
+            <SparkleAnimation/>
+          </div>
         </div>
       </section>
-      {/* ---------------- Features ---------------- */}
-      <section className="max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-3 gap-8 bg-blue-900">
+      
+      <section className=" h-screen w-screen mx-auto px-6 py-20 grid md:grid-cols-3 gap-8 bg-blue-900">
         <div className="border rounded-xl p-6 hover:shadow-md transition">
           <h3 className="text-xl font-semibold">🎓 Expert Content</h3>
           <p className="text-gray-600 mt-2 text-sm">
@@ -57,7 +62,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- CTA Section ---------------- */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold">
@@ -67,12 +71,9 @@ export default function HomePage() {
             Join thousands of learners and build your future skills now.
           </p>
 
-          <Link
-            href="/signup"
-            className="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-          >
-            Create Free Account
-          </Link>
+          <PrimaryButton href="/signup" variant="secondary">    
+          Create free Account
+              </PrimaryButton>
         </div>
       </section>
 
