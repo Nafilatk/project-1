@@ -1,21 +1,51 @@
 {
   "users": [],
-
   "categories": [
-    { "id": 1, "name": "Frontend" },
-    { "id": 2, "name": "Backend" },
-    { "id": 3, "name": "Cyber Security" }
+    {
+      "id": 1,
+      "name": "Frontend"
+    },
+    {
+      "id": 2,
+      "name": "Backend"
+    },
+    {
+      "id": 3,
+      "name": "Cyber Security"
+    }
   ],
-
   "courses": [
-    { "id": 1, "name": "Python", "categoryId": 2 },
-    { "id": 2, "name": "Java", "categoryId": 2 },
-    { "id": 3, "name": "React", "categoryId": 1 },
-    { "id": 4, "name": "Angular", "categoryId": 1 },
-    { "id": 5, "name": "MERN", "categoryId": 1 },
-    { "id": 6, "name": "Machine Learning", "categoryId": 2 }
+    {
+      "id": 1,
+      "name": "Python",
+      "categoryId": 2
+    },
+    {
+      "id": 2,
+      "name": "Java",
+      "categoryId": 2
+    },
+    {
+      "id": 3,
+      "name": "React",
+      "categoryId": 1
+    },
+    {
+      "id": 4,
+      "name": "Angular",
+      "categoryId": 1
+    },
+    {
+      "id": 5,
+      "name": "MERN",
+      "categoryId": 1
+    },
+    {
+      "id": 6,
+      "name": "Machine Learning",
+      "categoryId": 2
+    }
   ],
-
   "videos": [
     {
       "id": 1,
@@ -35,8 +65,9 @@
       "id": 3,
       "courseId": 1,
       "title": "Python Functions",
-      "thumbnail": "https://img.youtube.com/vi/9Os0o3wzS_I/mqdefault.jpg",
-      "url": "https://www.youtube.com/embed/9Os0o3wzS_I"
+      "thumbnail": "https://img.youtube.com/vi/VIDEO_ID_2/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=VIDEO_ID_2",
+      "youtubeUrl": "https://www.youtube.com/watch?v=VIDEO_ID_2"
     },
     {
       "id": 13,
@@ -67,7 +98,6 @@
       "url": "https://www.youtube.com/embed/GwIo3gDZCVQ"
     }
   ],
-
   "ebooks": [
     {
       "id": 1,
