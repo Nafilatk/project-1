@@ -1,10 +1,12 @@
 {
-    "users":[],
+  "users": [],
+
   "categories": [
     { "id": 1, "name": "Frontend" },
     { "id": 2, "name": "Backend" },
     { "id": 3, "name": "Cyber Security" }
   ],
+
   "courses": [
     { "id": 1, "name": "Python", "categoryId": 2 },
     { "id": 2, "name": "Java", "categoryId": 2 },
@@ -13,48 +15,86 @@
     { "id": 5, "name": "MERN", "categoryId": 1 },
     { "id": 6, "name": "Machine Learning", "categoryId": 2 }
   ],
+
   "videos": [
-    { "id": 1, "courseId": 1, "title": "Python Basics", "thumbnail": "/thumbs/python-1.jpg", "url": "https://youtu.be/R8rmfD9Y5-c?si=W6L1Ct_w29l_nQ8e" },
-    { "id": 2, "courseId": 1, "title": "Python Data Types", "thumbnail": "/thumbs/python-2.jpg", "url": "/videos/python-2.mp4" },
-    { "id": 3, "courseId": 1, "title": "Python Functions", "thumbnail": "/thumbs/python-3.jpg", "url": "/videos/python-3.mp4" },
-    { "id": 4, "courseId": 1, "title": "Python OOP", "thumbnail": "/thumbs/python-4.jpg", "url": "/videos/python-4.mp4" },
-    { "id": 5, "courseId": 1, "title": "File Handling", "thumbnail": "/thumbs/python-5.jpg", "url": "/videos/python-5.mp4" },
-    { "id": 6, "courseId": 1, "title": "Projects", "thumbnail": "/thumbs/python-6.jpg", "url": "/videos/python-6.mp4" },
-
-    { "id": 7, "courseId": 2, "title": "Java Basics", "thumbnail": "/thumbs/java-1.jpg", "url": "/videos/java-1.mp4" },
-    { "id": 8, "courseId": 2, "title": "OOP in Java", "thumbnail": "/thumbs/java-2.jpg", "url": "/videos/java-2.mp4" },
-    { "id": 9, "courseId": 2, "title": "Collections", "thumbnail": "/thumbs/java-3.jpg", "url": "/videos/java-3.mp4" },
-    { "id": 10, "courseId": 2, "title": "Streams", "thumbnail": "/thumbs/java-4.jpg", "url": "/videos/java-4.mp4" },
-    { "id": 11, "courseId": 2, "title": "Spring Intro", "thumbnail": "/thumbs/java-5.jpg", "url": "/videos/java-5.mp4" },
-    { "id": 12, "courseId": 2, "title": "Spring Boot API", "thumbnail": "/thumbs/java-6.jpg", "url": "/videos/java-6.mp4" },
-
-    { "id": 13, "courseId": 3, "title": "React Basics", "thumbnail": "/thumbs/react-1.jpg", "url": "/videos/react-1.mp4" },
-    { "id": 14, "courseId": 3, "title": "JSX & Props", "thumbnail": "/thumbs/react-2.jpg", "url": "/videos/react-2.mp4" },
-    { "id": 15, "courseId": 3, "title": "State & Events", "thumbnail": "/thumbs/react-3.jpg", "url": "/videos/react-3.mp4" },
-    { "id": 16, "courseId": 3, "title": "Hooks Intro", "thumbnail": "/thumbs/react-4.jpg", "url": "/videos/react-4.mp4" },
-    { "id": 17, "courseId": 3, "title": "Routing", "thumbnail": "/thumbs/react-5.jpg", "url": "/videos/react-5.mp4" },
-    { "id": 18, "courseId": 3, "title": "Project", "thumbnail": "/thumbs/react-6.jpg", "url": "/videos/react-6.mp4" },
-
-    { "id": 19, "courseId": 4, "title": "Angular Basics", "thumbnail": "/thumbs/angular-1.jpg", "url": "/videos/angular-1.mp4" },
-    { "id": 20, "courseId": 4, "title": "Components", "thumbnail": "/thumbs/angular-2.jpg", "url": "/videos/angular-2.mp4" },
-    { "id": 21, "courseId": 4, "title": "Services & DI", "thumbnail": "/thumbs/angular-3.jpg", "url": "/videos/angular-3.mp4" },
-    { "id": 22, "courseId": 4, "title": "Routing", "thumbnail": "/thumbs/angular-4.jpg", "url": "/videos/angular-4.mp4" },
-    { "id": 23, "courseId": 4, "title": "Forms", "thumbnail": "/thumbs/angular-5.jpg", "url": "/videos/angular-5.mp4" },
-    { "id": 24, "courseId": 4, "title": "Project", "thumbnail": "/thumbs/angular-6.jpg", "url": "/videos/angular-6.mp4" },
-
-    { "id": 25, "courseId": 5, "title": "MERN Overview", "thumbnail": "/thumbs/mern-1.jpg", "url": "/videos/mern-1.mp4" },
-    { "id": 26, "courseId": 5, "title": "MongoDB Basics", "thumbnail": "/thumbs/mern-2.jpg", "url": "/videos/mern-2.mp4" },
-    { "id": 27, "courseId": 5, "title": "Express API", "thumbnail": "/thumbs/mern-3.jpg", "url": "/videos/mern-3.mp4" },
-    { "id": 28, "courseId": 5, "title": "React Frontend", "thumbnail": "/thumbs/mern-4.jpg", "url": "/videos/mern-4.mp4" },
-    { "id": 29, "courseId": 5, "title": "Node.js Backend", "thumbnail": "/thumbs/mern-5.jpg", "url": "/videos/mern-5.mp4" },
-    { "id": 30, "courseId": 5, "title": "Deploy MERN", "thumbnail": "/thumbs/mern-6.jpg", "url": "/videos/mern-6.mp4" },
-
-    { "id": 31, "courseId": 6, "title": "ML Basics", "thumbnail": "/thumbs/ml-1.jpg", "url": "/videos/ml-1.mp4" },
-    { "id": 32, "courseId": 6, "title": "Data Prep", "thumbnail": "/thumbs/ml-2.jpg", "url": "/videos/ml-2.mp4" },
-    { "id": 33, "courseId": 6, "title": "Regression", "thumbnail": "/thumbs/ml-3.jpg", "url": "/videos/ml-3.mp4" },
-    { "id": 34, "courseId": 6, "title": "Classification", "thumbnail": "/thumbs/ml-4.jpg", "url": "/videos/ml-4.mp4" },
-    { "id": 35, "courseId": 6, "title": "Model Evaluation", "thumbnail": "/thumbs/ml-5.jpg", "url": "/videos/ml-5.mp4" },
-    { "id": 36, "courseId": 6, "title": "ML Project", "thumbnail": "/thumbs/ml-6.jpg", "url": "/videos/ml-6.mp4" }
+    {
+      "id": 1,
+      "courseId": 1,
+      "title": "Python Basics",
+      "thumbnail": "https://img.youtube.com/vi/_uQrJ0TkZlc/mqdefault.jpg",
+      "url": "https://www.youtube.com/embed/_uQrJ0TkZlc"
+    },
+    {
+      "id": 2,
+      "courseId": 1,
+      "title": "Python Data Types",
+      "thumbnail": "https://img.youtube.com/vi/kqtD5dpn9C8/mqdefault.jpg",
+      "url": "https://www.youtube.com/embed/kqtD5dpn9C8"
+    },
+    {
+      "id": 3,
+      "courseId": 1,
+      "title": "Python Functions",
+      "thumbnail": "https://img.youtube.com/vi/9Os0o3wzS_I/mqdefault.jpg",
+      "url": "https://www.youtube.com/embed/9Os0o3wzS_I"
+    },
+    {
+      "id": 13,
+      "courseId": 3,
+      "title": "React Basics",
+      "thumbnail": "https://img.youtube.com/vi/bMknfKXIFA8/mqdefault.jpg",
+      "url": "https://www.youtube.com/embed/bMknfKXIFA8"
+    },
+    {
+      "id": 14,
+      "courseId": 3,
+      "title": "JSX & Props",
+      "thumbnail": "https://img.youtube.com/vi/Ke90Tje7VS0/mqdefault.jpg",
+      "url": "https://www.youtube.com/embed/Ke90Tje7VS0"
+    },
+    {
+      "id": 15,
+      "courseId": 3,
+      "title": "State & Events",
+      "thumbnail": "https://img.youtube.com/vi/O6P86uwfdR0/mqdefault.jpg",
+      "url": "https://www.youtube.com/embed/O6P86uwfdR0"
+    },
+    {
+      "id": 31,
+      "courseId": 6,
+      "title": "Machine Learning Basics",
+      "thumbnail": "https://img.youtube.com/vi/GwIo3gDZCVQ/mqdefault.jpg",
+      "url": "https://www.youtube.com/embed/GwIo3gDZCVQ"
+    }
   ],
-    "ebooks":[]
+
+  "ebooks": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "videoId": 1,
+      "title": "Python Basics Notes",
+      "description": "PDF notes for Python basics",
+      "pdfUrl": "https://www.w3schools.com/python/python_tutorial.pdf",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
+    },
+    {
+      "id": 2,
+      "courseId": 1,
+      "videoId": 3,
+      "title": "Python Functions Notes",
+      "description": "PDF notes for Python functions",
+      "pdfUrl": "https://greenteapress.com/thinkpython2/thinkpython2.pdf",
+      "thumbnail": "https://miro.medium.com/v2/resize:fit:1400/1*RJMxLdTHqVBSijKmOO5MAg.jpeg"
+    },
+    {
+      "id": 3,
+      "courseId": 3,
+      "videoId": 13,
+      "title": "React Basics Notes",
+      "description": "PDF notes for React beginners",
+      "pdfUrl": "https://reactjs.org/docs/getting-started.pdf",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+    }
+  ]
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import CourseSidebar from "../components/Sidebar";
+
 type Course = {
   id: number;
   name: string;
@@ -11,8 +12,8 @@ type Course = {
 type Video = {
   id: number;
   title: string;
-  thumbnail: string;
-  url: string;
+  thumbnail: string;   // YouTube thumbnail URL or local image
+  url: string;         // YouTube video URL from db.json
   courseId: number;
 };
 
@@ -56,17 +57,17 @@ export default function CoursesPage() {
 
   return (
     <div className="flex h-screen bg-neutral-950 text-neutral-50">
-      {/* LEFT: sidebar (your separate component) */}
-<CourseSidebar
-  search={search}
-  onSearchChange={setSearch}
-  selectedCourse={selectedCourse}
-  onSelectCourse={setSelectedCourse}
-/>
+      {/* LEFT: sidebar */}
+      <CourseSidebar
+        search={search}
+        onSearchChange={setSearch}
+        selectedCourse={selectedCourse}
+        onSelectCourse={setSelectedCourse}
+      />
 
       {/* RIGHT: top chips + video grid */}
       <div className="flex-1 flex flex-col">
-        {/* Top filter bar (chips) */}
+        {/* Top filter bar (chips like YouTube) */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-800 bg-neutral-900 overflow-x-auto no-scrollbar">
           <button
             onClick={() => setSelectedCourse(null)}
@@ -98,15 +99,18 @@ export default function CoursesPage() {
         <main className="flex-1 overflow-y-auto px-4 py-4">
           {!selectedCourse && (
             <p className="text-neutral-400 text-sm mb-3">
-              Select a course chip above to see its 6 videos.
+              Select a course chip above to see its videos.
             </p>
           )}
 
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {videos.map((video) => (
-              <article
+              <a
                 key={video.id}
-                className="bg-neutral-900 rounded-xl overflow-hidden hover:bg-neutral-800 transition-colors cursor-pointer"
+                href={video.url} // YouTube link stored in db.json
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-neutral-900 rounded-xl overflow-hidden hover:bg-neutral-800 transition-colors cursor-pointer block"
               >
                 <div className="aspect-video bg-neutral-700">
                   <img
@@ -123,7 +127,7 @@ export default function CoursesPage() {
                     {courses.find((c) => c.id === video.courseId)?.name}
                   </p>
                 </div>
-              </article>
+              </a>
             ))}
           </div>
         </main>
