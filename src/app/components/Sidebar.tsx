@@ -31,36 +31,36 @@ export default function CourseSidebar({
   );
 
   return (
-    <aside className="h-screen w-80 bg-black text-white flex flex-col px-4 py-3 gap-6">
+    <aside className="h-screen w-80 bg-neutral-100 text-neutral-900 flex flex-col px-4 py-3 gap-6 border-r border-neutral-200">
       {/* top home bar */}
       <div className="flex items-center gap-3">
-        <div className="h-9 w-9 rounded-full bg-neutral-800 flex items-center justify-center">
+        <div className="h-9 w-9 rounded-full bg-neutral-200 flex items-center justify-center">
           <span className="text-xl">🏠</span>
         </div>
-        <button className="flex-1 h-9 rounded-full bg-neutral-800 text-sm font-medium text-left px-4">
+        <button className="flex-1 h-9 rounded-full bg-white border border-neutral-300 text-sm font-medium text-left px-4 hover:bg-neutral-100 transition">
           Home
         </button>
       </div>
 
       {/* search bar */}
-      <div className="flex items-center gap-2 bg-neutral-900 rounded-full px-3 py-2 border border-neutral-700">
-        <span className="text-neutral-400 text-lg">🔍</span>
+      <div className="flex items-center gap-2 bg-white rounded-full px-3 py-2 border border-neutral-300">
+        <span className="text-neutral-500 text-lg">🔍</span>
         <input
           type="text"
           placeholder="Search courses..."
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="bg-transparent text-sm outline-none w-full placeholder:text-neutral-500"
+          className="bg-transparent text-sm outline-none w-full placeholder:text-neutral-400"
         />
       </div>
 
       {/* separator line */}
-      <div className="h-px w-full bg-neutral-700" />
+      <div className="h-px w-full bg-neutral-300" />
 
       {/* title bar */}
-      <div className="w-full flex items-center justify-between bg-neutral-900 px-4 py-3 rounded-none text-sm font-semibold tracking-wide">
+      <div className="w-full flex items-center justify-between bg-white px-4 py-3 border border-neutral-200 text-sm font-semibold tracking-wide">
         <span>Courses</span>
-        <span className="text-neutral-400 text-xs">
+        <span className="text-neutral-500 text-xs">
           {filteredCourses.length}
         </span>
       </div>
@@ -73,10 +73,10 @@ export default function CourseSidebar({
             onClick={() =>
               onSelectCourse(selectedCourse === course.id ? null : course.id)
             }
-            className={`w-full rounded-sm py-3 px-4 text-left text-base font-medium tracking-wide transition-colors ${
+            className={`w-full rounded-md py-3 px-4 text-left text-base font-medium tracking-wide transition ${
               selectedCourse === course.id
-                ? "bg-neutral-200 text-black"
-                : "bg-neutral-700 text-white hover:bg-neutral-600"
+                ? "bg-blue-600 text-white shadow"
+                : "bg-white text-neutral-800 border border-neutral-200 hover:bg-neutral-100"
             }`}
           >
             {course.name}

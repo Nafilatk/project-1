@@ -38,31 +38,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      
-      <section className=" h-screen w-screen mx-auto px-6 py-20 grid md:grid-cols-3 gap-8 bg-blue-900">
-        <div className="border rounded-xl p-6 hover:shadow-md transition">
-          <h3 className="text-xl font-semibold">🎓 Expert Content</h3>
-          <p className="text-gray-600 mt-2 text-sm">
-            Learn from industry-focused courses designed with real projects.
-          </p>
-        </div>
-
-        <div className="border rounded-xl p-6 hover:shadow-md transition">
-          <h3 className="text-xl font-semibold">📚 Free Ebooks</h3>
-          <p className="text-gray-600 mt-2 text-sm">
-            Download ebooks to learn anytime, anywhere at your own pace.
-          </p>
-        </div>
-
-        <div className="border rounded-xl p-6 hover:shadow-md transition">
-          <h3 className="text-xl font-semibold">⚡ Easy Learning</h3>
-          <p className="text-gray-600 mt-2 text-sm">
-            Beginner-friendly explanations with step-by-step guidance.
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-gray-50 py-16">
+            {/* <section className="bg-gray-50 py-16">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold">
             Start Learning Today
@@ -75,7 +51,7 @@ export default function HomePage() {
           Create free Account
               </PrimaryButton>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );

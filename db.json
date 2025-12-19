@@ -1,76 +1,118 @@
 {
-  "users": [],
-
+  "users": [
+    {
+      "id": "5725b9ef-782b-4b7f-b00a-33e7d5d3d286",
+      "name": "nafila tk",
+      "email": "nafilatk7@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "wishlist": [],
+      "orders": [],
+      "created_at": "2025-12-19T04:59:04.387Z"
+    }
+  ],
   "categories": [
-    { "id": 1, "name": "Frontend" },
-    { "id": 2, "name": "Backend" },
-    { "id": 3, "name": "Cyber Security" }
+    {
+      "id": "1",
+      "name": "Frontend"
+    },
+    {
+      "id": "2",
+      "name": "Backend"
+    },
+    {
+      "id": "3",
+      "name": "Cyber Security"
+    }
   ],
-
   "courses": [
-    { "id": 1, "name": "Python", "categoryId": 2 },
-    { "id": 2, "name": "Java", "categoryId": 2 },
-    { "id": 3, "name": "React", "categoryId": 1 },
-    { "id": 4, "name": "Angular", "categoryId": 1 },
-    { "id": 5, "name": "MERN", "categoryId": 1 },
-    { "id": 6, "name": "Machine Learning", "categoryId": 2 }
+    {
+      "id": "1",
+      "name": "Python",
+      "categoryId": 2
+    },
+    {
+      "id": "2",
+      "name": "Java",
+      "categoryId": 2
+    },
+    {
+      "id": "3",
+      "name": "React",
+      "categoryId": 1
+    },
+    {
+      "id": "4",
+      "name": "Angular",
+      "categoryId": 1
+    },
+    {
+      "id": "5",
+      "name": "MERN",
+      "categoryId": 1
+    },
+    {
+      "id": "6",
+      "name": "Machine Learning",
+      "categoryId": 2
+    }
   ],
-
   "videos": [
     {
-      "id": 1,
+      "id": "1",
       "courseId": 1,
       "title": "Python Basics",
       "thumbnail": "https://img.youtube.com/vi/_uQrJ0TkZlc/mqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=R8rmfD9Y5-c"
     },
     {
-      "id": 2,
+      "id": "2",
       "courseId": 1,
       "title": "Python Data Types",
       "thumbnail": "https://img.youtube.com/vi/kqtD5dpn9C8/mqdefault.jpg",
       "url": "https://www.youtube.com/embed/kqtD5dpn9C8"
     },
     {
-      "id": 3,
+      "id": "3",
       "courseId": 1,
       "title": "Python Functions",
       "thumbnail": "https://img.youtube.com/vi/9Os0o3wzS_I/mqdefault.jpg",
       "url": "https://www.youtube.com/embed/9Os0o3wzS_I"
     },
     {
-      "id": 13,
+      "id": "13",
       "courseId": 3,
       "title": "React Basics",
       "thumbnail": "https://img.youtube.com/vi/bMknfKXIFA8/mqdefault.jpg",
       "url": "https://www.youtube.com/embed/bMknfKXIFA8"
     },
     {
-      "id": 14,
+      "id": "14",
       "courseId": 3,
       "title": "JSX & Props",
       "thumbnail": "https://img.youtube.com/vi/Ke90Tje7VS0/mqdefault.jpg",
       "url": "https://www.youtube.com/embed/Ke90Tje7VS0"
     },
     {
-      "id": 15,
+      "id": "15",
       "courseId": 3,
       "title": "State & Events",
       "thumbnail": "https://img.youtube.com/vi/O6P86uwfdR0/mqdefault.jpg",
       "url": "https://www.youtube.com/embed/O6P86uwfdR0"
     },
     {
-      "id": 31,
+      "id": "31",
       "courseId": 6,
       "title": "Machine Learning Basics",
       "thumbnail": "https://img.youtube.com/vi/GwIo3gDZCVQ/mqdefault.jpg",
       "url": "https://www.youtube.com/embed/GwIo3gDZCVQ"
     }
   ],
-
   "ebooks": [
     {
-      "id": 1,
+      "id": "1",
       "courseId": 1,
       "videoId": 1,
       "title": "Python Basics Notes",
@@ -79,7 +121,7 @@
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
     },
     {
-      "id": 2,
+      "id": "2",
       "courseId": 1,
       "videoId": 3,
       "title": "Python Functions Notes",
@@ -88,7 +130,7 @@
       "thumbnail": "https://miro.medium.com/v2/resize:fit:1400/1*RJMxLdTHqVBSijKmOO5MAg.jpeg"
     },
     {
-      "id": 3,
+      "id": "3",
       "courseId": 3,
       "videoId": 13,
       "title": "React Basics Notes",

@@ -12,8 +12,8 @@ type Course = {
 type Video = {
   id: number;
   title: string;
-  thumbnail: string;   // YouTube thumbnail URL or local image
-  url: string;         // YouTube video URL from db.json
+  thumbnail: string;
+  url: string;
   courseId: number;
 };
 
@@ -24,7 +24,6 @@ export default function CoursesPage() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
   const [search, setSearch] = useState("");
 
-  // load courses
   useEffect(() => {
     fetch("http://localhost:3001/courses")
       .then((r) => r.json())
@@ -32,7 +31,6 @@ export default function CoursesPage() {
       .catch(console.error);
   }, []);
 
-  // load videos for selected course
   useEffect(() => {
     if (!selectedCourse) {
       setVideos([]);
@@ -45,7 +43,6 @@ export default function CoursesPage() {
       .catch(console.error);
   }, [selectedCourse]);
 
-  // filter courses by category + search
   const filteredCourses = courses.filter((course) => {
     const byCategory =
       !selectedCategory || course.categoryId === selectedCategory;
@@ -56,7 +53,7 @@ export default function CoursesPage() {
   });
 
   return (
-    <div className="flex h-screen bg-neutral-950 text-neutral-50">
+    <div className="flex h-screen bg-neutral-100 text-neutral-900">
       {/* LEFT: sidebar */}
       <CourseSidebar
         search={search}
@@ -65,16 +62,16 @@ export default function CoursesPage() {
         onSelectCourse={setSelectedCourse}
       />
 
-      {/* RIGHT: top chips + video grid */}
+      {/* RIGHT */}
       <div className="flex-1 flex flex-col">
-        {/* Top filter bar (chips like YouTube) */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-800 bg-neutral-900 overflow-x-auto no-scrollbar">
+        {/* Top filter chips */}
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-200 bg-white overflow-x-auto no-scrollbar">
           <button
             onClick={() => setSelectedCourse(null)}
-            className={`px-4 py-1 rounded-full text-sm whitespace-nowrap ${
+            className={`px-4 py-1 rounded-full text-sm whitespace-nowrap transition ${
               !selectedCourse
-                ? "bg-neutral-100 text-black"
-                : "bg-neutral-800 text-neutral-200"
+                ? "bg-blue-600 text-white"
+                : "bg-neutral-200 text-neutral-800 hover:bg-neutral-300"
             }`}
           >
             All
@@ -84,10 +81,10 @@ export default function CoursesPage() {
             <button
               key={course.id}
               onClick={() => setSelectedCourse(course.id)}
-              className={`px-4 py-1 rounded-full text-sm whitespace-nowrap capitalize ${
+              className={`px-4 py-1 rounded-full text-sm whitespace-nowrap capitalize transition ${
                 selectedCourse === course.id
-                  ? "bg-neutral-100 text-black"
-                  : "bg-neutral-800 text-neutral-200 hover:bg-neutral-700"
+                  ? "bg-blue-600 text-white"
+                  : "bg-neutral-200 text-neutral-800 hover:bg-neutral-300"
               }`}
             >
               {course.name}
@@ -98,7 +95,7 @@ export default function CoursesPage() {
         {/* Video grid */}
         <main className="flex-1 overflow-y-auto px-4 py-4">
           {!selectedCourse && (
-            <p className="text-neutral-400 text-sm mb-3">
+            <p className="text-neutral-500 text-sm mb-3">
               Select a course chip above to see its videos.
             </p>
           )}
@@ -107,23 +104,24 @@ export default function CoursesPage() {
             {videos.map((video) => (
               <a
                 key={video.id}
-                href={video.url} // YouTube link stored in db.json
+                href={video.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-neutral-900 rounded-xl overflow-hidden hover:bg-neutral-800 transition-colors cursor-pointer block"
+                className="bg-white rounded-xl overflow-hidden border border-neutral-200 hover:shadow-lg transition cursor-pointer block"
               >
-                <div className="aspect-video bg-neutral-700">
+                <div className="aspect-video bg-neutral-200">
                   <img
                     src={video.thumbnail}
                     alt={video.title}
                     className="w-full h-full object-cover"
                   />
                 </div>
+
                 <div className="p-3">
                   <h3 className="text-sm font-semibold line-clamp-2">
                     {video.title}
                   </h3>
-                  <p className="text-xs text-neutral-400 mt-1">
+                  <p className="text-xs text-neutral-500 mt-1">
                     {courses.find((c) => c.id === video.courseId)?.name}
                   </p>
                 </div>

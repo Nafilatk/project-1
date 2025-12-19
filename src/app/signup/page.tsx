@@ -1,65 +1,266 @@
-// "use client";
+"use client";
 
-// import { useState } from "react";
-// import { useRouter } from "next/navigation";
-// import axios from "axios";
+import { useState, FormEvent, ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { v4 as uuid } from "uuid";
+import { motion } from "framer-motion";
+import { FiUser, FiMail, FiLock, FiLogIn, FiArrowRight } from "react-icons/fi";
+import { useAuth } from "@/context/auth-context";
+import { glamColors as colors } from "../lib/theme";
 
-// export default function SignupPage() {
-//   const router = useRouter();
-//   const [form, setForm] = useState({
-//     name: "",
-//     email: "",
-//     password: ""
-//   });
+type SignupForm = {
+  name: string;
+  email: string;
+  password: string;
+};
 
-//   const handleSubmit = async (e: any) => {
-//     e.preventDefault();
+export default function SignupPage() {
+  const router = useRouter();
+  const { loginUser } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-//     // Save user in JSON Server
-//     const res = await axios.post("http://localhost:5000/users", form);
+  const [form, setForm] = useState<SignupForm>({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-//     // Save logged user
-//     localStorage.setItem("user", JSON.stringify(res.data));
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-//     // Redirect to home
-//     router.push("/");
-//   };
+  const handleSignup = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-//   return (
-//     <div className="min-h-screen flex items-center justify-center">
-//       <form
-//         onSubmit={handleSubmit}
-//         className="w-full max-w-sm border p-6 rounded-xl shadow"
-//       >
-//         <h1 className="text-2xl font-bold mb-4">Sign Up</h1>
+    const { name, email, password } = form;
+    if (!name || !email || !password) {
+      toast.warn("All fields are required");
+      setIsSubmitting(false);
+      return;
+    }
 
-//         <input
-//           placeholder="Name"
-//           className="w-full p-2 border rounded mb-3"
-//           required
-//           onChange={(e) => setForm({ ...form, name: e.target.value })}
-//         />
+    try {
+      // check existing user
+      const res = await axios.get(
+        `http://localhost:3001/users?email=${encodeURIComponent(email)}`
+      );
+      if (Array.isArray(res.data) && res.data.length > 0) {
+        toast.error("Email already registered");
+        setIsSubmitting(false);
+        return;
+      }
 
-//         <input
-//           placeholder="Email"
-//           type="email"
-//           className="w-full p-2 border rounded mb-3"
-//           required
-//           onChange={(e) => setForm({ ...form, email: e.target.value })}
-//         />
+      const newUser = {
+        id: uuid(),
+        name,
+        email,
+        password,
+        role: "user" as const,
+        isBlock: false,
+        cart: [],
+        wishlist: [],
+        orders: [],
+        created_at: new Date().toISOString(),
+      };
 
-//         <input
-//           placeholder="Password"
-//           type="password"
-//           className="w-full p-2 border rounded mb-4"
-//           required
-//           onChange={(e) => setForm({ ...form, password: e.target.value })}
-//         />
+      await axios.post("http://localhost:3001/users", newUser);
 
-//         <button className="w-full bg-blue-600 text-white py-2 rounded">
-//           Create Account
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
+      toast.success("Account created successfully");
+      loginUser(newUser);
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+      toast.error("Signup failed");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen flex items-center justify-center p-4"
+      style={{ backgroundColor: colors.cream }}
+    >
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="w-full max-w-md rounded-xl overflow-hidden p-8"
+        style={{
+          backgroundColor: colors.cream,
+          border: `1px solid ${colors.tan}`,
+        }}
+      >
+        <motion.div className="text-center mb-8">
+          <h2
+            className="text-3xl font-bold mb-2"
+            style={{ color: colors.burgundy }}
+          >
+            Join learnest.ai
+          </h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.4 }}
+            className="h-1 w-20 mx-auto"
+            style={{ backgroundColor: colors.tan }}
+          />
+          <p className="mt-3" style={{ color: colors.textDark }}>
+            Create your account to start learning
+          </p>
+        </motion.div>
+
+        <form onSubmit={handleSignup} className="space-y-5">
+          {/* Name */}
+          <motion.div
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="relative"
+          >
+            <FiUser
+              className="absolute left-3 top-3"
+              style={{ color: colors.burgundy }}
+            />
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={form.name}
+              onChange={handleChange}
+              className="w-full pl-10 pr-3 py-3 rounded-lg focus:outline-none"
+              style={{
+                backgroundColor: colors.cream,
+                border: `1px solid ${colors.tan}`,
+                color: colors.textDark,
+              }}
+              required
+            />
+          </motion.div>
+
+          {/* Email */}
+          <motion.div
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="relative"
+          >
+            <FiMail
+              className="absolute left-3 top-3"
+              style={{ color: colors.burgundy }}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full pl-10 pr-3 py-3 rounded-lg focus:outline-none"
+              style={{
+                backgroundColor: colors.cream,
+                border: `1px solid ${colors.tan}`,
+                color: colors.textDark,
+              }}
+              required
+            />
+          </motion.div>
+
+          {/* Password */}
+          <motion.div
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="relative"
+          >
+            <FiLock
+              className="absolute left-3 top-3"
+              style={{ color: colors.burgundy }}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              className="w-full pl-10 pr-3 py-3 rounded-lg focus:outline-none"
+              style={{
+                backgroundColor: colors.cream,
+                border: `1px solid ${colors.tan}`,
+                color: colors.textDark,
+              }}
+              required
+            />
+          </motion.div>
+
+          {/* Submit */}
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
+            style={{
+              backgroundColor: colors.burgundy,
+              color: colors.cream,
+            }}
+          >
+            {isSubmitting ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 mr-2"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+                Creating Account...
+              </>
+            ) : (
+              <>
+                <FiArrowRight />
+                Sign Up
+              </>
+            )}
+          </motion.button>
+        </form>
+
+        {/* Link to login */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="text-sm text-center mt-6"
+          style={{ color: colors.textDark }}
+        >
+          Already have an account?{" "}
+          <motion.span
+            whileHover={{ scale: 1.05 }}
+            onClick={() => router.push("/login")}
+            className="cursor-pointer font-semibold inline-flex items-center gap-1"
+            style={{ color: colors.burgundy }}
+          >
+            <FiLogIn />
+            Login
+          </motion.span>
+        </motion.p>
+      </motion.div>
+    </motion.div>
+  );
+}

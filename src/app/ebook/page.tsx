@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import CourseSidebar from "../components/Sidebar";
+
 type Course = { id: number; name: string };
 type Ebook = {
   id: number;
@@ -19,7 +20,6 @@ export default function EbookPage() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
   const [search, setSearch] = useState("");
 
-  // load courses once
   useEffect(() => {
     fetch("http://localhost:3001/courses")
       .then((r) => r.json())
@@ -27,7 +27,6 @@ export default function EbookPage() {
       .catch(console.error);
   }, []);
 
-  // load ebooks when course changes
   useEffect(() => {
     if (!selectedCourse) {
       setEbooks([]);
@@ -40,14 +39,13 @@ export default function EbookPage() {
       .catch(console.error);
   }, [selectedCourse]);
 
-  // optional: search inside ebook titles
   const filteredEbooks = ebooks.filter((e) =>
     e.title.toLowerCase().includes(search.toLowerCase().trim())
   );
 
   return (
-    <div className="flex h-screen bg-neutral-950 text-neutral-50">
-      {/* LEFT: sidebar with course list (you already have this) */}
+    <div className="flex h-screen bg-neutral-100 text-neutral-900">
+      {/* Sidebar */}
       <CourseSidebar
         search={search}
         onSearchChange={setSearch}
@@ -55,9 +53,9 @@ export default function EbookPage() {
         onSelectCourse={setSelectedCourse}
       />
 
-      {/* RIGHT: ebook cards */}
+      {/* Main */}
       <main className="flex-1 flex flex-col">
-        <header className="px-6 py-4 border-b border-neutral-800 bg-neutral-900 flex items-center justify-between">
+        <header className="px-6 py-4 border-b border-neutral-200 bg-white flex items-center justify-between">
           <h1 className="text-xl font-semibold">
             {selectedCourse
               ? `${courses.find((c) => c.id === selectedCourse)?.name} Ebooks`
@@ -67,7 +65,7 @@ export default function EbookPage() {
 
         <section className="flex-1 overflow-y-auto px-6 py-6">
           {selectedCourse && filteredEbooks.length === 0 && (
-            <p className="text-neutral-400 text-sm">
+            <p className="text-neutral-500 text-sm">
               No ebooks found for this course.
             </p>
           )}
@@ -76,9 +74,9 @@ export default function EbookPage() {
             {filteredEbooks.map((ebook) => (
               <article
                 key={ebook.id}
-                className="bg-neutral-900 rounded-xl overflow-hidden border border-neutral-800 hover:border-blue-500 hover:bg-neutral-850 transition cursor-pointer"
+                className="bg-white rounded-xl overflow-hidden border border-neutral-200 hover:border-blue-500 hover:shadow-lg transition cursor-pointer"
               >
-                <div className="aspect-[3/2] bg-neutral-800">
+                <div className="aspect-[3/2] bg-neutral-200">
                   <img
                     src={ebook.thumbnail}
                     alt={ebook.title}
@@ -90,11 +88,11 @@ export default function EbookPage() {
                   <h2 className="text-sm font-semibold line-clamp-2">
                     {ebook.title}
                   </h2>
-                  <p className="text-xs text-neutral-400 line-clamp-2">
+
+                  <p className="text-xs text-neutral-600 line-clamp-2">
                     {ebook.description}
                   </p>
 
-                  {/* open PDF in new tab */}
                   <a
                     href={ebook.pdfUrl}
                     target="_blank"
