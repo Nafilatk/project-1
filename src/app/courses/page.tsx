@@ -68,11 +68,10 @@ export default function CoursesPage() {
         <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-200 bg-white overflow-x-auto no-scrollbar">
           <button
             onClick={() => setSelectedCourse(null)}
-            className={`px-4 py-1 rounded-full text-sm whitespace-nowrap transition ${
-              !selectedCourse
+            className={`px-4 py-1 rounded-full text-sm whitespace-nowrap transition ${!selectedCourse
                 ? "bg-blue-600 text-white"
                 : "bg-neutral-200 text-neutral-800 hover:bg-neutral-300"
-            }`}
+              }`}
           >
             All
           </button>
@@ -81,11 +80,10 @@ export default function CoursesPage() {
             <button
               key={course.id}
               onClick={() => setSelectedCourse(course.id)}
-              className={`px-4 py-1 rounded-full text-sm whitespace-nowrap capitalize transition ${
-                selectedCourse === course.id
+              className={`px-4 py-1 rounded-full text-sm whitespace-nowrap capitalize transition ${selectedCourse === course.id
                   ? "bg-blue-600 text-white"
                   : "bg-neutral-200 text-neutral-800 hover:bg-neutral-300"
-              }`}
+                }`}
             >
               {course.name}
             </button>
@@ -95,9 +93,13 @@ export default function CoursesPage() {
         {/* Video grid */}
         <main className="flex-1 overflow-y-auto px-4 py-4">
           {!selectedCourse && (
-            <p className="text-neutral-500 text-sm mb-3">
-              Select a course chip above to see its videos.
+            <p className="text-neutral-600 text-base mb-4 leading-relaxed">
+              Welcome to our <span className="font-semibold text-blue-600">Explore Courses</span> page!
+              Browse through the course chips above to find topics that interest you.
+              Click on a course to see all its videos and start learning at your own pace.
+              Don’t see what you’re looking for? Check back often as we keep adding new content!
             </p>
+
           )}
 
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">

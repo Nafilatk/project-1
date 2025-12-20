@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useAuth } from "@/context/auth-context";
+import { useAuth } from "@/app/context/auth-context"; // adjust path if needed
+
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
@@ -29,12 +30,12 @@ export default function Navbar() {
         </Link>
 
         {/* Center nav links */}
-        <nav className="hidden gap-8 text-sm font-medium text-gray-200 md:flex">
+        <nav className="hidden gap-8 text-sm font-medium text-black md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="nav-link transition-colors hover:text-black"
+              className="nav-link transition-colors hover:text-gray-500"
             >
               {link.label}
             </Link>
@@ -63,7 +64,7 @@ export default function Navbar() {
           {user && (
             <div className="flex items-center gap-3">
               {/* user name */}
-              <span className="text-sm font-medium text-gray-100">
+              <span className="text-sm font-medium text-blue-800 transition-colors hover:text-gray-500">
                 {user.name}
               </span>
 

@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { FiLock, FiMail, FiLogIn, FiUserPlus } from "react-icons/fi";
-import { useAuth } from "@/context/auth-context";
+import { useAuth } from "../context/auth-context";
 import { glamColors as colors } from "../lib/theme";
 
 type LoginForm = {

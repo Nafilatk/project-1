@@ -1,7 +1,22 @@
 {
   "users": [
     {
-      "id": "5725b9ef-782b-4b7f-b00a-33e7d5d3d286",
+      "id": "d08a0ef4-c2f7-4ef8-8491-e64555cc679f",
+      "name": "asnif p",
+      "email": "asnifp@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "isBlock": false,
+      "cart": [],
+      "wishlist": [],
+      "orders": [],
+      "created_at": "2025-12-19T05:23:37.425Z",
+      "bio": "",
+      "phone": "",
+      "avatarUrl": "/uploads/Screenshot 2025-04-25 094230.png"
+    },
+    {
+      "id": "b01fa8bd-16c2-4ddd-83c6-9fe5550b0c8e",
       "name": "nafila tk",
       "email": "nafilatk7@gmail.com",
       "password": "123456",
@@ -10,7 +25,7 @@
       "cart": [],
       "wishlist": [],
       "orders": [],
-      "created_at": "2025-12-19T04:59:04.387Z"
+      "created_at": "2025-12-20T06:46:12.359Z"
     }
   ],
   "categories": [
@@ -64,43 +79,92 @@
       "id": "1",
       "courseId": 1,
       "title": "Python Basics",
-      "thumbnail": "https://img.youtube.com/vi/_uQrJ0TkZlc/mqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=R8rmfD9Y5-c"
+      "thumbnail": "https://img.youtube.com/vi/K5KVEU3aaeQ/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=K5KVEU3aaeQ&t=56s"
     },
     {
       "id": "2",
       "courseId": 1,
       "title": "Python Data Types",
-      "thumbnail": "https://img.youtube.com/vi/kqtD5dpn9C8/mqdefault.jpg",
-      "url": "https://www.youtube.com/embed/kqtD5dpn9C8"
+      "thumbnail": "https://img.youtube.com/vi/gCCVsvgR2KU/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=gCCVsvgR2KU"
     },
     {
       "id": "3",
       "courseId": 1,
       "title": "Python Functions",
-      "thumbnail": "https://img.youtube.com/vi/9Os0o3wzS_I/mqdefault.jpg",
-      "url": "https://www.youtube.com/embed/9Os0o3wzS_I"
+      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
+    },
+        {
+      "id": "4",
+      "courseId": 1,
+      "title": "Python Functions",
+      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
+    },
+        {
+      "id": "5",
+      "courseId": 1,
+      "title": "Python Functions",
+      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
+    },
+        {
+      "id": "6",
+      "courseId": 1,
+      "title": "Python Functions",
+      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
+    },
+        {
+      "id": "7",
+      "courseId": 1,
+      "title": "Python Functions",
+      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
+    },
+        {
+      "id": "8",
+      "courseId": 1,
+      "title": "Python Functions",
+      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
+    },
+        {
+      "id": "9",
+      "courseId": 1,
+      "title": "Python Functions",
+      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
+    },
+        {
+      "id": "01",
+      "courseId": 2,
+      "title": "Java Introduction",
+      "thumbnail": "https://img.youtube.com/vi/bm0OyhwFDuY/hqdefault.jpg",
+      "url": "bm0OyhwFDuY"
     },
     {
       "id": "13",
       "courseId": 3,
       "title": "React Basics",
-      "thumbnail": "https://img.youtube.com/vi/bMknfKXIFA8/mqdefault.jpg",
-      "url": "https://www.youtube.com/embed/bMknfKXIFA8"
+      "thumbnail": "https://img.youtube.com/vi/QFaFIcGhPoM/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=QFaFIcGhPoM&list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3"
     },
     {
       "id": "14",
       "courseId": 3,
       "title": "JSX & Props",
-      "thumbnail": "https://img.youtube.com/vi/Ke90Tje7VS0/mqdefault.jpg",
-      "url": "https://www.youtube.com/embed/Ke90Tje7VS0"
+      "thumbnail": "https://img.youtube.com/vi/7fPXI_MnBOY/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=7fPXI_MnBOY"
     },
     {
       "id": "15",
       "courseId": 3,
       "title": "State & Events",
-      "thumbnail": "https://img.youtube.com/vi/O6P86uwfdR0/mqdefault.jpg",
-      "url": "https://www.youtube.com/embed/O6P86uwfdR0"
+      "thumbnail": "https://img.youtube.com/vi/4ORZ1GmjaMc/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=4ORZ1GmjaMc"
     },
     {
       "id": "31",

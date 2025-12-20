@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { v4 as uuid } from "uuid";
 import { motion } from "framer-motion";
 import { FiUser, FiMail, FiLock, FiLogIn, FiArrowRight } from "react-icons/fi";
-import { useAuth } from "@/context/auth-context";
+import { useAuth } from "@/app/context/auth-context"; // adjust path if needed
 import { glamColors as colors } from "../lib/theme";
 
 type SignupForm = {
