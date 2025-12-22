@@ -12,12 +12,11 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const { user } = useAuth(); // user is null when not logged in
+  const { user } = useAuth(); 
 
   return (
     <header className="sticky top-0 left-0 w-full bg-white/15 backdrop-blur-md border-b border-white/20 z-50">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        {/* Logo */}
         <Link href="/" className="h-10 w-10 overflow-hidden">
           <Image
             src="/logo.svg"
@@ -29,7 +28,6 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Center nav links */}
         <nav className="hidden gap-8 text-sm font-medium text-black md:flex">
           {navLinks.map((link) => (
             <Link
@@ -42,7 +40,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right side: auth / profile */}
         <div className="hidden md:flex items-center gap-3">
           {!user && (
             <>
@@ -63,17 +60,14 @@ export default function Navbar() {
 
           {user && (
             <div className="flex items-center gap-3">
-              {/* user name */}
               <span className="text-sm font-medium text-blue-800 transition-colors hover:text-gray-500">
                 {user.name}
               </span>
 
-              {/* profile button */}
               <Link
                 href="/profile"
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
               >
-                {/* simple initial avatar, e.g. first letter of name */}
                 {user.name.charAt(0).toUpperCase()}
               </Link>
             </div>

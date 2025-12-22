@@ -10,6 +10,8 @@
     "server": "json-server --watch db.json --port 5000"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@types/gsap": "^1.20.2",
     "axios": "^1.13.2",
     "framer-motion": "^12.23.26",
     "gsap": "^3.14.2",

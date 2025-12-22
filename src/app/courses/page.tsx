@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import CourseSidebar from "../components/Sidebar";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 type Course = {
   id: number;
@@ -24,6 +26,9 @@ export default function CoursesPage() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
   const [search, setSearch] = useState("");
 
+  const topBarRef = useRef<HTMLDivElement | null>(null);
+  const gridRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     fetch("http://localhost:3001/courses")
       .then((r) => r.json())
@@ -39,9 +44,37 @@ export default function CoursesPage() {
 
     fetch(`http://localhost:3001/videos?courseId=${selectedCourse}`)
       .then((r) => r.json())
-      .then(setVideos)
+      .then((data: Video[]) => {
+        setVideos(data);
+
+        if (gridRef.current) {
+          const cards = gridRef.current.querySelectorAll(".video-card");
+          gsap.fromTo(
+            cards,
+            { opacity: 0, y: 20, scale: 0.97 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.5,
+              stagger: 0.05,
+              ease: "power2.out",
+            }
+          );
+        }
+      })
       .catch(console.error);
   }, [selectedCourse]);
+
+  useGSAP(() => {
+    if (!topBarRef.current) return;
+    gsap.from(topBarRef.current, {
+      opacity: 0,
+      y: -20,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+  }, []);
 
   const filteredCourses = courses.filter((course) => {
     const byCategory =
@@ -53,8 +86,7 @@ export default function CoursesPage() {
   });
 
   return (
-    <div className="flex h-screen bg-neutral-100 text-neutral-900">
-      {/* LEFT: sidebar */}
+    <div className="flex h-screen bg-white text-gray-900">
       <CourseSidebar
         search={search}
         onSearchChange={setSearch}
@@ -62,16 +94,19 @@ export default function CoursesPage() {
         onSelectCourse={setSelectedCourse}
       />
 
-      {/* RIGHT */}
-      <div className="flex-1 flex flex-col">
-        {/* Top filter chips */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-200 bg-white overflow-x-auto no-scrollbar">
+      <div className="flex flex-1 flex-col border-l border-gray-200 bg-white">
+
+        <div
+          ref={topBarRef}
+          className="flex items-center gap-3 border-b border-gray-200 bg-white px-4 py-3"
+        >
           <button
             onClick={() => setSelectedCourse(null)}
-            className={`px-4 py-1 rounded-full text-sm whitespace-nowrap transition ${!selectedCourse
-                ? "bg-blue-600 text-white"
-                : "bg-neutral-200 text-neutral-800 hover:bg-neutral-300"
-              }`}
+            className={`px-4 py-1.5 rounded-full text-xs md:text-sm whitespace-nowrap transition ${
+              !selectedCourse
+                ? "bg-blue-600 text-white shadow shadow-blue-500/30"
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+            }`}
           >
             All
           </button>
@@ -80,56 +115,70 @@ export default function CoursesPage() {
             <button
               key={course.id}
               onClick={() => setSelectedCourse(course.id)}
-              className={`px-4 py-1 rounded-full text-sm whitespace-nowrap capitalize transition ${selectedCourse === course.id
-                  ? "bg-blue-600 text-white"
-                  : "bg-neutral-200 text-neutral-800 hover:bg-neutral-300"
-                }`}
+              className={`px-4 py-1.5 rounded-full text-xs md:text-sm whitespace-nowrap capitalize transition ${
+                selectedCourse === course.id
+                  ? "bg-blue-600 text-white shadow shadow-blue-500/30"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
             >
               {course.name}
             </button>
           ))}
         </div>
 
-        {/* Video grid */}
         <main className="flex-1 overflow-y-auto px-4 py-4">
           {!selectedCourse && (
-            <p className="text-neutral-600 text-base mb-4 leading-relaxed">
-              Welcome to our <span className="font-semibold text-blue-600">Explore Courses</span> page!
-              Browse through the course chips above to find topics that interest you.
-              Click on a course to see all its videos and start learning at your own pace.
-              Don’t see what you’re looking for? Check back often as we keep adding new content!
-            </p>
-
+            <div className="mb-4 rounded-2xl border border-blue-100 bg-blue-50/80 p-4 text-sm leading-relaxed text-gray-700 shadow-sm">
+              <h2 className="mb-1 text-base font-semibold text-gray-900">
+                Explore Courses
+              </h2>
+              <p className="text-xs text-gray-600">
+                Use the course chips above or the sidebar search to discover
+                content. Select a course to load its lessons and start learning
+                instantly.
+              </p>
+            </div>
           )}
 
-          <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div
+            ref={gridRef}
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
             {videos.map((video) => (
               <a
                 key={video.id}
                 href={video.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white rounded-xl overflow-hidden border border-neutral-200 hover:shadow-lg transition cursor-pointer block"
+                className="video-card group block overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-400 hover:shadow-md"
               >
-                <div className="aspect-video bg-neutral-200">
+                <div className="relative aspect-video overflow-hidden bg-gray-100">
                   <img
                     src={video.thumbnail}
                     alt={video.title}
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
 
                 <div className="p-3">
-                  <h3 className="text-sm font-semibold line-clamp-2">
+                  <h3 className="line-clamp-2 text-sm font-semibold text-gray-900">
                     {video.title}
                   </h3>
-                  <p className="text-xs text-neutral-500 mt-1">
-                    {courses.find((c) => c.id === video.courseId)?.name}
+                  <p className="mt-1 text-[11px] uppercase tracking-wide text-blue-600">
+                    {courses.find((c) => c.id === video.courseId)?.name ??
+                      "Course"}
                   </p>
                 </div>
               </a>
             ))}
           </div>
+
+          {selectedCourse && videos.length === 0 && (
+            <p className="mt-6 text-center text-sm text-gray-500">
+              No videos found for this course yet. Please check again later.
+            </p>
+          )}
         </main>
       </div>
     </div>

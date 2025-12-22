@@ -32,17 +32,8 @@ export default function CourseSidebar({
 
   return (
     <aside className="h-screen w-80 bg-white text-neutral-900 flex flex-col px-4 py-3 gap-6 border-r border-neutral-200">
-      {/* top home bar */}
-      <div className="flex items-center gap-3">
-        <div className="h-9 w-9 rounded-full bg-blue-50 flex items-center justify-center">
-          <span className="text-xl text-blue-600">🏠</span>
-        </div>
-        <button className="flex-1 h-9 rounded-full bg-blue-50 border border-blue-100 text-sm font-medium text-left px-4 hover:bg-blue-100 transition text-blue-700">
-          Home
-        </button>
-      </div>
 
-      {/* search bar */}
+
       <div className="flex items-center gap-2 bg-blue-50 rounded-full px-3 py-2 border border-blue-100">
         <span className="text-blue-500 text-lg">🔍</span>
         <input
@@ -54,10 +45,8 @@ export default function CourseSidebar({
         />
       </div>
 
-      {/* separator line */}
       <div className="h-px w-full bg-blue-100" />
 
-      {/* title bar */}
       <div className="w-full flex items-center justify-between bg-blue-50 px-4 py-3 border border-blue-100 text-sm font-semibold tracking-wide text-blue-800">
         <span>Courses</span>
         <span className="text-blue-600 text-xs font-medium">
@@ -65,7 +54,6 @@ export default function CourseSidebar({
         </span>
       </div>
 
-      {/* course buttons */}
       <div className="flex-1 flex flex-col gap-3 mt-2 overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {filteredCourses.map((course) => (
           <button

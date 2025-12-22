@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { api } from "@/app/lib/axios";
 import type { User } from "@/app/lib/auth-types";
 import { useAuth } from "@/app/context/auth-context";
+import PrimaryButton from "../components/buttons";
 
 type PersonalForm = {
   name: string;
@@ -53,12 +54,10 @@ export default function ProfileSettingsPage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  // Protected route
   useEffect(() => {
     if (!user) router.replace("/login");
   }, [user, router]);
 
-  // Load user profile
   useEffect(() => {
     if (!user) return;
 
@@ -96,14 +95,12 @@ export default function ProfileSettingsPage() {
     load();
   }, [user]);
 
-  // Auto hide success
   useEffect(() => {
     if (!success) return;
     const id = window.setTimeout(() => setSuccess(null), 3000);
     return () => window.clearTimeout(id);
   }, [success]);
 
-  // Handlers – personal info
   const handlePersonalChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -173,7 +170,6 @@ export default function ProfileSettingsPage() {
     }
   };
 
-  // Handlers – forgot password (login & security)
   const handleForgotChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForgotForm((prev) => ({ ...prev, [name]: value }));
@@ -206,7 +202,6 @@ export default function ProfileSettingsPage() {
       setError(null);
       setSuccess(null);
 
-      // Find user by email
       const res = await api.get<User[]>("/users", {
         params: { email: forgotForm.email },
       });
@@ -234,7 +229,6 @@ export default function ProfileSettingsPage() {
     }
   };
 
-  // Handlers – account (logout + delete)
   const handleLogout = () => {
     logoutUser();
     router.replace("/login");
@@ -267,34 +261,9 @@ export default function ProfileSettingsPage() {
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-8">
       <div className="mx-auto flex max-w-6xl gap-6">
-        {/* Left sidebar */}
-        <aside className="hidden w-60 flex-shrink-0 rounded-2xl border border-slate-200 bg-white p-4 text-sm md:block">
-          <div className="mb-4 text-xs font-semibold text-slate-500">
-            MENU
-          </div>
-          <nav className="space-y-1">
-            <button
-              className="flex w-full items-center rounded-lg bg-slate-100 px-3 py-2 text-left text-slate-900 font-medium"
-              disabled
-            >
-              Profile Settings
-            </button>
-            <button className="flex w-full items-center rounded-lg px-3 py-2 text-left text-slate-500 hover:bg-slate-50">
-              Billing
-            </button>
-          </nav>
 
-          <div className="mt-8 border-t border-slate-200 pt-4">
-            <button
-              onClick={handleLogout}
-              className="w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-red-600 hover:bg-red-50"
-            >
-              Sign out
-            </button>
-          </div>
-        </aside>
 
-        {/* Main content */}
+
         <section className="flex-1">
           <h1 className="text-2xl font-semibold text-slate-900">
             Profile Settings
@@ -303,12 +272,11 @@ export default function ProfileSettingsPage() {
             Manage your personal information, login security, and account.
           </p>
 
-          {/* Header card with avatar + name */}
           <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-4 md:p-5 flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="h-14 w-14 rounded-full bg-slate-100 border border-slate-200 overflow-hidden">
                 {avatarPreview ? (
-                  // eslint-disable-next-line @next/next/no-img-element
+
                   <img
                     src={avatarPreview}
                     alt="Avatar"
@@ -341,36 +309,32 @@ export default function ProfileSettingsPage() {
             </label>
           </div>
 
-          {/* Tabs */}
           <div className="mt-6 rounded-2xl border border-slate-200 bg-white">
             <div className="border-b border-slate-200 px-4 pt-3">
               <div className="flex gap-6 text-sm font-medium">
                 <button
-                  className={`pb-3 ${
-                    activeTab === "personal"
-                      ? "border-b-2 border-blue-600 text-blue-600"
-                      : "text-slate-500 hover:text-slate-700"
-                  }`}
+                  className={`pb-3 ${activeTab === "personal"
+                    ? "border-b-2 border-blue-600 text-blue-600"
+                    : "text-slate-500 hover:text-slate-700"
+                    }`}
                   onClick={() => setActiveTab("personal")}
                 >
                   Personal Info
                 </button>
                 <button
-                  className={`pb-3 ${
-                    activeTab === "security"
-                      ? "border-b-2 border-blue-600 text-blue-600"
-                      : "text-slate-500 hover:text-slate-700"
-                  }`}
+                  className={`pb-3 ${activeTab === "security"
+                    ? "border-b-2 border-blue-600 text-blue-600"
+                    : "text-slate-500 hover:text-slate-700"
+                    }`}
                   onClick={() => setActiveTab("security")}
                 >
                   Login & Security
                 </button>
                 <button
-                  className={`pb-3 ${
-                    activeTab === "account"
-                      ? "border-b-2 border-blue-600 text-blue-600"
-                      : "text-slate-500 hover:text-slate-700"
-                  }`}
+                  className={`pb-3 ${activeTab === "account"
+                    ? "border-b-2 border-blue-600 text-blue-600"
+                    : "text-slate-500 hover:text-slate-700"
+                    }`}
                   onClick={() => setActiveTab("account")}
                 >
                   Account
@@ -394,7 +358,7 @@ export default function ProfileSettingsPage() {
                 </p>
               )}
 
-              {/* TAB 1: Personal Info */}
+              {/* TAB 1 */}
               {!isLoading && personalForm && activeTab === "personal" && (
                 <form
                   onSubmit={handleSavePersonal}
@@ -459,18 +423,18 @@ export default function ProfileSettingsPage() {
                   </div>
 
                   <div className="pt-1">
-                    <button
+                    <PrimaryButton
                       type="submit"
                       disabled={isSavingPersonal}
-                      className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-400"
                     >
                       {isSavingPersonal ? "Saving..." : "Save personal info"}
-                    </button>
+                    </PrimaryButton>
+
                   </div>
                 </form>
               )}
 
-              {/* TAB 2: Login & Security (forgot password) */}
+              {/* TAB 2 */}
               {!isLoading && activeTab === "security" && (
                 <form
                   onSubmit={handleResetPassword}
@@ -525,20 +489,20 @@ export default function ProfileSettingsPage() {
                   </div>
 
                   <div className="pt-1">
-                    <button
+                    <PrimaryButton
+
                       type="submit"
                       disabled={isResettingPassword}
-                      className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-blue-400"
                     >
                       {isResettingPassword
                         ? "Updating..."
                         : "Update password"}
-                    </button>
+                    </PrimaryButton>
                   </div>
                 </form>
               )}
 
-              {/* TAB 3: Account (logout + delete) */}
+              {/* TAB 3:  */}
               {!isLoading && activeTab === "account" && (
                 <div className="space-y-5 text-sm">
                   <h2 className="text-sm font-semibold text-slate-900">

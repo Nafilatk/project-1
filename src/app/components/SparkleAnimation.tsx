@@ -70,7 +70,6 @@ const SparkleAnimation = () => {
     >
       <div ref={logoRef} className="z-10 absolute">
         <Image src="/logo.svg" alt="logo" width={220} height={220} />
-        {/* <div className="text-5xl font-black tracking-tighter">LOGO</div> */}
       </div>
 
       <div className="grid grid-cols-10 gap-2 w-64 h-64">

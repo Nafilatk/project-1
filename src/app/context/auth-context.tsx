@@ -1,4 +1,3 @@
-// src/app/context/auth-context.tsx
 "use client";
 
 import {
@@ -23,7 +22,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 App load time – restore user
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
 
@@ -34,13 +32,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(false);
   }, []);
 
-  // 🔹 Login
   const loginUser = (u: User) => {
     setUser(u);
     localStorage.setItem("user", JSON.stringify(u));
   };
 
-  // 🔹 Logout
   const logoutUser = () => {
     setUser(null);
     localStorage.removeItem("user");

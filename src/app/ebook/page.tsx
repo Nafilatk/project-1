@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import CourseSidebar from "../components/Sidebar";
+import { api } from "@/app/lib/axios";
 
 type Course = { id: number; name: string };
+
 type Ebook = {
   id: number;
   title: string;
@@ -21,9 +23,9 @@ export default function EbookPage() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3001/courses")
-      .then((r) => r.json())
-      .then(setCourses)
+    api
+      .get<Course[]>("/courses")
+      .then((res) => setCourses(res.data))
       .catch(console.error);
   }, []);
 
@@ -33,9 +35,9 @@ export default function EbookPage() {
       return;
     }
 
-    fetch(`http://localhost:3001/ebooks?courseId=${selectedCourse}`)
-      .then((r) => r.json())
-      .then(setEbooks)
+    api
+      .get<Ebook[]>("/ebooks", { params: { courseId: selectedCourse } })
+      .then((res) => setEbooks(res.data))
       .catch(console.error);
   }, [selectedCourse]);
 
@@ -45,7 +47,6 @@ export default function EbookPage() {
 
   return (
     <div className="flex h-screen bg-neutral-100 text-neutral-900">
-      {/* Sidebar */}
       <CourseSidebar
         search={search}
         onSearchChange={setSearch}
@@ -53,7 +54,6 @@ export default function EbookPage() {
         onSelectCourse={setSelectedCourse}
       />
 
-      {/* Main */}
       <main className="flex-1 flex flex-col">
         <header className="px-6 py-4 border-b border-neutral-200 bg-white flex items-center justify-between">
           <h1 className="text-xl font-semibold">
