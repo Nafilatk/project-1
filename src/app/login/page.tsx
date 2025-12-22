@@ -5,9 +5,8 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
-import { FiLock, FiMail, FiLogIn, FiUserPlus } from "react-icons/fi";
+import { FiLock, FiMail, FiLogIn, FiUserPlus, FiEye, FiEyeOff } from "react-icons/fi";
 import { useAuth } from "../context/auth-context";
-import { glamColors as colors } from "../lib/theme";
 
 type LoginForm = {
   email: string;
@@ -18,6 +17,8 @@ export default function LoginPage() {
   const router = useRouter();
   const { loginUser } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const [form, setForm] = useState<LoginForm>({
     email: "",
@@ -78,101 +79,119 @@ export default function LoginPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen flex items-center justify-center p-4"
-      style={{ backgroundColor: colors.cream }}
+      className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-white to-blue-50"
     >
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="w-full max-w-md rounded-xl overflow-hidden p-8"
-        style={{
-          backgroundColor: colors.cream,
-          border: `1px solid ${colors.tan}`,
-        }}
+        className="w-full max-w-md rounded-2xl overflow-hidden p-8 bg-white shadow-xl border border-gray-200"
       >
-        <motion.div className="text-center mb-8">
-          <h2
-            className="text-3xl font-bold mb-2"
-            style={{ color: colors.burgundy }}
-          >
+        <div className="text-center mb-8">
+
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">
             Welcome Back
           </h2>
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.4 }}
-            className="h-1 w-20 mx-auto"
-            style={{ backgroundColor: colors.tan }}
+            className="h-1 w-20 mx-auto bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"
           />
-        </motion.div>
+          <p className="mt-3 text-gray-600">
+            Sign in to continue to your account
+          </p>
+        </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
-          {/* Email */}
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="relative"
+            className="space-y-2"
           >
-            <FiMail
-              className="absolute left-3 top-3"
-              style={{ color: colors.burgundy }}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              value={form.email}
-              onChange={handleChange}
-              className="w-full pl-10 pr-3 py-3 rounded-lg focus:outline-none"
-              style={{
-                backgroundColor: colors.cream,
-                border: `1px solid ${colors.tan}`,
-                color: colors.textDark,
-              }}
-              required
-            />
+            <label className="block text-sm font-medium text-gray-700">
+              Email Address
+            </label>
+            <div className="relative">
+              <FiMail className="absolute left-3 top-3 text-blue-600" />
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full pl-10 pr-3 py-3 rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                required
+              />
+            </div>
           </motion.div>
 
-          {/* Password */}
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="relative"
+            className="space-y-2"
           >
-            <FiLock
-              className="absolute left-3 top-3"
-              style={{ color: colors.burgundy }}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
-              className="w-full pl-10 pr-3 py-3 rounded-lg focus:outline-none"
-              style={{
-                backgroundColor: colors.cream,
-                border: `1px solid ${colors.tan}`,
-                color: colors.textDark,
-              }}
-              required
-            />
+            <div className="flex justify-between items-center">
+              <label className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <button
+                type="button"
+                onClick={() => router.push("/forgot-password")}
+                className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
+              >
+                Forgot password?
+              </button>
+            </div>
+            <div className="relative">
+              <FiLock className="absolute left-3 top-3 text-blue-600" />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Enter your password"
+                value={form.password}
+                onChange={handleChange}
+                className="w-full pl-10 pr-10 py-3 rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-3 text-gray-500 hover:text-blue-600 transition-colors"
+              >
+                {showPassword ? <FiEyeOff /> : <FiEye />}
+              </button>
+            </div>
           </motion.div>
 
-          {/* Submit */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex items-center justify-between"
+          >
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="remember"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+              />
+              <label htmlFor="remember" className="ml-2 text-sm text-gray-600">
+                Remember me
+              </label>
+            </div>
+          </motion.div>
+
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
-            style={{
-              backgroundColor: colors.burgundy,
-              color: colors.cream,
-            }}
+            className="w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <>
@@ -194,34 +213,54 @@ export default function LoginPage() {
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   />
                 </svg>
-                Processing...
+                Signing in...
               </>
             ) : (
               <>
                 <FiLogIn />
-                Login
+                Sign In
               </>
             )}
           </motion.button>
         </form>
 
-        {/* Link to signup */}
+        {/* Divider */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="flex items-center my-6"
+        >
+          <div className="flex-grow border-t border-gray-300"></div>
+          <span className="flex-shrink mx-4 text-gray-500 text-sm">or continue with</span>
+          <div className="flex-grow border-t border-gray-300"></div>
+        </motion.div>
+
+        {/* Social Login */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="grid grid-cols-2 gap-3"
+        >
+
+        </motion.div>
+
+        {/* Signup Link */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="text-sm text-center mt-6"
-          style={{ color: colors.textDark }}
+          transition={{ delay: 0.9 }}
+          className="text-center mt-8 text-gray-600"
         >
           Don&apos;t have an account?{" "}
           <motion.span
             whileHover={{ scale: 1.05 }}
             onClick={() => router.push("/signup")}
-            className="cursor-pointer font-semibold inline-flex items-center gap-1"
-            style={{ color: colors.burgundy }}
+            className="cursor-pointer font-semibold inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 transition-colors"
           >
             <FiUserPlus />
-            Sign up
+            Create an account
           </motion.span>
         </motion.p>
       </motion.div>
