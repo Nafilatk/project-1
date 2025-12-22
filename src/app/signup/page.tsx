@@ -42,7 +42,6 @@ export default function SignupPage() {
     }
 
     try {
-      // check existing user
       const res = await axios.get(
         `http://localhost:3001/users?email=${encodeURIComponent(email)}`
       );
@@ -107,7 +106,6 @@ export default function SignupPage() {
         </motion.div>
 
         <form onSubmit={handleSignup} className="space-y-5">
-          {/* Name */}
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -126,7 +124,6 @@ export default function SignupPage() {
             />
           </motion.div>
 
-          {/* Email */}
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -145,7 +142,6 @@ export default function SignupPage() {
             />
           </motion.div>
 
-          {/* Password */}
           <motion.div
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -164,7 +160,6 @@ export default function SignupPage() {
             />
           </motion.div>
 
-          {/* Terms & Conditions */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -185,7 +180,6 @@ export default function SignupPage() {
             </label>
           </motion.div>
 
-          {/* Submit */}
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -224,7 +218,6 @@ export default function SignupPage() {
           </motion.button>
         </form>
 
-        {/* Divider */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -236,7 +229,6 @@ export default function SignupPage() {
           <div className="flex-grow border-t border-gray-300"></div>
         </motion.div>
 
-        {/* Social Signup */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -245,7 +237,6 @@ export default function SignupPage() {
         >
         </motion.div>
 
-        {/* Link to login */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

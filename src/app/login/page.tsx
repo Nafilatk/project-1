@@ -224,7 +224,6 @@ export default function LoginPage() {
           </motion.button>
         </form>
 
-        {/* Divider */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -236,7 +235,6 @@ export default function LoginPage() {
           <div className="grow border-t border-gray-300"></div>
         </motion.div>
 
-        {/* Social Login */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -246,7 +244,6 @@ export default function LoginPage() {
 
         </motion.div>
 
-        {/* Signup Link */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

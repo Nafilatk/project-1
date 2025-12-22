@@ -1,4 +1,3 @@
-// src/app/lib/auth.ts
 export function saveToken(token: string) {
   if (typeof window !== "undefined") {
     localStorage.setItem("token", token);

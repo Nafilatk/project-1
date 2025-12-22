@@ -1,4 +1,3 @@
-// src/app/lib/api.ts
 
 import { api } from "./axios";
 

@@ -1,4 +1,3 @@
-// src/app/lib/theme.ts
 export const glamColors = {
   tan: "#E6D5C3",
   cream: "#F5F0E8",
