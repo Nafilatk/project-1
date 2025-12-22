@@ -19,7 +19,7 @@ const base =
   "inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold transition-all duration-200";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-blue-900 text-white hover:bg-blue-700",
+  primary: "bg-blue-800 text-white hover:bg-blue-700",
   secondary: "bg-slate-900 text-white hover:bg-slate-800",
   ghost:
     "border border-slate-300 text-slate-700 hover:bg-slate-100",

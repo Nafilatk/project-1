@@ -8,7 +8,7 @@ export default function Footer() {
         {/* Brand */}
         <div>
           <h2 className="text-xl font-bold">
-            Learnest<span className="text-blue-600">.ai</span>
+            Learnest<span className="text-blue-800">.ai</span>
           </h2>
           <p className="mt-3 text-gray-600">
             Learn skills that matter. Courses and ebooks designed for real-world success.

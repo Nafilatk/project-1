@@ -314,7 +314,7 @@ export default function ProfileSettingsPage() {
               <div className="flex gap-6 text-sm font-medium">
                 <button
                   className={`pb-3 ${activeTab === "personal"
-                    ? "border-b-2 border-blue-600 text-blue-600"
+                    ? "border-b-2 border-blue-600 text-blue-800"
                     : "text-slate-500 hover:text-slate-700"
                     }`}
                   onClick={() => setActiveTab("personal")}
@@ -323,7 +323,7 @@ export default function ProfileSettingsPage() {
                 </button>
                 <button
                   className={`pb-3 ${activeTab === "security"
-                    ? "border-b-2 border-blue-600 text-blue-600"
+                    ? "border-b-2 border-blue-600 text-blue-800"
                     : "text-slate-500 hover:text-slate-700"
                     }`}
                   onClick={() => setActiveTab("security")}
@@ -332,7 +332,7 @@ export default function ProfileSettingsPage() {
                 </button>
                 <button
                   className={`pb-3 ${activeTab === "account"
-                    ? "border-b-2 border-blue-600 text-blue-600"
+                    ? "border-b-2 border-blue-600 text-blue-800"
                     : "text-slate-500 hover:text-slate-700"
                     }`}
                   onClick={() => setActiveTab("account")}

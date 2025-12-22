@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useAuth } from "@/app/context/auth-context"; // adjust path if needed
+import { useAuth } from "@/app/context/auth-context"; 
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -51,7 +51,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/signup"
-                className="rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-md hover:bg-blue-700 transition-colors"
+                className="rounded-full bg-blue-800 px-5 py-2 text-sm font-semibold text-white shadow-md hover:bg-blue-700 transition-colors"
               >
                 Sign up
               </Link>
@@ -66,7 +66,7 @@ export default function Navbar() {
 
               <Link
                 href="/profile"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-800 text-white text-sm font-semibold hover:bg-blue-700 transition-colors"
               >
                 {user.name.charAt(0).toUpperCase()}
               </Link>

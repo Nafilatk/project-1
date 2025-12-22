@@ -7,9 +7,6 @@
       "password": "123456",
       "role": "user",
       "isBlock": false,
-      "cart": [],
-      "wishlist": [],
-      "orders": [],
       "created_at": "2025-12-19T05:23:37.425Z",
       "bio": "",
       "phone": "",
@@ -19,13 +16,13 @@
       "id": "b01fa8bd-16c2-4ddd-83c6-9fe5550b0c8e",
       "name": "nafila tk",
       "email": "nafilatk7@gmail.com",
-      "password": "123456",
+      "password": "nafila123",
       "role": "user",
       "isBlock": false,
-      "cart": [],
-      "wishlist": [],
-      "orders": [],
-      "created_at": "2025-12-20T06:46:12.359Z"
+      "created_at": "2025-12-20T06:46:12.359Z",
+      "bio": "heyy iam nafila tk ",
+      "phone": "+918113854750",
+      "avatarUrl": "/uploads/Screenshot 2025-04-25 094230.png"
     }
   ],
   "categories": [
@@ -96,49 +93,49 @@
       "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
     },
-        {
+    {
       "id": "4",
       "courseId": 1,
       "title": "Python Functions",
       "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
     },
-        {
+    {
       "id": "5",
       "courseId": 1,
       "title": "Python Functions",
       "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
     },
-        {
+    {
       "id": "6",
       "courseId": 1,
       "title": "Python Functions",
       "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
     },
-        {
+    {
       "id": "7",
       "courseId": 1,
       "title": "Python Functions",
       "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
     },
-        {
+    {
       "id": "8",
       "courseId": 1,
       "title": "Python Functions",
       "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
     },
-        {
+    {
       "id": "9",
       "courseId": 1,
       "title": "Python Functions",
       "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
     },
-        {
+    {
       "id": "01",
       "courseId": 2,
       "title": "Java Introduction",

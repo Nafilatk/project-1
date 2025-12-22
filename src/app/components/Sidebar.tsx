@@ -49,7 +49,7 @@ export default function CourseSidebar({
 
       <div className="w-full flex items-center justify-between bg-blue-50 px-4 py-3 border border-blue-100 text-sm font-semibold tracking-wide text-blue-800">
         <span>Courses</span>
-        <span className="text-blue-600 text-xs font-medium">
+        <span className="text-blue-800 text-xs font-medium">
           {filteredCourses.length}
         </span>
       </div>
@@ -63,7 +63,7 @@ export default function CourseSidebar({
             }
             className={`w-full rounded-md py-3 px-4 text-left text-base font-medium tracking-wide transition ${
               selectedCourse === course.id
-                ? "bg-blue-600 text-white shadow"
+                ? "bg-blue-800 text-white shadow"
                 : "bg-blue-50 text-blue-800 border border-blue-100 hover:bg-blue-100"
             }`}
           >
@@ -72,7 +72,7 @@ export default function CourseSidebar({
         ))}
 
         {filteredCourses.length === 0 && (
-          <p className="text-xs text-blue-500 px-2">
+          <p className="text-xs text-blue-800 px-2">
             No courses match your search.
           </p>
         )}
