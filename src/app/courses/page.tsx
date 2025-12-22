@@ -23,14 +23,13 @@ type Video = {
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [videos, setVideos] = useState<Video[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedCategory] = useState<number | null>(null);
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
   const [search, setSearch] = useState("");
 
   const topBarRef = useRef<HTMLDivElement | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
 
-  // GET /courses
   useEffect(() => {
     api
       .get<Course[]>("/courses")
@@ -38,7 +37,6 @@ export default function CoursesPage() {
       .catch(console.error);
   }, []);
 
-  // GET /videos?courseId=...
   useEffect(() => {
     if (!selectedCourse) {
       setVideos([]);

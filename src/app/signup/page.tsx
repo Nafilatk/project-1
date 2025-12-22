@@ -58,9 +58,6 @@ export default function SignupPage() {
         password,
         role: "user" as const,
         isBlock: false,
-        cart: [],
-        wishlist: [],
-        orders: [],
         created_at: new Date().toISOString(),
       };
 

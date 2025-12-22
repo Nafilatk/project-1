@@ -5,7 +5,6 @@ export default function Footer() {
     <footer className="border-t bg-white mt-20">
       <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-4 gap-8 text-sm">
 
-        {/* Brand */}
         <div>
           <h2 className="text-xl font-bold">
             Learnest<span className="text-blue-800">.ai</span>
@@ -15,7 +14,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Links */}
         <div>
           <h3 className="font-semibold mb-3">Platform</h3>
           <ul className="space-y-2 text-gray-600">
@@ -25,7 +23,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Account */}
         <div>
           <h3 className="font-semibold mb-3">Account</h3>
           <ul className="space-y-2 text-gray-600">
@@ -35,7 +32,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact */}
         <div>
           <h3 className="font-semibold mb-3">Contact</h3>
           <p className="text-gray-600">support@learnest.ai</p>
