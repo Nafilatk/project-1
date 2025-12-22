@@ -76,7 +76,7 @@ export default function EbookPage() {
                 key={ebook.id}
                 className="bg-white rounded-xl overflow-hidden border border-neutral-200 hover:border-blue-500 hover:shadow-lg transition cursor-pointer"
               >
-                <div className="aspect-[3/2] bg-neutral-200">
+                <div className="aspect-3/2 bg-neutral-200">
                   <img
                     src={ebook.thumbnail}
                     alt={ebook.title}

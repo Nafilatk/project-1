@@ -66,7 +66,7 @@ const SparkleAnimation = () => {
   return (
     <div
       ref={containerRef}
-      className="relative flex h-[420px] w-full items-center justify-center bg-black text-white rounded-3xl overflow-hidden"
+      className="relative flex h-105 w-full items-center justify-center bg-black text-white rounded-3xl overflow-hidden"
     >
       <div ref={logoRef} className="z-10 absolute">
         <Image src="/logo.svg" alt="logo" width={220} height={220} />
