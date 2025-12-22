@@ -79,7 +79,7 @@ export default function LoginPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-white to-blue-50"
+      className="min-h-screen flex items-center justify-center p-4 bg-linear-to-br from-blue-50 via-white to-blue-50"
     >
       <motion.div
         initial={{ y: -20, opacity: 0 }}
@@ -96,7 +96,7 @@ export default function LoginPage() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.4 }}
-            className="h-1 w-20 mx-auto bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"
+            className="h-1 w-20 mx-auto bg-linear-to-r from-blue-500 to-blue-600 rounded-full"
           />
           <p className="mt-3 text-gray-600">
             Sign in to continue to your account
@@ -191,7 +191,7 @@ export default function LoginPage() {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 bg-linear-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <>
@@ -231,9 +231,9 @@ export default function LoginPage() {
           transition={{ delay: 0.7 }}
           className="flex items-center my-6"
         >
-          <div className="flex-grow border-t border-gray-300"></div>
-          <span className="flex-shrink mx-4 text-gray-500 text-sm">or continue with</span>
-          <div className="flex-grow border-t border-gray-300"></div>
+          <div className="grow border-t border-gray-300"></div>
+          <span className="shrink mx-4 text-gray-500 text-sm">or continue with</span>
+          <div className="grow border-t border-gray-300"></div>
         </motion.div>
 
         {/* Social Login */}
