@@ -14,24 +14,39 @@ export default function EbookPage() {
   const [selectedCourse, setSelectedCourse] = useState<number | null>(null);
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    api
-      .get<Course[]>("/courses")
-      .then((res) => setCourses(res.data))
-      .catch(console.error);
-  }, []);
+useEffect(() => {
+  const fetchCourses = async () => {
+    try {
+      const res = await api.get<Course[]>("/courses");
+      setCourses(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  useEffect(() => {
+  fetchCourses();
+}, []);
+
+useEffect(() => {
+  const fetchEbooks = async () => {
     if (!selectedCourse) {
       setEbooks([]);
       return;
     }
 
-    api
-      .get<Ebook[]>("/ebooks", { params: { courseId: selectedCourse } })
-      .then((res) => setEbooks(res.data))
-      .catch(console.error);
-  }, [selectedCourse]);
+    try {
+      const res = await api.get<Ebook[]>("/ebooks", {
+        params: { courseId: selectedCourse },
+      });
+      setEbooks(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchEbooks();
+}, [selectedCourse]);
+
 
   const filteredEbooks = ebooks.filter((e) =>
     e.title.toLowerCase().includes(search.toLowerCase().trim())

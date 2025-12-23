@@ -19,22 +19,31 @@ export default function CoursesPage() {
   const topBarRef = useRef<HTMLDivElement | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
 
+
   useEffect(() => {
-    api
-      .get<Course[]>("/courses")
-      .then((res) => setCourses(res.data))
-      .catch(console.error);
+    const fetchCourses = async () => {
+      try {
+        const res = await api.get<Course[]>("/courses");
+        setCourses(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCourses();
   }, []);
 
   useEffect(() => {
-    if (!selectedCourse) {
-      setVideos([]);
-      return;
-    }
+    const fetchVideos = async () => {
+      if (!selectedCourse) {
+        setVideos([]);
+        return;
+      }
 
-    api
-      .get<Video[]>("/videos", { params: { courseId: selectedCourse } })
-      .then((res) => {
+      try {
+        const res = await api.get<Video[]>("/videos", {
+          params: { courseId: selectedCourse },
+        });
         const data = res.data;
         setVideos(data);
 
@@ -53,10 +62,14 @@ export default function CoursesPage() {
             }
           );
         }
-      })
-      .catch(console.error);
-  }, [selectedCourse]);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
+    fetchVideos();
+  }, [selectedCourse]);
+  
   useGSAP(() => {
     if (!topBarRef.current) return;
     gsap.from(topBarRef.current, {
