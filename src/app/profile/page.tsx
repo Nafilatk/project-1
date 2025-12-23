@@ -11,6 +11,11 @@ import { api } from "@/lib/axios";
 import type { User } from "@/lib/auth-types";
 import { useAuth } from "@/context/auth-context";
 import PrimaryButton from "@/components/buttons";
+import AvatarSection from "@/components/Profile/AvatarSection";
+import TabsComponent from "@/components/Profile/TabsComponent";
+import PersonalInfoForm from "@/components/Profile/PersonalInfoForm";
+import SecurityForm from "@/components/Profile/SecurityForm";
+import AccountActions from "@/components/Profile/AccountActions";
 
 type PersonalForm = {
   name: string;
@@ -272,281 +277,54 @@ export default function ProfileSettingsPage() {
             Manage your personal information, login security, and account.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-4 md:p-5 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="h-14 w-14 rounded-full bg-slate-100 border border-slate-200 overflow-hidden">
-                {avatarPreview ? (
-
-                  <img
-                    src={avatarPreview}
-                    alt="Avatar"
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center text-lg font-semibold text-slate-400">
-                    {personalForm?.name?.charAt(0).toUpperCase() ?? "U"}
-                  </div>
-                )}
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-slate-900">
-                  {personalForm?.name || "Your name"}
-                </p>
-                <p className="text-xs text-slate-500">
-                  Student • Premium Member
-                </p>
-              </div>
-            </div>
-
-            <label className="inline-flex cursor-pointer items-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50">
-              Upload New Photo
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleAvatarChange}
-              />
-            </label>
-          </div>
+          <AvatarSection
+            personalForm={personalForm}
+            avatarPreview={avatarPreview}
+            onAvatarChange={handleAvatarChange}
+          />
 
           <div className="mt-6 rounded-2xl border border-slate-200 bg-white">
-            <div className="border-b border-slate-200 px-4 pt-3">
-              <div className="flex gap-6 text-sm font-medium">
-                <button
-                  className={`pb-3 ${activeTab === "personal"
-                    ? "border-b-2 border-blue-600 text-blue-800"
-                    : "text-slate-500 hover:text-slate-700"
-                    }`}
-                  onClick={() => setActiveTab("personal")}
-                >
-                  Personal Info
-                </button>
-                <button
-                  className={`pb-3 ${activeTab === "security"
-                    ? "border-b-2 border-blue-600 text-blue-800"
-                    : "text-slate-500 hover:text-slate-700"
-                    }`}
-                  onClick={() => setActiveTab("security")}
-                >
-                  Login & Security
-                </button>
-                <button
-                  className={`pb-3 ${activeTab === "account"
-                    ? "border-b-2 border-blue-600 text-blue-800"
-                    : "text-slate-500 hover:text-slate-700"
-                    }`}
-                  onClick={() => setActiveTab("account")}
-                >
-                  Account
-                </button>
-              </div>
-            </div>
+            <TabsComponent
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+            />
 
             <div className="p-5 md:p-6">
-              {isLoading && (
-                <p className="text-sm text-slate-500">Loading profile...</p>
-              )}
+              {error && <p className="mb-4 ...">{error}
+              </p>}
+              {success && <p className="mb-4 ...">{success}</p>}
 
-              {error && (
-                <p className="mb-4 rounded-lg border border-red-100 bg-red-50 px-3 py-2 text-sm text-red-600">
-                  {error}
-                </p>
-              )}
-              {success && (
-                <p className="mb-4 rounded-lg border border-green-100 bg-green-50 px-3 py-2 text-sm text-green-700">
-                  {success}
-                </p>
-              )}
-
-              {/* TAB 1 */}
               {!isLoading && personalForm && activeTab === "personal" && (
-                <form
+                <PersonalInfoForm
+                  personalForm={personalForm}
+                  isSavingPersonal={isSavingPersonal}
+                  onChange={handlePersonalChange}
                   onSubmit={handleSavePersonal}
-                  className="space-y-5 text-sm"
-                >
-                  <h2 className="text-sm font-semibold text-slate-900">
-                    Basic Information
-                  </h2>
-
-                  <div>
-                    <label className="mb-1 block text-xs font-semibold text-slate-600">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={personalForm.name}
-                      onChange={handlePersonalChange}
-                      className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-1 block text-xs font-semibold text-slate-600">
-                      Email Address (read-only)
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={personalForm.email}
-                      readOnly
-                      className="w-full cursor-not-allowed rounded-lg border border-slate-200 bg-slate-100 px-3 py-2 text-sm text-slate-600"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-1 block text-xs font-semibold text-slate-600">
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={personalForm.phone}
-                      onChange={handlePersonalChange}
-                      placeholder="+91 98765 43210"
-                      className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="mb-1 block text-xs font-semibold text-slate-600">
-                      Bio / Headline
-                    </label>
-                    <textarea
-                      name="bio"
-                      value={personalForm.bio}
-                      onChange={handlePersonalChange}
-                      rows={3}
-                      placeholder="Tell us a little about yourself..."
-                      className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  <div className="pt-1">
-                    <PrimaryButton
-                      type="submit"
-                      disabled={isSavingPersonal}
-                    >
-                      {isSavingPersonal ? "Saving..." : "Save personal info"}
-                    </PrimaryButton>
-
-                  </div>
-                </form>
+                />
               )}
 
-              {/* TAB 2 */}
               {!isLoading && activeTab === "security" && (
-                <form
+                <SecurityForm
+                  forgotForm={forgotForm}
+                  isResettingPassword={isResettingPassword}
+                  onChange={handleForgotChange}
                   onSubmit={handleResetPassword}
-                  className="space-y-5 text-sm"
-                >
-                  <h2 className="text-sm font-semibold text-slate-900">
-                    Reset password
-                  </h2>
-
-                  <p className="text-xs text-slate-500">
-                    Update your password using your account email.
-                  </p>
-
-                  <div>
-                    <label className="mb-1 block text-xs font-semibold text-slate-600">
-                      Email address
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={forgotForm.email}
-                      onChange={handleForgotChange}
-                      className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    />
-                  </div>
-
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div>
-                      <label className="mb-1 block text-xs font-semibold text-slate-600">
-                        New password
-                      </label>
-                      <input
-                        type="password"
-                        name="newPassword"
-                        value={forgotForm.newPassword}
-                        onChange={handleForgotChange}
-                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                      />
-                    </div>
-                    <div>
-                      <label className="mb-1 block text-xs font-semibold text-slate-600">
-                        Confirm password
-                      </label>
-                      <input
-                        type="password"
-                        name="confirmPassword"
-                        value={forgotForm.confirmPassword}
-                        onChange={handleForgotChange}
-                        className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-blue-500"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="pt-1">
-                    <PrimaryButton
-
-                      type="submit"
-                      disabled={isResettingPassword}
-                    >
-                      {isResettingPassword
-                        ? "Updating..."
-                        : "Update password"}
-                    </PrimaryButton>
-                  </div>
-                </form>
+                />
               )}
-
-              {/* TAB 3:  */}
               {!isLoading && activeTab === "account" && (
-                <div className="space-y-5 text-sm">
-                  <h2 className="text-sm font-semibold text-slate-900">
-                    Account actions
-                  </h2>
-
-                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                    <p className="text-sm font-medium text-slate-900">
-                      Sign out
-                    </p>
-                    <p className="mt-1 text-xs text-slate-500">
-                      Log out from this device. You can log back in at
-                      any time.
-                    </p>
-                    <button
-                      onClick={handleLogout}
-                      className="mt-3 rounded-lg border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100"
-                    >
-                      Logout
-                    </button>
-                  </div>
-
-                  <div className="rounded-xl border border-red-200 bg-red-50 p-4">
-                    <p className="text-sm font-medium text-red-700">
-                      Delete account
-                    </p>
-                    <p className="mt-1 text-xs text-red-600">
-                      This action is permanent and will remove your
-                      profile, enrolled courses, and progress.
-                    </p>
-                    <button
-                      onClick={handleDeleteAccount}
-                      disabled={isDeleting}
-                      className="mt-3 rounded-lg border border-red-300 px-4 py-2 text-xs font-semibold text-red-700 hover:bg-red-100 disabled:cursor-not-allowed disabled:border-red-200 disabled:text-red-300"
-                    >
-                      {isDeleting ? "Deleting..." : "Delete account"}
-                    </button>
-                  </div>
-                </div>
+                <AccountActions
+                  onLogout={handleLogout}
+                  onDeleteAccount={handleDeleteAccount}
+                  isDeleting={isDeleting}
+                />
               )}
+
+
             </div>
           </div>
+
         </section>
       </div>
     </main>
-  );
+  )
 }
