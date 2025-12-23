@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import CourseSidebar from "../components/Sidebar";
+import CourseSidebar from "../../components/Sidebar";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { api } from "@/app/lib/axios";
+import { api } from "@/lib/axios";
 
 type Course = {
   id: number;

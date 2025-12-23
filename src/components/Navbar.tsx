@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useAuth } from "@/app/context/auth-context"; 
+import { useAuth } from "@/context/auth-context"; 
 
 const navLinks = [
   { label: "Home", href: "/" },

@@ -7,10 +7,10 @@ import {
   FormEvent,
 } from "react";
 import { useRouter } from "next/navigation";
-import { api } from "@/app/lib/axios";
-import type { User } from "@/app/lib/auth-types";
-import { useAuth } from "@/app/context/auth-context";
-import PrimaryButton from "../components/buttons";
+import { api } from "@/lib/axios";
+import type { User } from "@/lib/auth-types";
+import { useAuth } from "@/context/auth-context";
+import PrimaryButton from "@/components/buttons";
 
 type PersonalForm = {
   name: string;

@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { FiLock, FiMail, FiLogIn, FiUserPlus, FiEye, FiEyeOff } from "react-icons/fi";
-import { useAuth } from "../context/auth-context";
+import { useAuth } from "@/context/auth-context";
 
 type LoginForm = {
   email: string;

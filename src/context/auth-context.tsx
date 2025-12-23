@@ -7,7 +7,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import type { User } from "@/app/lib/auth-types";
+import type { User } from "@/lib/auth-types";
 
 type AuthContextValue = {
   user: User | null;

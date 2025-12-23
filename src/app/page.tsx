@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import PrimaryButton from "./components/buttons";
-import SparkleAnimation from "./components/SparkleAnimation";
+import PrimaryButton from "@/components/buttons";
+import SparkleAnimation from "@/components/SparkleAnimation";
 // import TrendingTracks from "./components/TrendingTrackes";
 
 export default function HomePage() {

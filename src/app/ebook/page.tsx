@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import CourseSidebar from "../components/Sidebar";
-import { api } from "@/app/lib/axios";
+import CourseSidebar from "@/components/Sidebar";
+import { api } from "@/lib/axios";
 
 type Course = { id: number; name: string };
 
