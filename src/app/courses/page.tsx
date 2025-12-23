@@ -5,20 +5,9 @@ import CourseSidebar from "../../components/Sidebar";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { api } from "@/lib/axios";
+import { Course,Video } from "@/types/video";
+import VideoCard from "@/components/courses/videoCard";
 
-type Course = {
-  id: number;
-  name: string;
-  categoryId: number;
-};
-
-type Video = {
-  id: number;
-  title: string;
-  thumbnail: string;
-  url: string;
-  courseId: number;
-};
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -141,38 +130,20 @@ export default function CoursesPage() {
             </div>
           )}
 
-          <div
+ <div
             ref={gridRef}
             className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
           >
-            {videos.map((video) => (
-              <a
-                key={video.id}
-                href={video.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="video-card group block overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-400 hover:shadow-md"
-              >
-                <div className="relative aspect-video overflow-hidden bg-gray-100">
-                  <img
-                    src={video.thumbnail}
-                    alt={video.title}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-white/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                </div>
-
-                <div className="p-3">
-                  <h3 className="line-clamp-2 text-sm font-semibold text-gray-900">
-                    {video.title}
-                  </h3>
-                  <p className="mt-1 text-[11px] uppercase tracking-wide text-blue-800">
-                    {courses.find((c) => c.id === video.courseId)?.name ??
-                      "Course"}
-                  </p>
-                </div>
-              </a>
-            ))}
+            {videos.map((video) => {
+              const courseName = courses.find((c) => c.id === video.courseId)?.name;
+              return (
+                <VideoCard 
+                  key={video.id} 
+                  video={video} 
+                  courseName={courseName ?? "Course"} 
+                />
+              );
+            })}
           </div>
 
           {selectedCourse && videos.length === 0 && (
