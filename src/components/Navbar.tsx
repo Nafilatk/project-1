@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useAuth } from "@/context/auth-context"; 
+import { useAuth } from "@/context/auth-context";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -12,12 +12,13 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const { user } = useAuth(); 
+  const { user } = useAuth();
 
   return (
     <header className="sticky top-0 left-0 w-full bg-white/15 backdrop-blur-md border-b border-white/20 z-50">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        <Link href="/" className="h-10 w-10 overflow-hidden">
+
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo.svg"
             alt="site logo"
@@ -26,6 +27,10 @@ export default function Navbar() {
             className="h-10 w-10 object-contain"
             priority
           />
+
+          <h2 className="text-xl font-bold text-black">
+            Learnest<span className="text-blue-800">.ai</span>
+          </h2>
         </Link>
 
         <nav className="hidden gap-8 text-sm font-medium text-black md:flex">
@@ -33,7 +38,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="nav-link transition-colors hover:text-gray-500"
+              className="transition-colors hover:text-blue-800"
             >
               {link.label}
             </Link>
@@ -45,7 +50,7 @@ export default function Navbar() {
             <>
               <Link
                 href="/login"
-                className="text-sm font-medium text-gray-200 hover:text-black transition-colors"
+                className="text-sm font-medium text-black hover:text-blue-800 transition-colors"
               >
                 Log in
               </Link>
@@ -60,7 +65,7 @@ export default function Navbar() {
 
           {user && (
             <div className="flex items-center gap-3">
-              <span className="text-sm font-medium text-blue-800 transition-colors hover:text-gray-500">
+              <span className="text-sm font-medium text-blue-800 hover:text-black transition-colors">
                 {user.name}
               </span>
 
@@ -73,6 +78,7 @@ export default function Navbar() {
             </div>
           )}
         </div>
+
       </div>
     </header>
   );

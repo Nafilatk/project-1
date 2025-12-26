@@ -10,28 +10,13 @@ import { useRouter } from "next/navigation";
 import { api } from "@/lib/axios";
 import type { User } from "@/lib/auth-types";
 import { useAuth } from "@/context/auth-context";
-import PrimaryButton from "@/components/buttons";
 import AvatarSection from "@/components/Profile/AvatarSection";
 import TabsComponent from "@/components/Profile/TabsComponent";
 import PersonalInfoForm from "@/components/Profile/PersonalInfoForm";
 import SecurityForm from "@/components/Profile/SecurityForm";
 import AccountActions from "@/components/Profile/AccountActions";
+import {PersonalForm,ForgotForm,TabKey} from "@/types/profile"
 
-type PersonalForm = {
-  name: string;
-  bio: string;
-  phone: string;
-  email: string;
-  avatarUrl: string;
-};
-
-type ForgotForm = {
-  email: string;
-  newPassword: string;
-  confirmPassword: string;
-};
-
-type TabKey = "personal" | "security" | "account";
 
 export default function ProfileSettingsPage() {
   const router = useRouter();
@@ -130,7 +115,7 @@ export default function ProfileSettingsPage() {
     if (!personalForm) return "Form not ready.";
     if (!personalForm.name.trim()) return "Name is required.";
     if (!personalForm.email.trim()) return "Email is required.";
-    if (personalForm.phone && personalForm.phone.length < 8)
+    if (personalForm.phone && personalForm.phone.length <= 10)
       return "Phone number looks too short.";
     return null;
   };
@@ -148,8 +133,8 @@ export default function ProfileSettingsPage() {
 
     try {
       setIsSavingPersonal(true);
-      setError(null);
-      setSuccess(null);
+      setError(null) ;
+      setSuccess(null) ;
 
       let avatarUrlToSave = personalForm.avatarUrl;
       if (avatarFile) {

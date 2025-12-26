@@ -103,7 +103,7 @@ export default function CoursesPage() {
           ref={topBarRef}
           className="flex items-center gap-3 border-b border-gray-200 bg-white px-4 py-3"
         >
-          <button
+          {/* <button
             onClick={() => setSelectedCourse(null)}
             className={`px-4 py-1.5 rounded-full text-xs md:text-sm whitespace-nowrap transition ${
               !selectedCourse
@@ -112,7 +112,7 @@ export default function CoursesPage() {
             }`}
           >
             All
-          </button>
+          </button> */}
 
           {filteredCourses.map((course) => (
             <button

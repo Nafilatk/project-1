@@ -53,7 +53,7 @@ useEffect(() => {
   );
 
   return (
-    <div className="flex h-screen bg-neutral-100 text-neutral-900">
+    <div className="flex h-screen bg-white text-neutral-900">
       <CourseSidebar
         search={search}
         onSearchChange={setSearch}
@@ -62,13 +62,33 @@ useEffect(() => {
       />
 
       <main className="flex-1 flex flex-col">
-        <header className="px-6 py-4 border-b border-neutral-200 bg-white flex items-center justify-between">
-          <h1 className="text-xl font-semibold">
-            {selectedCourse
-              ? `${courses.find((c) => c.id === selectedCourse)?.name} Ebooks`
-              : "Select a course to view ebooks"}
-          </h1>
-        </header>
+<header className="px-6 py-4 ">
+  <h1 className="text-xl font-semibold">
+    {selectedCourse
+      ? `${courses.find((c) => c.id === selectedCourse)?.name} Ebooks`
+      : "Select a course to view ebooks"}
+  </h1>
+
+<div className="mt-3 bg-blue-50 border border-blue-200 rounded-lg p-4">
+  <p className="text-sm text-neutral-800">
+    Browse and read course-related ebooks here.
+    <span className="text-blue-600 font-medium">
+      {" "}Select a course
+    </span>{" "}
+    from the sidebar to view available ebooks.
+  </p>
+
+  <p className="mt-1 text-sm text-neutral-600">
+    Click on any ebook to{" "}
+    <span className="text-blue-600 font-medium">read online</span>{" "}
+    or{" "}
+    <span className="text-blue-600 font-medium">download</span>{" "}
+    it for offline learning and quick reference.
+  </p>
+</div>
+
+</header>
+
 
         <section className="flex-1 overflow-y-auto px-6 py-6">
           {selectedCourse && filteredEbooks.length === 0 && (
