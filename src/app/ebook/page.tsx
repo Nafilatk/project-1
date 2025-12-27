@@ -69,23 +69,7 @@ useEffect(() => {
       : "Select a course to view ebooks"}
   </h1>
 
-<div className="mt-3 bg-blue-50 border border-blue-200 rounded-lg p-4">
-  <p className="text-sm text-neutral-800">
-    Browse and read course-related ebooks here.
-    <span className="text-blue-600 font-medium">
-      {" "}Select a course
-    </span>{" "}
-    from the sidebar to view available ebooks.
-  </p>
 
-  <p className="mt-1 text-sm text-neutral-600">
-    Click on any ebook to{" "}
-    <span className="text-blue-600 font-medium">read online</span>{" "}
-    or{" "}
-    <span className="text-blue-600 font-medium">download</span>{" "}
-    it for offline learning and quick reference.
-  </p>
-</div>
 
 </header>
 

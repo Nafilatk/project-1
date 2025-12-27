@@ -1,4 +1,4 @@
-import type { Video, Course } from "@/types/video"; 
+import type { Video } from "@/types/video"; 
 
 interface VideoCardProps {
   video: Video;
@@ -9,7 +9,6 @@ export default function VideoCard({ video, courseName }: VideoCardProps) {
   return (
     <a
       href={video.url}
-      target="_blank"
       rel="noopener noreferrer"
       className="video-card group block overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-400 hover:shadow-md"
     >
