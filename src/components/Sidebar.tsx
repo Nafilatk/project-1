@@ -31,7 +31,7 @@ export default function CourseSidebar({
   );
 
   return (
-    <aside className="h-screen w-80 bg-white text-neutral-900 flex flex-col px-4 py-3 gap-6 border-r border-neutral-200">
+    <aside className="h-screen w-65 bg-white text-neutral-900 flex flex-col px-4 py-3 gap-6 border-r border-neutral-200">
 
 
       <div className="flex items-center gap-2 bg-blue-50 rounded-full px-3 py-2 border border-blue-100">
@@ -47,7 +47,7 @@ export default function CourseSidebar({
 
       <div className="h-px w-full bg-blue-100" />
 
-      <div className="w-full flex items-center justify-between bg-blue-50 px-4 py-3 border border-blue-100 text-sm font-semibold tracking-wide text-blue-800">
+      <div className="w-full flex items-center justify-between bg-blue-50 px-3 py-2 border border-blue-100 text-sm font-semibold tracking-wide text-blue-800">
         <span>Courses</span>
         <span className="text-blue-800 text-xs font-medium">
           {filteredCourses.length}
@@ -61,7 +61,7 @@ export default function CourseSidebar({
             onClick={() =>
               onSelectCourse(selectedCourse === course.id ? null : course.id)
             }
-            className={`w-full rounded-md py-3 px-4 text-left text-base font-medium tracking-wide transition ${
+            className={`w-full rounded-md py-2 px-3 text-left text-base font-medium tracking-wide transition ${
               selectedCourse === course.id
                 ? "bg-blue-800 text-white shadow"
                 : "bg-blue-50 text-blue-800 border border-blue-100 hover:bg-blue-100"
