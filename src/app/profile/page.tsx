@@ -17,7 +17,6 @@ import SecurityForm from "@/components/Profile/SecurityForm";
 import AccountActions from "@/components/Profile/AccountActions";
 import {PersonalForm,ForgotForm,TabKey} from "@/types/profile"
 
-
 export default function ProfileSettingsPage() {
   const router = useRouter();
   const { user, logoutUser } = useAuth();
@@ -133,8 +132,8 @@ export default function ProfileSettingsPage() {
 
     try {
       setIsSavingPersonal(true);
-      setError(null) ;
-      setSuccess(null) ;
+      setError(null);
+      setSuccess(null);
 
       let avatarUrlToSave = personalForm.avatarUrl;
       if (avatarFile) {
@@ -249,16 +248,17 @@ export default function ProfileSettingsPage() {
   if (!user) return null;
 
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-8">
-      <div className="mx-auto flex max-w-6xl gap-6">
-
-
-
+    <main className="min-h-screen bg-black text-white px-6 py-12">
+      <div className="mx-auto flex max-w-6xl gap-8">
         <section className="flex-1">
-          <h1 className="text-2xl font-semibold text-slate-900">
-            Profile Settings
-          </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <div className="group relative mb-8">
+            <h1 className="text-3xl font-black text-white tracking-tight">
+              Profile Settings
+            </h1>
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition-all duration-500 -z-10" />
+          </div>
+          
+          <p className="text-lg text-blue-300 mb-12 leading-relaxed">
             Manage your personal information, login security, and account.
           </p>
 
@@ -268,16 +268,23 @@ export default function ProfileSettingsPage() {
             onAvatarChange={handleAvatarChange}
           />
 
-          <div className="mt-6 rounded-2xl border border-slate-200 bg-white">
+          <div className="mt-8 rounded-3xl border border-blue-900/40 bg-black/70 shadow-[0_20px_60px_rgba(59,130,246,0.15)] backdrop-blur-md overflow-hidden group">
             <TabsComponent
               activeTab={activeTab}
               onTabChange={setActiveTab}
             />
 
-            <div className="p-5 md:p-6">
-              {error && <p className="mb-4 ...">{error}
-              </p>}
-              {success && <p className="mb-4 ...">{success}</p>}
+            <div className="p-8 relative z-10">
+              {error && (
+                <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-2xl text-red-300 text-sm font-medium">
+                  {error}
+                </div>
+              )}
+              {success && (
+                <div className="mb-6 p-4 bg-blue-500/20 border border-blue-500/50 rounded-2xl text-blue-200 text-sm font-medium">
+                  {success}
+                </div>
+              )}
 
               {!isLoading && personalForm && activeTab === "personal" && (
                 <PersonalInfoForm
@@ -303,13 +310,13 @@ export default function ProfileSettingsPage() {
                   isDeleting={isDeleting}
                 />
               )}
-
-
             </div>
-          </div>
 
+            {/* Card Glare Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl pointer-events-none" />
+          </div>
         </section>
       </div>
     </main>
-  )
+  );
 }

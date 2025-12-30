@@ -10,34 +10,57 @@ export default function AccountActions({
   isDeleting,
 }: AccountActionsProps) {
   return (
-    <div className="space-y-5 text-sm">
-      <h2 className="text-sm font-semibold text-slate-900">Account actions</h2>
-
-      <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-        <p className="text-sm font-medium text-slate-900">Sign out</p>
-        <p className="mt-1 text-xs text-slate-500">
-          Log out from this device. You can log back in at any time.
-        </p>
-        <button
-          onClick={onLogout}
-          className="mt-3 rounded-lg border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100"
-        >
-          Logout
-        </button>
+    <div className="space-y-6 text-sm">
+      <div className="group relative">
+        <h2 className="text-base font-bold text-white tracking-tight">
+          Account actions
+        </h2>
+        <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-60 transition-all duration-500 -z-10" />
       </div>
 
-      <div className="rounded-xl border border-red-200 bg-red-50 p-4">
-        <p className="text-sm font-medium text-red-700">Delete account</p>
-        <p className="mt-1 text-xs text-red-600">
-          This action is permanent and will remove your profile, enrolled courses, and progress.
-        </p>
-        <button
-          onClick={onDeleteAccount}
-          disabled={isDeleting}
-          className="mt-3 rounded-lg border border-red-300 px-4 py-2 text-xs font-semibold text-red-700 hover:bg-red-100 disabled:cursor-not-allowed disabled:border-red-200 disabled:text-red-300"
-        >
-          {isDeleting ? "Deleting..." : "Delete account"}
-        </button>
+      {/* Logout Card */}
+      <div className="group relative rounded-2xl border border-blue-900/40 bg-black/60 p-6 shadow-[0_10px_30px_rgba(59,130,246,0.15)] hover:shadow-[0_20px_50px_rgba(59,130,246,0.25)] hover:bg-blue-950/50 transition-all duration-500 backdrop-blur-md overflow-hidden">
+        <div className="relative z-10">
+          <p className="text-base font-bold text-blue-200 mb-2">Sign out</p>
+          <p className="text-sm text-blue-300 mb-4 leading-relaxed">
+            Log out from this device. You can log back in at any time.
+          </p>
+          <button
+            onClick={onLogout}
+            className="group/btn relative inline-flex items-center justify-center rounded-full border-2 border-blue-500/50 bg-blue-950/50 px-6 py-3 text-sm font-bold text-blue-300 hover:bg-blue-900/70 hover:border-blue-400/70 hover:shadow-[0_8px_20px_rgba(59,130,246,0.3)] hover:scale-[1.05] transition-all duration-300 backdrop-blur-sm overflow-hidden"
+          >
+            <span className="relative z-10 tracking-wide">Logout</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-blue-500/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full blur-sm" />
+          </button>
+        </div>
+        
+        {/* Card Glare */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
+      </div>
+
+      {/* Delete Card */}
+      <div className="group relative rounded-2xl border border-red-500/40 bg-red-950/60 p-6 shadow-[0_10px_30px_rgba(239,68,68,0.15)] hover:shadow-[0_20px_50px_rgba(239,68,68,0.25)] hover:bg-red-900/50 transition-all duration-500 backdrop-blur-md overflow-hidden">
+        <div className="relative z-10">
+          <p className="text-base font-bold text-red-300 mb-2">Delete account</p>
+          <p className="text-sm text-red-400 mb-4 leading-relaxed">
+            This action is permanent and will remove your profile, enrolled courses, and progress.
+          </p>
+          <button
+            onClick={onDeleteAccount}
+            disabled={isDeleting}
+            className="group/btn relative inline-flex items-center justify-center rounded-full border-2 border-red-500/50 bg-red-950/50 px-6 py-3 text-sm font-bold text-red-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:shadow-none hover:bg-red-900/70 hover:border-red-400/70 hover:shadow-[0_8px_20px_rgba(239,68,68,0.3)] hover:scale-[1.05] transition-all duration-300 backdrop-blur-sm overflow-hidden"
+          >
+            <span className="relative z-10 tracking-wide">
+              {isDeleting ? "Deleting..." : "Delete account"}
+            </span>
+            {!isDeleting && (
+              <div className="absolute inset-0 bg-gradient-to-r from-red-400/20 to-red-500/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full blur-sm" />
+            )}
+          </button>
+        </div>
+        
+        {/* Card Glare */}
+        <div className="absolute inset-0 bg-gradient-to-br from-red-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
       </div>
     </div>
   );
