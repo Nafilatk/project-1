@@ -79,7 +79,7 @@ export default function LoginPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen flex items-center justify-center p-4 bg-linear-to-br from-blue-50 via-white to-blue-50"
+      className="min-h-screen flex-1 items-center justify-center p-4 bg-linear-to-br from-blue-50 via-white to-blue-50"
     >
       <motion.div
         initial={{ y: -20, opacity: 0 }}

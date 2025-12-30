@@ -15,7 +15,7 @@ export default function Navbar() {
   const { user } = useAuth();
 
   return (
-    <header className="sticky top-0 left-0 w-full bg-white/15 backdrop-blur-md border-b border-white/20 z-50">
+    <header className="sticky top-0 left-0 w-full bg-black/15 backdrop-blur-md   z-50">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
 
         <Link href="/" className="flex items-center gap-2">
@@ -28,12 +28,12 @@ export default function Navbar() {
             priority
           />
 
-          <h2 className="text-xl font-bold text-black">
-            Learnest<span className="text-blue-800">.ai</span>
+          <h2 className="text-xl font-bold text-white">
+            Learnest<span className="text-blue-600">.ai</span>
           </h2>
         </Link>
 
-        <nav className="hidden gap-8 text-sm font-medium text-black md:flex">
+        <nav className="hidden gap-8 text-sm font-medium text-white md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.label}

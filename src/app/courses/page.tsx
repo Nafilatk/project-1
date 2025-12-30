@@ -4,9 +4,8 @@ import { useEffect, useState, useRef } from "react";
 import CourseSidebar from "../../components/Sidebar";
 import gsap from "gsap";
 import { api } from "@/lib/axios";
-import { Course,Video } from "@/types/video";
+import { Course, Video } from "@/types/video";
 import VideoCard from "@/components/courses/videoCard";
-
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -15,7 +14,6 @@ export default function CoursesPage() {
   const [search, setSearch] = useState("");
 
   const gridRef = useRef<HTMLDivElement | null>(null);
-
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -66,11 +64,9 @@ export default function CoursesPage() {
 
     fetchVideos();
   }, [selectedCourse]);
-  
-
 
   return (
-    <div className="flex h-screen bg-white text-gray-900">
+    <div className="flex h-screen bg-black text-white">
       <CourseSidebar
         search={search}
         onSearchChange={setSearch}
@@ -78,26 +74,23 @@ export default function CoursesPage() {
         onSelectCourse={setSelectedCourse}
       />
 
-      <div className="flex flex-1 flex-col border-l border-gray-200 bg-white">
-
-        <main className="flex-1 overflow-y-auto px-4 py-4">
+      <div className="flex flex-1 flex-col border-l border-blue-900/30 bg-black/95">
+        <main className="flex-1 overflow-y-auto scrollbar-hide px-6 py-8">
           {!selectedCourse && (
-            <div className="mb-4 rounded-2xl border border-blue-100 bg-blue-50/80 p-4 text-sm leading-relaxed text-gray-700 shadow-sm">
-              <h2 className="mb-1 text-base font-semibold text-gray-900">
+            <div className="mb-8 rounded-2xl border border-blue-900/40 bg-blue-950/60 p-6 text-sm leading-relaxed text-blue-200 shadow-[0_10px_30px_rgba(59,130,246,0.2)] backdrop-blur-md">
+              <h2 className="mb-2 text-lg font-bold text-white">
                 Explore Courses
               </h2>
-              <p className="text-xs text-gray-600">
-                Use the course chips above or the sidebar search to discover
-                content. Select a course to load its lessons and start learning
-                instantly.
+              <p className="text-blue-300">
+                Use the sidebar search or select a course to discover content. 
+                Lessons load instantly when you choose a course.
               </p>
             </div>
           )}
-          
 
- <div
+          <div
             ref={gridRef}
-            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
             {videos.map((video) => {
               const courseName = courses.find((c) => c.id === video.courseId)?.name;
@@ -112,7 +105,7 @@ export default function CoursesPage() {
           </div>
 
           {selectedCourse && videos.length === 0 && (
-            <p className="mt-6 text-center text-sm text-gray-500">
+            <p className="mt-12 text-center text-sm text-blue-400">
               No videos found for this course yet. Please check again later.
             </p>
           )}
