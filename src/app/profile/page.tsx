@@ -255,7 +255,7 @@ export default function ProfileSettingsPage() {
             <h1 className="text-3xl font-black text-white tracking-tight">
               Profile Settings
             </h1>
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition-all duration-500 -z-10" />
+            <div className="absolute -inset-1 bg-linear-to-r from-blue-400 via-blue-500 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition-all duration-500 -z-10" />
           </div>
           
           <p className="text-lg text-blue-300 mb-12 leading-relaxed">
@@ -313,7 +313,7 @@ export default function ProfileSettingsPage() {
             </div>
 
             {/* Card Glare Effect */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-br from-blue-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl pointer-events-none" />
           </div>
         </section>
       </div>

@@ -15,7 +15,7 @@ export default function AccountActions({
         <h2 className="text-base font-bold text-white tracking-tight">
           Account actions
         </h2>
-        <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-60 transition-all duration-500 -z-10" />
+        <div className="absolute -inset-1 bg-linear-to-r from-blue-400 via-blue-500 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-60 transition-all duration-500 -z-10" />
       </div>
 
       {/* Logout Card */}
@@ -30,12 +30,12 @@ export default function AccountActions({
             className="group/btn relative inline-flex items-center justify-center rounded-full border-2 border-blue-500/50 bg-blue-950/50 px-6 py-3 text-sm font-bold text-blue-300 hover:bg-blue-900/70 hover:border-blue-400/70 hover:shadow-[0_8px_20px_rgba(59,130,246,0.3)] hover:scale-[1.05] transition-all duration-300 backdrop-blur-sm overflow-hidden"
           >
             <span className="relative z-10 tracking-wide">Logout</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-blue-500/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full blur-sm" />
+            <div className="absolute inset-0 bg-linear-to-r from-blue-400/20 to-blue-500/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full blur-sm" />
           </button>
         </div>
         
         {/* Card Glare */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-r from-blue-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
       </div>
 
       {/* Delete Card */}
@@ -54,13 +54,13 @@ export default function AccountActions({
               {isDeleting ? "Deleting..." : "Delete account"}
             </span>
             {!isDeleting && (
-              <div className="absolute inset-0 bg-gradient-to-r from-red-400/20 to-red-500/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full blur-sm" />
+              <div className="absolute inset-0 bg-linear-to-r from-red-400/20 to-red-500/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full blur-sm" />
             )}
           </button>
         </div>
         
         {/* Card Glare */}
-        <div className="absolute inset-0 bg-gradient-to-br from-red-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-r from-red-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
       </div>
     </div>
   );
