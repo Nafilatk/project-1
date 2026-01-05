@@ -1,6 +1,16 @@
 {
   "users": [
     {
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@learnest.ai",
+      "password": "123456",
+      "role": "admin",
+      "isBlock": false,
+      "status": "active",
+      "createdAt": "2025-01-01T10:00:00Z"
+    },
+    {
       "id": "d08a0ef4-c2f7-4ef8-8491-e64555cc679f",
       "name": "asnif p",
       "email": "asnifp@gmail.com",
@@ -68,6 +78,15 @@
       "bio": "perfection.............\n",
       "phone": "+918113854750",
       "avatarUrl": "/uploads/Screenshot 2025-04-25 094230.png"
+    },
+    {
+      "id": "c0ad2609-6a7e-42c5-805f-d46b99b035b1",
+      "name": "naffila",
+      "email": "naffff@gmail.com",
+      "password": "0987654",
+      "role": "user",
+      "isBlock": false,
+      "created_at": "2026-01-05T10:03:47.039Z"
     }
   ],
   "categories": [
@@ -114,6 +133,11 @@
       "id": "6",
       "name": "Machine Learning",
       "categoryId": 2
+    },
+    {
+      "id": "2ec8",
+      "name": "python",
+      "categoryId": "2"
     }
   ],
   "videos": [

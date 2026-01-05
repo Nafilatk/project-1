@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import CourseSidebar from "@/components/Sidebar";
 import { api } from "@/lib/axios";
-import EbookCard from "@/components/ebooks/ebookCard";
+import EbookCard from "@/components/ebooks/EbookCard";
 import { Course, Ebook } from "@/types/ebook";
 
 export default function EbookPage() {

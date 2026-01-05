@@ -62,7 +62,7 @@ export default function LoginPage() {
       toast.success("Login successful");
 
       if (user.role === "admin") {
-        router.push("/admin/dashboard");
+        router.push("/Admin/dashboard");
       } else {
         router.push("/");
       }

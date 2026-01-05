@@ -145,14 +145,14 @@ export default function KineticLanding() {
       </section>
 
       {/* SECTION 4: KINETIC FOOTER */}
-      <footer className="h-screen flex items-center justify-center relative overflow-hidden">
+      {/* <footer className="h-screen flex items-center justify-center relative overflow-hidden">
         <div className="text-[20vw] font-black tracking-tighter leading-none text-center opacity-5 select-none absolute">
           PROJECTS
         </div>
         <button className="px-16 py-8 rounded-full border border-white text-2xl font-bold hover:bg-white hover:text-black transition-all duration-500 z-10 group">
           WORK WITH US <span className="inline-block group-hover:translate-x-4 transition-transform">→</span>
         </button>
-      </footer>
+      </footer> */}
     </div>
   );
 }

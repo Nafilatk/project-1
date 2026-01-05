@@ -5,7 +5,7 @@ import CourseSidebar from "../../components/Sidebar";
 import gsap from "gsap";
 import { api } from "@/lib/axios";
 import { Course, Video } from "@/types/video";
-import VideoCard from "@/components/courses/videoCard";
+import VideoCard from "@/components/courses/VideoCard";
 
 export default function CoursesPage() {
   const [courses, setCourses] = useState<Course[]>([]);
