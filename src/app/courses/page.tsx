@@ -14,7 +14,7 @@ export default function CoursesPage() {
   const [search, setSearch] = useState("");
 
   const gridRef = useRef<HTMLDivElement | null>(null);
-
+ 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
