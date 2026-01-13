@@ -8,7 +8,6 @@ export const adminApi = axios.create({
 });
 
 
-// Response interceptor for cleaner code
 adminApi.interceptors.response.use(
   (response) => response,
   (error) => {

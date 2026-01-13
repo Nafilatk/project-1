@@ -112,7 +112,7 @@ export default function CoursesPage() {
 
   return (
     <div className="flex flex-1 bg-white overflow-hidden">
-      <aside className="w-72 flex-shrink-0 overflow-y-">
+      <aside className="w-72 shrink-0 overflow-y-">
         <AdminSidebar />
       </aside>
 
@@ -125,7 +125,7 @@ export default function CoursesPage() {
             </div>
             <button
               onClick={() => setShowForm(!showForm)}
-              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-lg"
+              className="px-6 py-3 bg-linear-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-lg"
               disabled={categories.length === 0}
             >
               {showForm ? 'Cancel' : '➕ Add New Course'}
@@ -133,7 +133,7 @@ export default function CoursesPage() {
           </div>
 
           {showForm && (
-            <div className="bg-gradient-to-br from-slate-800 via-purple-900/20 to-slate-900 p-8 rounded-2xl shadow-2xl border border-purple-500/30 backdrop-blur-sm">
+            <div className="bg-linear-to-br from-slate-800 via-purple-900/20 to-slate-900 p-8 rounded-2xl shadow-2xl border border-purple-500/30 backdrop-blur-sm">
               <h3 className="text-2xl font-bold text-white mb-6 text-center">Create New Course</h3>
               
               <form onSubmit={handleAddCourse} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -200,7 +200,7 @@ export default function CoursesPage() {
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 sm:flex-none px-10 py-4 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-xl hover:from-purple-700 hover:to-pink-600 font-bold shadow-lg hover:shadow-xl transition-all"
+                    className="flex-1 sm:flex-none px-10 py-4 bg-linear-to-r from-purple-600 to-pink-500 text-white rounded-xl hover:from-purple-700 hover:to-pink-600 font-bold shadow-lg hover:shadow-xl transition-all"
                   >
                     ➕ Create Course
                   </button>
@@ -210,7 +210,7 @@ export default function CoursesPage() {
           )}
           <div className="bg-gray-800 rounded-lg shadow border border-gray-700">
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[720px]">
+              <table className="w-full min-w-180">
                 <thead className="bg-gray-900">
                   <tr>
                     <th className="px-6 py-4 text-left text-xs font-semibold text-gray-300 uppercase tracking-wider">Course Name</th>
@@ -257,7 +257,7 @@ export default function CoursesPage() {
             {courses.length === 0 && (
               <div className="text-center py-12">
                 <p className="text-gray-300 text-lg mb-4">No courses found</p>
-                <button onClick={() => setShowForm(true)} className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg" disabled={categories.length === 0}>
+                <button onClick={() => setShowForm(true)} className="px-6 py-2 bg-linear-to-r from-purple-600 to-pink-600 text-white rounded-lg" disabled={categories.length === 0}>
                   Create your first course
                 </button>
               </div>

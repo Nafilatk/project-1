@@ -33,7 +33,7 @@ export default function AdminHeader() {
             <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-300 transition-colors">
               🔔
             </div>
-            <div className="w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:shadow-xl transition-all">
+            <div className="w-10 h-10 bg-linear-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:shadow-xl transition-all">
               <span className="font-bold text-sm">AP</span>
             </div>
           </div>

@@ -86,7 +86,7 @@ export default function Dashboard() {
     <div className="flex flex-col h-screen bg-gray-50">
       
       <div className="flex flex-1 overflow-hidden">
-        <aside className="w-72 flex-shrink-0 overflow-y-auto">
+        <aside className="w-72 shrink-0 overflow-y-auto">
           <AdminSidebar />
         </aside>
 
@@ -208,7 +208,7 @@ export default function Dashboard() {
                     <tr key={user.id} className="hover:bg-gray-700">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-green-800 rounded-lg flex items-center justify-center text-white font-semibold">
+                          <div className="w-10 h-10 bg-linear-to-r from-green-600 to-green-800 rounded-lg flex items-center justify-center text-white font-semibold">
                             {user.name.charAt(0).toUpperCase()}
                           </div>
                           <div className="min-w-0">
@@ -243,7 +243,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Link
             href="/Admin/courses"
-            className="p-6 bg-gradient-to-br from-green-600/10 to-green-800/10 border border-green-500/20 rounded-xl hover:border-green-500/40 transition-all group"
+            className="p-6 bg-linear-to-br from-green-600/10 to-green-800/10 border border-green-500/20 rounded-xl hover:border-green-500/40 transition-all group"
           >
             <div className="flex items-center justify-between mb-4">
               <BookOpen className="h-8 w-8 text-green-500" />
@@ -255,7 +255,7 @@ export default function Dashboard() {
 
           <Link
             href="/Admin/ebooks"
-            className="p-6 bg-gradient-to-br from-blue-600/10 to-blue-800/10 border border-blue-500/20 rounded-xl hover:border-blue-500/40 transition-all group"
+            className="p-6 bg-linear-to-br from-blue-600/10 to-blue-800/10 border border-blue-500/20 rounded-xl hover:border-blue-500/40 transition-all group"
           >
             <div className="flex items-center justify-between mb-4">
               <FileText className="h-8 w-8 text-blue-500" />
@@ -267,7 +267,7 @@ export default function Dashboard() {
 
           <Link
             href="/Admin/users"
-            className="p-6 bg-gradient-to-br from-purple-600/10 to-purple-800/10 border border-purple-500/20 rounded-xl hover:border-purple-500/40 transition-all group"
+            className="p-6 bg-linear-to-br from-purple-600/10 to-purple-800/10 border border-purple-500/20 rounded-xl hover:border-purple-500/40 transition-all group"
           >
             <div className="flex items-center justify-between mb-4">
               <Users className="h-8 w-8 text-purple-500" />

@@ -103,170 +103,233 @@
       "name": "Cyber Security"
     }
   ],
+
   "courses": [
     {
       "id": "1",
       "name": "Python",
-      "categoryId": 2
+      "categoryId": "2",
+      "description": "Master Python from basics to advanced",
+      "thumbnail": "/assets/courses/python-thumb.jpg",
+      "duration": "15 hours",
+      "level": "Beginner"
     },
     {
       "id": "2",
       "name": "Java",
-      "categoryId": 2
+      "categoryId": "2",
+      "description": "Complete Java development course",
+      "thumbnail": "/assets/courses/java-thumb.jpg",
+      "duration": "20 hours",
+      "level": "Intermediate"
     },
     {
       "id": "3",
       "name": "React",
-      "categoryId": 1
+      "categoryId": "1",
+      "description": "Build modern React apps with hooks & TypeScript",
+      "thumbnail": "/assets/courses/react-thumb.jpg",
+      "duration": "12 hours",
+      "level": "Intermediate"
     },
     {
       "id": "4",
       "name": "Angular",
-      "categoryId": 1
+      "categoryId": "1",
+      "description": "Professional Angular development",
+      "thumbnail": "/assets/courses/angular-thumb.jpg",
+      "duration": "18 hours",
+      "level": "Intermediate"
     },
     {
       "id": "5",
       "name": "MERN",
-      "categoryId": 1
+      "categoryId": "1",
+      "description": "Full-stack MERN stack development",
+      "thumbnail": "/assets/courses/mern-thumb.jpg",
+      "duration": "25 hours",
+      "level": "Advanced"
     },
     {
       "id": "6",
       "name": "Machine Learning",
-      "categoryId": 2
+      "categoryId": "2",
+      "description": "ML algorithms and practical implementations",
+      "thumbnail": "/assets/courses/ml-thumb.jpg",
+      "duration": "22 hours",
+      "level": "Advanced"
     },
     {
       "id": "2ec8",
       "name": "python",
-      "categoryId": "2"
+      "categoryId": "2",
+      "description": "Python for data science and automation",
+      "thumbnail": "/assets/courses/python-ds-thumb.jpg",
+      "duration": "10 hours",
+      "level": "Beginner"
     }
   ],
-  "videos": [
-    {
-      "id": "1",
-      "courseId": 1,
-      "title": "Python Basics",
-      "thumbnail": "https://img.youtube.com/vi/K5KVEU3aaeQ/maxresdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=K5KVEU3aaeQ&t=56s"
-    },
-    {
-      "id": "2",
-      "courseId": 1,
-      "title": "Python Data Types",
-      "thumbnail": "https://img.youtube.com/vi/gCCVsvgR2KU/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=gCCVsvgR2KU"
-    },
-    {
-      "id": "3",
-      "courseId": 1,
-      "title": "Python Functions",
-      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
-    },
-    {
-      "id": "4",
-      "courseId": 1,
-      "title": "Python Functions",
-      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
-    },
-    {
-      "id": "5",
-      "courseId": 1,
-      "title": "Python Functions",
-      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
-    },
-    {
-      "id": "6",
-      "courseId": 1,
-      "title": "Python Functions",
-      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
-    },
-    {
-      "id": "7",
-      "courseId": 1,
-      "title": "Python Functions",
-      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
-    },
-    {
-      "id": "8",
-      "courseId": 1,
-      "title": "Python Functions",
-      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
-    },
-    {
-      "id": "9",
-      "courseId": 1,
-      "title": "Python Functions",
-      "thumbnail": "https://img.youtube.com/vi/BVfCWuca9nw/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=BVfCWuca9nw"
-    },
-    {
-      "id": "01",
-      "courseId": 2,
-      "title": "Java Introduction",
-      "thumbnail": "https://img.youtube.com/vi/bm0OyhwFDuY/hqdefault.jpg",
-      "url": "bm0OyhwFDuY"
-    },
-    {
-      "id": "13",
-      "courseId": 3,
-      "title": "React Basics",
-      "thumbnail": "https://img.youtube.com/vi/QFaFIcGhPoM/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=QFaFIcGhPoM&list=PLC3y8-rFHvwgg3vaYJgHGnModB54rxOk3"
-    },
-    {
-      "id": "14",
-      "courseId": 3,
-      "title": "JSX & Props",
-      "thumbnail": "https://img.youtube.com/vi/7fPXI_MnBOY/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=7fPXI_MnBOY"
-    },
-    {
-      "id": "15",
-      "courseId": 3,
-      "title": "State & Events",
-      "thumbnail": "https://img.youtube.com/vi/4ORZ1GmjaMc/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=4ORZ1GmjaMc"
-    },
-    {
-      "id": "31",
-      "courseId": 6,
-      "title": "Machine Learning Basics",
-      "thumbnail": "https://img.youtube.com/vi/GwIo3gDZCVQ/mqdefault.jpg",
-      "url": "https://www.youtube.com/embed/GwIo3gDZCVQ"
-    }
-  ],
-  "ebooks": [
-    {
-      "id": "1",
-      "courseId": 1,
-      "videoId": 1,
-      "title": "Python Basics Notes",
-      "description": "PDF notes for Python basics",
-      "pdfUrl": "https://www.w3schools.com/python/python_tutorial.pdf",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg"
-    },
-    {
-      "id": "2",
-      "courseId": 1,
-      "videoId": 3,
-      "title": "Python Functions Notes",
-      "description": "PDF notes for Python functions",
-      "pdfUrl": "https://greenteapress.com/thinkpython2/thinkpython2.pdf",
-      "thumbnail": "https://miro.medium.com/v2/resize:fit:1400/1*RJMxLdTHqVBSijKmOO5MAg.jpeg"
-    },
-    {
-      "id": "3",
-      "courseId": 3,
-      "videoId": 13,
-      "title": "React Basics Notes",
-      "description": "PDF notes for React beginners",
-      "pdfUrl": "https://reactjs.org/docs/getting-started.pdf",
-      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-    }
-  ]
+"courseDetails": [
+  {
+    "courseId": "1",
+    "modules": [
+      {
+        "id": 1,
+        "title": "Python Fundamentals",
+        "videos": [
+          {
+            "id": 1,
+            "title": "Python Introduction & Setup",
+            "thumbnail": "https://img.youtube.com/vi/R8rmfD9Y5-c/maxresdefault.jpg",
+            "duration": "15:32",
+            "videoUrl": "https://www.youtube.com/watch?v=R8rmfD9Y5-c",
+            "ebookUrl": "https://www.stat.berkeley.edu/~spector/python.pdf",
+            "description": "Python installation, first program, variables & data types",
+            "isCompleted": false,
+            "order": 1
+          },
+          {
+            "id": 2,
+            "title": "Control Flow & Loops",
+            "thumbnail": "https://img.youtube.com/vi/kqtD5dpn9C8/maxresdefault.jpg",
+            "duration": "22:45",
+            "videoUrl": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+            "ebookUrl": "https://python.swaroopch.com/Python_Book.pdf",
+            "description": "if statements, while loops, for loops, break/continue",
+            "isCompleted": false,
+            "order": 2
+          },
+          {
+            "id": 3,
+            "title": "Functions & Modules",
+            "thumbnail": "https://img.youtube.com/vi=eWRfhZUzrAc/maxresdefault.jpg",
+            "duration": "18:20",
+            "videoUrl": "https://www.youtube.com/watch?v=eWRfhZUzrAc",
+            "ebookUrl": "https://www.python.org/doc/essays/list2str.pdf",
+            "description": "Writing functions, parameters, return values, importing modules",
+            "isCompleted": false,
+            "order": 3
+          },
+          {
+            "id": 4,
+            "title": "Lists, Dictionaries & OOP",
+            "thumbnail": "https://img.youtube.com/vi=t2_Q2BRzeEE/maxresdefault.jpg",
+            "duration": "25:10",
+            "videoUrl": "https://www.youtube.com/watch?v=t2_Q2BRzeEE",
+            "ebookUrl": "https://web.mit.edu/6.005/www/files/lectures/notes6_1.pdf",
+            "description": "Lists, dicts, sets, classes, objects & inheritance",
+            "isCompleted": false,
+            "order": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "courseId": "2",
+    "modules": [
+      {
+        "id": 1,
+        "title": "Java Core",
+        "videos": [
+          {
+            "id": 1,
+            "title": "Java Setup & First Program",
+            "thumbnail": "https://img.youtube.com/vi/_A6hAXq5S0A/maxresdefault.jpg",
+            "duration": "12:45",
+            "videoUrl": "https://www.youtube.com/watch?v=_A6hAXq5S0A",
+            "ebookUrl": "https://pages.uoregon.edu/hood/java/intro-jn1e-JavaNutshell.pdf",
+            "description": "JDK installation, Hello World, main method",
+            "isCompleted": false,
+            "order": 1
+          },
+          {
+            "id": 2,
+            "title": "Variables & Data Types",
+            "thumbnail": "https://img.youtube.com/vi/3.17_L1Sw3E/maxresdefault.jpg",
+            "duration": "19:30",
+            "videoUrl": "https://www.youtube.com/watch?v=3.17_L1Sw3E",
+            "ebookUrl": "https://math.hws.edu/eck/cs124/javanotes8.pdf",
+            "description": "Primitive types, arrays, strings",
+            "isCompleted": false,
+            "order": 2
+          },
+          {
+            "id": 3,
+            "title": "OOP Concepts",
+            "thumbnail": "https://img.youtube.com/vi/GoXwY9U8OvA/maxresdefault.jpg",
+            "duration": "28:15",
+            "videoUrl": "https://www.youtube.com/watch?v=GoXwY9U8OvA",
+            "ebookUrl": "https://math.hws.edu/eck/cs124/javanotes8.pdf",
+            "description": "Classes, inheritance, polymorphism",
+            "isCompleted": false,
+            "order": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "courseId": "3",
+    "modules": [
+      {
+        "id": 1,
+        "title": "React Fundamentals",
+        "videos": [
+          {
+            "id": 1,
+            "title": "React Setup & Components",
+            "thumbnail": "https://img.youtube.com/vi/bMknfKXIFA8/maxresdefault.jpg",
+            "duration": "16:20",
+            "videoUrl": "https://www.youtube.com/watch?v=bMknfKXIFA8",
+            "ebookUrl": "https://react.dev/learn/writing-markup-with-jsx.pdf",
+            "description": "Create React App, JSX, components",
+            "isCompleted": true,
+            "order": 1
+          },
+          {
+            "id": 2,
+            "title": "Hooks & State Management",
+            "thumbnail": "https://img.youtube.com/vi/TNhaISOUyAw/maxresdefault.jpg",
+            "duration": "24:50",
+            "videoUrl": "https://www.youtube.com/watch?v=TNhaISOUyAw",
+            "ebookUrl": "https://react.dev/learn/manipulating-the-dom-with-refs.pdf",
+            "description": "useState, useEffect, custom hooks",
+            "isCompleted": true,
+            "order": 2
+          },
+          {
+            "id": 3,
+            "title": "Routing & Context API",
+            "thumbnail": "https://img.youtube.com/vi/pY5Dq6B4TRA/maxresdefault.jpg",
+            "duration": "21:35",
+            "videoUrl": "https://www.youtube.com/watch?v=pY5Dq6B4TRA",
+            "ebookUrl": "https://nextjs.org/docs/learn.pdf",
+            "description": "React Router, Context for state",
+            "isCompleted": false,
+            "order": 3
+          },
+          {
+            "id": 4,
+            "title": "Advanced React Patterns",
+            "thumbnail": "https://img.youtube.com/vi/w7ejDZ8SWv8/maxresdefault.jpg",
+            "duration": "30:12",
+            "videoUrl": "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
+            "ebookUrl": "https://nextjs.org/docs/learn.pdf",
+            "description": "HOCs, render props, optimization",
+            "isCompleted": false,
+            "order": 4
+          }
+        ]
+      }
+    ]
+  }
+],
+"watchHistory": [
+  {
+    "userId": "1",
+    "courseId": "3",
+    "completedVideos": [1, 2]
+  }
+]
 }

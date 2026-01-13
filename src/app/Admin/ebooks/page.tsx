@@ -117,7 +117,7 @@ export default function EbooksPage() {
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-medium"
+          className="px-6 py-2 bg-linear-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-medium"
           disabled={courses.length === 0}
         >
           {showForm ? 'Cancel' : '📚 Add Ebook'}
