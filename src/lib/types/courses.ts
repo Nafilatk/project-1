@@ -1,14 +1,24 @@
-// types/course.ts
 export interface Video {
   id: number;
   title: string;
   thumbnail: string;
   duration: string;
   videoUrl: string;
-  ebookUrl?: string;
+  ebookUrl: string;
   description: string;
   isCompleted: boolean;
   order: number;
+}
+
+export interface Module {
+  id: number;
+  title: string;
+  videos: Video[];
+}
+
+export interface CourseDetail {
+  courseId: string;
+  modules: Module[];
 }
 
 export interface Course {
@@ -19,17 +29,4 @@ export interface Course {
   thumbnail: string;
   duration: string;
   level: string;
-}
-
-export interface CourseVideo {
-  id: number;
-  courseId: number;
-  title: string;
-  thumbnail: string;
-  duration: string;
-  videoUrl: string;
-  ebookUrl?: string;
-  description: string;
-  isCompleted: boolean;
-  order: number;
 }
