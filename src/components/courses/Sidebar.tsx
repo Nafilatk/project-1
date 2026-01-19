@@ -1,78 +1,86 @@
 'use client';
-import { useState } from 'react';
-import { Course } from '@/lib/types/courses';
-import Link from 'next/link';
 
-interface Props {
+import { Course, Category } from '@/lib/types/courses';
+import { Book, ChevronRight } from 'lucide-react';
+
+interface CourseSidebarProps {
   courses: Course[];
-  onCourseSelect: (courseId: string) => void;
-  sidebarOpen: boolean;
-  setSidebarOpen: (open: boolean) => void;
-  selectedCourseId?: string;
+  categories: Category[];
+  selectedCourse: Course;
+  onCourseSelect: (course: Course) => void;
 }
 
-export default function Sidebar({ courses, onCourseSelect, sidebarOpen, setSidebarOpen, selectedCourseId }: Props) {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const filteredCourses = courses.filter(course =>
-    course.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+export default function CourseSidebar({
+  courses,
+  categories,
+  selectedCourse,
+  onCourseSelect,
+}: CourseSidebarProps) {
+  const getCategoryName = (categoryId: string) => {
+    return categories.find(cat => cat.id === categoryId)?.name || 'Uncategorized';
+  };
 
   return (
-    <aside className={`
-      fixed inset-y-0 left-0 z-50 w-80 bg-white shadow-2xl transform transition-transform duration-300
-      ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-      lg:translate-x-0 lg:static
-    `}>
-      <div className="h-full flex flex-col">
-        <div className="p-6 border-b bg-gradient-to-b from-white to-gray-50">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-              Courses
-            </h2>
-            <button onClick={() => setSidebarOpen(false)} className="lg:hidden p-2 rounded-xl hover:bg-gray-100">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          
-          <div className="mt-6">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search courses..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-500 bg-white/80 shadow-lg"
-              />
-              <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-        
-        <nav className="flex-1 overflow-y-auto p-4 space-y-3">
-          {filteredCourses.map((course) => (
+    <div className="h-full bg-gray-900 text-white">
+      {/* Sidebar Header */}
+      <div className="p-6 border-b border-gray-700">
+        <h2 className="text-xl font-bold flex items-center gap-2">
+          <Book className="text-blue-400" />
+          Learnest.ai Courses
+        </h2>
+        <p className="text-gray-400 text-sm mt-1">Master your skills</p>
+      </div>
+
+      {/* Course List */}
+      <div className="p-4">
+        <h3 className="text-lg font-semibold mb-4 text-gray-300">All Courses</h3>
+        <div className="space-y-2">
+          {courses.map((course) => (
             <button
               key={course.id}
-              onClick={() => onCourseSelect(course.id)}
-              className={`w-full group flex items-center gap-4 p-5 rounded-2xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 border transition-all shadow-sm hover:shadow-md hover:-translate-y-1 ${
-                selectedCourseId === course.id ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white border-blue-500 shadow-blue-500/25 scale-105' : 'border-transparent hover:border-blue-200'
+              onClick={() => onCourseSelect(course)}
+              className={`w-full text-left p-3 rounded-lg transition-all duration-200 flex items-center justify-between group ${
+                selectedCourse.id === course.id
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-800 hover:bg-gray-700 text-gray-300'
               }`}
             >
-              <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-xl font-bold text-white shadow-lg group-hover:scale-105">
-                {course.name.slice(0, 2).toUpperCase()}
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                  selectedCourse.id === course.id
+                    ? 'bg-blue-500'
+                    : 'bg-gray-700 group-hover:bg-gray-600'
+                }`}>
+                  <Book size={18} />
+                </div>
+                <div>
+                  <div className="font-medium">{course.name}</div>
+                  <div className="text-xs opacity-75">
+                    {getCategoryName(course.categoryId)}
+                  </div>
+                </div>
               </div>
-              <div className="flex-1 min-w-0 text-left">
-                <p className="font-bold text-lg text-gray-900 group-hover:text-blue-700 truncate">{course.name}</p>
-                <p className="text-sm text-gray-600">{course.duration}</p>
-              </div>
+              <ChevronRight
+                size={16}
+                className={`transition-transform ${
+                  selectedCourse.id === course.id ? 'rotate-90' : ''
+                }`}
+              />
             </button>
           ))}
-        </nav>
+        </div>
       </div>
-    </aside>
+
+      {/* Sidebar Footer */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700 bg-gray-900">
+        <div className="text-center">
+          <div className="text-xs text-gray-400 mb-1">Progress</div>
+          <div className="w-full bg-gray-700 rounded-full h-2">
+            <div className="bg-blue-500 h-2 rounded-full w-1/3"></div>
+          </div>
+          <div className="text-xs text-gray-400 mt-2">2 of 6 courses completed</div>
+        </div>
+      </div>
+    </div>
   );
 }

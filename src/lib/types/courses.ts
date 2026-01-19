@@ -30,3 +30,15 @@ export interface Course {
   duration: string;
   level: string;
 }
+
+export interface Category {
+  id: string;
+  name: string;
+}
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}

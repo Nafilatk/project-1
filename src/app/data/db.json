@@ -175,14 +175,14 @@
     "modules": [
       {
         "id": 1,
-        "title": "Python Fundamentals",
+        "title": "Python",
         "videos": [
           {
             "id": 1,
             "title": "Python Introduction & Setup",
-            "thumbnail": "https://img.youtube.com/vi/R8rmfD9Y5-c/maxresdefault.jpg",
+            "thumbnail": "https://img.youtube.com/vi/XqZsoesa55w/maxresdefault.jpg",
             "duration": "15:32",
-            "videoUrl": "https://www.youtube.com/watch?v=R8rmfD9Y5-c",
+            "videoUrl": "https://www.youtube.com/watch?v=XqZsoesa55w",
             "ebookUrl": "https://www.stat.berkeley.edu/~spector/python.pdf",
             "description": "Python installation, first program, variables & data types",
             "isCompleted": false,
@@ -191,9 +191,9 @@
           {
             "id": 2,
             "title": "Control Flow & Loops",
-            "thumbnail": "https://img.youtube.com/vi/kqtD5dpn9C8/maxresdefault.jpg",
+            "thumbnail": "https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg",
             "duration": "22:45",
-            "videoUrl": "https://www.youtube.com/watch?v=kqtD5dpn9C8",
+            "videoUrl": "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
             "ebookUrl": "https://python.swaroopch.com/Python_Book.pdf",
             "description": "if statements, while loops, for loops, break/continue",
             "isCompleted": false,
@@ -202,9 +202,9 @@
           {
             "id": 3,
             "title": "Functions & Modules",
-            "thumbnail": "https://img.youtube.com/vi=eWRfhZUzrAc/maxresdefault.jpg",
+            "thumbnail": "https://img.youtube.com/vi/_WMPA3t3CbQ/maxresdefault.jpg",
             "duration": "18:20",
-            "videoUrl": "https://www.youtube.com/watch?v=eWRfhZUzrAc",
+            "videoUrl": "https://www.youtube.com/watch?v=_WMPA3t3CbQ",
             "ebookUrl": "https://www.python.org/doc/essays/list2str.pdf",
             "description": "Writing functions, parameters, return values, importing modules",
             "isCompleted": false,
@@ -213,9 +213,9 @@
           {
             "id": 4,
             "title": "Lists, Dictionaries & OOP",
-            "thumbnail": "https://img.youtube.com/vi=t2_Q2BRzeEE/maxresdefault.jpg",
+            "thumbnail": "https://img.youtube.com/vi/byXCYf9sVbE/maxresdefault.jpg",
             "duration": "25:10",
-            "videoUrl": "https://www.youtube.com/watch?v=t2_Q2BRzeEE",
+            "videoUrl": "https://www.youtube.com/watch?v=byXCYf9sVbE",
             "ebookUrl": "https://web.mit.edu/6.005/www/files/lectures/notes6_1.pdf",
             "description": "Lists, dicts, sets, classes, objects & inheritance",
             "isCompleted": false,
@@ -230,14 +230,14 @@
     "modules": [
       {
         "id": 1,
-        "title": "Java Core",
+        "title": "Java",
         "videos": [
           {
             "id": 1,
             "title": "Java Setup & First Program",
             "thumbnail": "https://img.youtube.com/vi/_A6hAXq5S0A/maxresdefault.jpg",
             "duration": "12:45",
-            "videoUrl": "https://www.youtube.com/watch?v=_A6hAXq5S0A",
+            "videoUrl": "https://www.youtube.com/watch?v=F2A8O7FpLLY",
             "ebookUrl": "https://pages.uoregon.edu/hood/java/intro-jn1e-JavaNutshell.pdf",
             "description": "JDK installation, Hello World, main method",
             "isCompleted": false,
@@ -248,7 +248,7 @@
             "title": "Variables & Data Types",
             "thumbnail": "https://img.youtube.com/vi/3.17_L1Sw3E/maxresdefault.jpg",
             "duration": "19:30",
-            "videoUrl": "https://www.youtube.com/watch?v=3.17_L1Sw3E",
+            "videoUrl": "https://www.youtube.com/watch?v=RgKAFK5djSk",
             "ebookUrl": "https://math.hws.edu/eck/cs124/javanotes8.pdf",
             "description": "Primitive types, arrays, strings",
             "isCompleted": false,
@@ -257,9 +257,9 @@
           {
             "id": 3,
             "title": "OOP Concepts",
-            "thumbnail": "https://img.youtube.com/vi/GoXwY9U8OvA/maxresdefault.jpg",
+            "thumbnail": "https://img.youtube.com/vi/IcvDWwhOTJ0/maxresdefault.jpg",
             "duration": "28:15",
-            "videoUrl": "https://www.youtube.com/watch?v=GoXwY9U8OvA",
+            "videoUrl": "https://www.youtube.com/watch?v=IcvDWwhOTJ0",
             "ebookUrl": "https://math.hws.edu/eck/cs124/javanotes8.pdf",
             "description": "Classes, inheritance, polymorphism",
             "isCompleted": false,
@@ -274,14 +274,14 @@
     "modules": [
       {
         "id": 1,
-        "title": "React Fundamentals",
+        "title": "React",
         "videos": [
           {
             "id": 1,
             "title": "React Setup & Components",
-            "thumbnail": "https://img.youtube.com/vi/bMknfKXIFA8/maxresdefault.jpg",
+            "thumbnail": "https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg",
             "duration": "16:20",
-            "videoUrl": "https://www.youtube.com/watch?v=bMknfKXIFA8",
+            "videoUrl": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
             "ebookUrl": "https://react.dev/learn/writing-markup-with-jsx.pdf",
             "description": "Create React App, JSX, components",
             "isCompleted": true,
@@ -290,9 +290,9 @@
           {
             "id": 2,
             "title": "Hooks & State Management",
-            "thumbnail": "https://img.youtube.com/vi/TNhaISOUyAw/maxresdefault.jpg",
+            "thumbnail": "https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg",
             "duration": "24:50",
-            "videoUrl": "https://www.youtube.com/watch?v=TNhaISOUyAw",
+            "videoUrl": "https://www.youtube.com/watch?v=9bZkp7q19f0",
             "ebookUrl": "https://react.dev/learn/manipulating-the-dom-with-refs.pdf",
             "description": "useState, useEffect, custom hooks",
             "isCompleted": true,
@@ -301,9 +301,9 @@
           {
             "id": 3,
             "title": "Routing & Context API",
-            "thumbnail": "https://img.youtube.com/vi/pY5Dq6B4TRA/maxresdefault.jpg",
+            "thumbnail": "https://img.youtube.com/vi/OPf0YbXqDm0/maxresdefault.jpg",
             "duration": "21:35",
-            "videoUrl": "https://www.youtube.com/watch?v=pY5Dq6B4TRA",
+            "videoUrl": "https://www.youtube.com/watch?v=OPf0YbXqDm0",
             "ebookUrl": "https://nextjs.org/docs/learn.pdf",
             "description": "React Router, Context for state",
             "isCompleted": false,
@@ -312,9 +312,9 @@
           {
             "id": 4,
             "title": "Advanced React Patterns",
-            "thumbnail": "https://img.youtube.com/vi/w7ejDZ8SWv8/maxresdefault.jpg",
+            "thumbnail": "https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg",
             "duration": "30:12",
-            "videoUrl": "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
+            "videoUrl": "https://www.youtube.com/watch?v=_WMPA3t3CbQ",
             "ebookUrl": "https://nextjs.org/docs/learn.pdf",
             "description": "HOCs, render props, optimization",
             "isCompleted": false,
