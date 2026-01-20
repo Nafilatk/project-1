@@ -1,3 +1,13 @@
+export interface Course {
+  id: string;
+  name: string;
+  categoryId: string;
+  description: string;
+  thumbnail: string;
+  duration: string;
+  level: string;
+}
+
 export interface Video {
   id: number;
   title: string;
@@ -19,26 +29,4 @@ export interface Module {
 export interface CourseDetail {
   courseId: string;
   modules: Module[];
-}
-
-export interface Course {
-  id: string;
-  name: string;
-  categoryId: string;
-  description: string;
-  thumbnail: string;
-  duration: string;
-  level: string;
-}
-
-export interface Category {
-  id: string;
-  name: string;
-}
-
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
 }
