@@ -1,3 +1,17 @@
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: 'admin' | 'user';
+  isBlock: boolean;
+  phone?: string;
+  bio?: string;
+  avatarUrl?: string;
+  createdAt?: string;
+  created_at?: string;
+}
+
 export interface Course {
   id: string;
   name: string;
@@ -14,7 +28,7 @@ export interface Video {
   thumbnail: string;
   duration: string;
   videoUrl: string;
-  ebookUrl?: string;
+  ebookUrl: string;
   description: string;
   isCompleted: boolean;
   order: number;

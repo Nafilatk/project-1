@@ -87,6 +87,24 @@
       "role": "user",
       "isBlock": false,
       "created_at": "2026-01-05T10:03:47.039Z"
+    },
+    {
+      "id": "8e5f368b-1d26-4bd1-9444-425a8cb26185",
+      "name": "asssssyyeeeeeeeeiii",
+      "email": "asiii@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "isBlock": false,
+      "created_at": "2026-01-20T07:11:58.178Z"
+    },
+    {
+      "id": "8a9b7fff-2f14-4f3f-865d-0e28b8f40c0c",
+      "name": "rifana",
+      "email": "rifanasherin@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "isBlock": false,
+      "created_at": "2026-01-20T07:24:27.365Z"
     }
   ],
   "categories": [
@@ -103,7 +121,6 @@
       "name": "Cyber Security"
     }
   ],
-
   "courses": [
     {
       "id": "1",
@@ -160,319 +177,327 @@
       "level": "Advanced"
     },
     {
-      "id": "2ec8",
-      "name": "python",
-      "categoryId": "2",
-      "description": "Python for data science and automation",
-      "thumbnail": "/assets/courses/python-ds-thumb.jpg",
-      "duration": "10 hours",
-      "level": "Beginner"
+      "id": "2564",
+      "name": "C++",
+      "description": "core to advance level ",
+      "categoryId": "1",
+      "duration": "20 hrs",
+      "level": "Beginner",
+      "thumbnail": "https://pin.it/rpXSdHflB"
     }
   ],
-"courseDetails": [
-  {
-    "courseId": "1",
-    "modules": [
-      {
-        "id": 1,
-        "title": "Python",
-        "videos": [
-          {
-            "id": 1,
-            "title": "Python Introduction & Setup",
-            "thumbnail": "https://img.youtube.com/vi/XqZsoesa55w/maxresdefault.jpg",
-            "duration": "15:32",
-            "videoUrl": "https://www.youtube.com/watch?v=XqZsoesa55w",
-            "ebookUrl": "https://www.stat.berkeley.edu/~spector/python.pdf",
-            "description": "Python installation, first program, variables & data types",
-            "isCompleted": false,
-            "order": 1
-          },
-          {
-            "id": 2,
-            "title": "Control Flow & Loops",
-            "thumbnail": "https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg",
-            "duration": "22:45",
-            "videoUrl": "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
-            "ebookUrl": "https://python.swaroopch.com/Python_Book.pdf",
-            "description": "if statements, while loops, for loops, break/continue",
-            "isCompleted": false,
-            "order": 2
-          },
-          {
-            "id": 3,
-            "title": "Functions & Modules",
-            "thumbnail": "https://img.youtube.com/vi/_WMPA3t3CbQ/maxresdefault.jpg",
-            "duration": "18:20",
-            "videoUrl": "https://www.youtube.com/watch?v=_WMPA3t3CbQ",
-            "ebookUrl": "https://www.python.org/doc/essays/list2str.pdf",
-            "description": "Writing functions, parameters, return values, importing modules",
-            "isCompleted": false,
-            "order": 3
-          },
-          {
-            "id": 4,
-            "title": "Lists, Dictionaries & OOP",
-            "thumbnail": "https://img.youtube.com/vi/byXCYf9sVbE/maxresdefault.jpg",
-            "duration": "25:10",
-            "videoUrl": "https://www.youtube.com/watch?v=byXCYf9sVbE",
-            "ebookUrl": "https://web.mit.edu/6.005/www/files/lectures/notes6_1.pdf",
-            "description": "Lists, dicts, sets, classes, objects & inheritance",
-            "isCompleted": false,
-            "order": 4
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "courseId": "2",
-    "modules": [
-      {
-        "id": 1,
-        "title": "Java",
-        "videos": [
-          {
-            "id": 1,
-            "title": "Java Setup & First Program",
-            "thumbnail": "https://img.youtube.com/vi/_A6hAXq5S0A/maxresdefault.jpg",
-            "duration": "12:45",
-            "videoUrl": "https://www.youtube.com/watch?v=F2A8O7FpLLY",
-            "ebookUrl": "https://pages.uoregon.edu/hood/java/intro-jn1e-JavaNutshell.pdf",
-            "description": "JDK installation, Hello World, main method",
-            "isCompleted": false,
-            "order": 1
-          },
-          {
-            "id": 2,
-            "title": "Variables & Data Types",
-            "thumbnail": "https://img.youtube.com/vi/3.17_L1Sw3E/maxresdefault.jpg",
-            "duration": "19:30",
-            "videoUrl": "https://www.youtube.com/watch?v=RgKAFK5djSk",
-            "ebookUrl": "https://math.hws.edu/eck/cs124/javanotes8.pdf",
-            "description": "Primitive types, arrays, strings",
-            "isCompleted": false,
-            "order": 2
-          },
-          {
-            "id": 3,
-            "title": "OOP Concepts",
-            "thumbnail": "https://img.youtube.com/vi/IcvDWwhOTJ0/maxresdefault.jpg",
-            "duration": "28:15",
-            "videoUrl": "https://www.youtube.com/watch?v=IcvDWwhOTJ0",
-            "ebookUrl": "https://math.hws.edu/eck/cs124/javanotes8.pdf",
-            "description": "Classes, inheritance, polymorphism",
-            "isCompleted": false,
-            "order": 3
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "courseId": "3",
-    "modules": [
-      {
-        "id": 1,
-        "title": "React",
-        "videos": [
-          {
-            "id": 1,
-            "title": "React Setup & Components",
-            "thumbnail": "https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg",
-            "duration": "16:20",
-            "videoUrl": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
-            "ebookUrl": "https://react.dev/learn/writing-markup-with-jsx.pdf",
-            "description": "Create React App, JSX, components",
-            "isCompleted": true,
-            "order": 1
-          },
-          {
-            "id": 2,
-            "title": "Hooks & State Management",
-            "thumbnail": "https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg",
-            "duration": "24:50",
-            "videoUrl": "https://www.youtube.com/watch?v=9bZkp7q19f0",
-            "ebookUrl": "https://react.dev/learn/manipulating-the-dom-with-refs.pdf",
-            "description": "useState, useEffect, custom hooks",
-            "isCompleted": true,
-            "order": 2
-          },
-          {
-            "id": 3,
-            "title": "Routing & Context API",
-            "thumbnail": "https://img.youtube.com/vi/OPf0YbXqDm0/maxresdefault.jpg",
-            "duration": "21:35",
-            "videoUrl": "https://www.youtube.com/watch?v=OPf0YbXqDm0",
-            "ebookUrl": "https://nextjs.org/docs/learn.pdf",
-            "description": "React Router, Context for state",
-            "isCompleted": false,
-            "order": 3
-          },
-          {
-            "id": 4,
-            "title": "Advanced React Patterns",
-            "thumbnail": "https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg",
-            "duration": "30:12",
-            "videoUrl": "https://www.youtube.com/watch?v=_WMPA3t3CbQ",
-            "ebookUrl": "https://nextjs.org/docs/learn.pdf",
-            "description": "HOCs, render props, optimization",
-            "isCompleted": false,
-            "order": 4
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "courseId": "4",
-    "modules": [
-      {
-        "id": 1,
-        "title": "Angular",
-        "videos": [
-          {
-            "id": 1,
-            "title": "Angular Setup & Components",
-            "thumbnail": "https://img.youtube.com/vi/nnwAzSHPPJM/maxresdefault.jpg",
-            "duration": "20:15",
-            "videoUrl": "https://www.youtube.com/watch?v=nnwAzSHPPJM",
-            "ebookUrl": "https://angular.io/docs",
-            "description": "Angular CLI, component architecture",
-            "isCompleted": false,
-            "order": 1
-          },
-          {
-            "id": 2,
-            "title": "Services & Dependency Injection",
-            "thumbnail": "https://img.youtube.com/vi/KmYZABbS6BE/maxresdefault.jpg",
-            "duration": "25:30",
-            "videoUrl": "https://www.youtube.com/watch?v=KmYZABbS6BE",
-            "ebookUrl": "https://angular.io/docs",
-            "description": "Services, dependency injection, HTTP",
-            "isCompleted": false,
-            "order": 2
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "courseId": "5",
-    "modules": [
-      {
-        "id": 1,
-        "title": "MERN Stack",
-        "videos": [
-          {
-            "id": 1,
-            "title": "MongoDB Setup",
-            "thumbnail": "https://img.youtube.com/vi/ofme2o29ngU/maxresdefault.jpg",
-            "duration": "18:45",
-            "videoUrl": "https://www.youtube.com/watch?v=ofme2o29ngU",
-            "ebookUrl": "https://docs.mongodb.com",
-            "description": "MongoDB installation and basics",
-            "isCompleted": false,
-            "order": 1
-          },
-          {
-            "id": 2,
-            "title": "Express & Node.js Backend",
-            "thumbnail": "https://img.youtube.com/vi/HT7A0yCd9RU/maxresdefault.jpg",
-            "duration": "30:20",
-            "videoUrl": "https://www.youtube.com/watch?v=HT7A0yCd9RU",
-            "ebookUrl": "https://expressjs.com",
-            "description": "REST APIs with Express",
-            "isCompleted": false,
-            "order": 2
-          },
-          {
-            "id": 3,
-            "title": "React Frontend & Integration",
-            "thumbnail": "https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg",
-            "duration": "35:15",
-            "videoUrl": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
-            "ebookUrl": "https://react.dev",
-            "description": "Building UIs with React",
-            "isCompleted": false,
-            "order": 3
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "courseId": "6",
-    "modules": [
-      {
-        "id": 1,
-        "title": "Machine Learning",
-        "videos": [
-          {
-            "id": 1,
-            "title": "ML Fundamentals",
-            "thumbnail": "https://img.youtube.com/vi/n0EZVVjXNzM/maxresdefault.jpg",
-            "duration": "28:30",
-            "videoUrl": "https://www.youtube.com/watch?v=n0EZVVjXNzM",
-            "ebookUrl": "https://www.coursera.org/learn/machine-learning",
-            "description": "Supervised & unsupervised learning",
-            "isCompleted": false,
-            "order": 1
-          },
-          {
-            "id": 2,
-            "title": "Neural Networks & Deep Learning",
-            "thumbnail": "https://img.youtube.com/vi/Ym0r7KMjbKA/maxresdefault.jpg",
-            "duration": "35:45",
-            "videoUrl": "https://www.youtube.com/watch?v=Ym0r7KMjbKA",
-            "ebookUrl": "https://www.deeplearningbook.org",
-            "description": "Deep learning with TensorFlow",
-            "isCompleted": false,
-            "order": 2
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "courseId": "2ec8",
-    "modules": [
-      {
-        "id": 1,
-        "title": "Python for Data Science",
-        "videos": [
-          {
-            "id": 1,
-            "title": "NumPy Basics",
-            "thumbnail": "https://img.youtube.com/vi/9JUapQSLm4Y/maxresdefault.jpg",
-            "duration": "22:10",
-            "videoUrl": "https://www.youtube.com/watch?v=9JUapQSLm4Y",
-            "ebookUrl": "https://numpy.org/doc",
-            "description": "NumPy arrays and operations",
-            "isCompleted": false,
-            "order": 1
-          },
-          {
-            "id": 2,
-            "title": "Pandas for Data Manipulation",
-            "thumbnail": "https://img.youtube.com/vi/qBnVYvhS_N0/maxresdefault.jpg",
-            "duration": "26:40",
-            "videoUrl": "https://www.youtube.com/watch?v=qBnVYvhS_N0",
-            "ebookUrl": "https://pandas.pydata.org/docs",
-            "description": "DataFrames and data analysis",
-            "isCompleted": false,
-            "order": 2
-          }
-        ]
-      }
-    ]
-  }
-],
-"watchHistory": [
-  {
-    "userId": "1",
-    "courseId": "3",
-    "completedVideos": [1, 2]
-  }
-]
+  "courseDetails": [
+    {
+      "courseId": "1",
+      "modules": [
+        {
+          "id": 1,
+          "title": "Python",
+          "videos": [
+            {
+              "id": 1,
+              "title": "Python Introduction & Setup",
+              "thumbnail": "https://img.youtube.com/vi/XqZsoesa55w/maxresdefault.jpg",
+              "duration": "15:32",
+              "videoUrl": "https://www.youtube.com/watch?v=XqZsoesa55w",
+              "ebookUrl": "https://mast.iittp.ac.in/ATSNPDE25/PythonBasics.pdf",
+              "description": "Python installation, first program, variables & data types",
+              "isCompleted": false,
+              "order": 1
+            },
+            {
+              "id": 2,
+              "title": "Control Flow & Loops",
+              "thumbnail": "https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg",
+              "duration": "22:45",
+              "videoUrl": "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
+              "ebookUrl": "https://mast.iittp.ac.in/ATSNPDE25/PythonBasics.pdf",
+              "description": "if statements, while loops, for loops, break/continue",
+              "isCompleted": false,
+              "order": 2
+            },
+            {
+              "id": 3,
+              "title": "Functions & Modules",
+              "thumbnail": "https://img.youtube.com/vi/_WMPA3t3CbQ/maxresdefault.jpg",
+              "duration": "18:20",
+              "videoUrl": "https://www.youtube.com/watch?v=_WMPA3t3CbQ",
+              "ebookUrl": "https://mast.iittp.ac.in/ATSNPDE25/PythonBasics.pdf",
+              "description": "Writing functions, parameters, return values, importing modules",
+              "isCompleted": false,
+              "order": 3
+            },
+            {
+              "id": 4,
+              "title": "Lists, Dictionaries & OOP",
+              "thumbnail": "https://img.youtube.com/vi/byXCYf9sVbE/maxresdefault.jpg",
+              "duration": "25:10",
+              "videoUrl": "https://www.youtube.com/watch?v=byXCYf9sVbE",
+              "ebookUrl": "https://mast.iittp.ac.in/ATSNPDE25/PythonBasics.pdf",
+              "description": "Lists, dicts, sets, classes, objects & inheritance",
+              "isCompleted": false,
+              "order": 4
+            }
+          ]
+        }
+      ],
+      "id": "cc6d"
+    },
+    {
+      "courseId": "2",
+      "modules": [
+        {
+          "id": 1,
+          "title": "Java",
+          "videos": [
+            {
+              "id": 1,
+              "title": "Java Setup & First Program",
+              "thumbnail": "https://img.youtube.com/vi/_A6hAXq5S0A/maxresdefault.jpg",
+              "duration": "12:45",
+              "videoUrl": "https://www.youtube.com/watch?v=F2A8O7FpLLY",
+              "ebookUrl": "https://pdfbox.apache.org",
+              "description": "JDK installation, Hello World, main method",
+              "isCompleted": false,
+              "order": 1
+            },
+            {
+              "id": 2,
+              "title": "Variables & Data Types",
+              "thumbnail": "https://img.youtube.com/vi/3.17_L1Sw3E/maxresdefault.jpg",
+              "duration": "19:30",
+              "videoUrl": "https://www.youtube.com/watch?v=RgKAFK5djSk",
+              "ebookUrl": "https://pdfbox.apache.org",
+              "description": "Primitive types, arrays, strings",
+              "isCompleted": false,
+              "order": 2
+            },
+            {
+              "id": 3,
+              "title": "OOP Concepts",
+              "thumbnail": "https://img.youtube.com/vi/IcvDWwhOTJ0/maxresdefault.jpg",
+              "duration": "28:15",
+              "videoUrl": "https://www.youtube.com/watch?v=IcvDWwhOTJ0",
+              "ebookUrl": "https://pdfbox.apache.org",
+              "description": "Classes, inheritance, polymorphism",
+              "isCompleted": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "id": "26f1"
+    },
+    {
+      "courseId": "3",
+      "modules": [
+        {
+          "id": 1,
+          "title": "React",
+          "videos": [
+            {
+              "id": 1,
+              "title": "React Setup & Components",
+              "thumbnail": "https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg",
+              "duration": "16:20",
+              "videoUrl": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
+              "ebookUrl": "https://www.npmjs.com/package/react-pdf",
+              "description": "Create React App, JSX, components",
+              "isCompleted": true,
+              "order": 1
+            },
+            {
+              "id": 2,
+              "title": "Hooks & State Management",
+              "thumbnail": "https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg",
+              "duration": "24:50",
+              "videoUrl": "https://www.youtube.com/watch?v=9bZkp7q19f0",
+              "ebookUrl": "https://www.npmjs.com/package/react-pdf",
+              "description": "useState, useEffect, custom hooks",
+              "isCompleted": true,
+              "order": 2
+            },
+            {
+              "id": 3,
+              "title": "Routing & Context API",
+              "thumbnail": "https://img.youtube.com/vi/OPf0YbXqDm0/maxresdefault.jpg",
+              "duration": "21:35",
+              "videoUrl": "https://www.youtube.com/watch?v=OPf0YbXqDm0",
+              "ebookUrl": "https://www.npmjs.com/package/react-pdf",
+              "description": "React Router, Context for state",
+              "isCompleted": false,
+              "order": 3
+            },
+            {
+              "id": 4,
+              "title": "Advanced React Patterns",
+              "thumbnail": "https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg",
+              "duration": "30:12",
+              "videoUrl": "https://www.youtube.com/watch?v=_WMPA3t3CbQ",
+              "ebookUrl": "https://www.npmjs.com/package/react-pdf",
+              "description": "HOCs, render props, optimization",
+              "isCompleted": false,
+              "order": 4
+            }
+          ]
+        }
+      ],
+      "id": "676c"
+    },
+    {
+      "courseId": "4",
+      "modules": [
+        {
+          "id": 1,
+          "title": "Angular",
+          "videos": [
+            {
+              "id": 1,
+              "title": "Angular Setup & Components",
+              "thumbnail": "https://img.youtube.com/vi/nnwAzSHPPJM/maxresdefault.jpg",
+              "duration": "20:15",
+              "videoUrl": "https://www.youtube.com/watch?v=nnwAzSHPPJM",
+              "ebookUrl": "https://v17.angular.io/docs",
+              "description": "Angular CLI, component architecture",
+              "isCompleted": false,
+              "order": 1
+            },
+            {
+              "id": 2,
+              "title": "Services & Dependency Injection",
+              "thumbnail": "https://img.youtube.com/vi/KmYZABbS6BE/maxresdefault.jpg",
+              "duration": "25:30",
+              "videoUrl": "https://www.youtube.com/watch?v=KmYZABbS6BE",
+              "ebookUrl": "https://v17.angular.io/docs",
+              "description": "Services, dependency injection, HTTP",
+              "isCompleted": false,
+              "order": 2
+            }
+          ]
+        }
+      ],
+      "id": "d6e0"
+    },
+    {
+      "courseId": "5",
+      "modules": [
+        {
+          "id": 1,
+          "title": "MERN Stack",
+          "videos": [
+            {
+              "id": 1,
+              "title": "MongoDB Setup",
+              "thumbnail": "https://img.youtube.com/vi/ofme2o29ngU/maxresdefault.jpg",
+              "duration": "18:45",
+              "videoUrl": "https://www.youtube.com/watch?v=ofme2o29ngU",
+              "ebookUrl": "https://www.theseus.fi/bitstream/handle/10024/338237/Samikshya_Aryal_Final_Thesis.pdf",
+              "description": "MongoDB installation and basics",
+              "isCompleted": false,
+              "order": 1
+            },
+            {
+              "id": 2,
+              "title": "Express & Node.js Backend",
+              "thumbnail": "https://img.youtube.com/vi/HT7A0yCd9RU/maxresdefault.jpg",
+              "duration": "30:20",
+              "videoUrl": "https://www.youtube.com/watch?v=HT7A0yCd9RU",
+              "ebookUrl": "https://www.theseus.fi/bitstream/handle/10024/338237/Samikshya_Aryal_Final_Thesis.pdf",
+              "description": "REST APIs with Express",
+              "isCompleted": false,
+              "order": 2
+            },
+            {
+              "id": 3,
+              "title": "React Frontend & Integration",
+              "thumbnail": "https://img.youtube.com/vi/JGwWNGJdvx8/maxresdefault.jpg",
+              "duration": "35:15",
+              "videoUrl": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
+              "ebookUrl": "https://www.theseus.fi/bitstream/handle/10024/338237/Samikshya_Aryal_Final_Thesis.pdf",
+              "description": "Building UIs with React",
+              "isCompleted": false,
+              "order": 3
+            }
+          ]
+        }
+      ],
+      "id": "9d67"
+    },
+    {
+      "courseId": "6",
+      "modules": [
+        {
+          "id": 1,
+          "title": "Machine Learning",
+          "videos": [
+            {
+              "id": 1,
+              "title": "ML Fundamentals",
+              "thumbnail": "https://img.youtube.com/vi/n0EZVVjXNzM/maxresdefault.jpg",
+              "duration": "28:30",
+              "videoUrl": "https://www.youtube.com/watch?v=n0EZVVjXNzM",
+              "ebookUrl": "https://ai.stanford.edu/~nilsson/MLBOOK.pdf",
+              "description": "Supervised & unsupervised learning",
+              "isCompleted": false,
+              "order": 1
+            },
+            {
+              "id": 2,
+              "title": "Neural Networks & Deep Learning",
+              "thumbnail": "https://img.youtube.com/vi/Ym0r7KMjbKA/maxresdefault.jpg",
+              "duration": "35:45",
+              "videoUrl": "https://www.youtube.com/watch?v=Ym0r7KMjbKA",
+              "ebookUrl": "https://ai.stanford.edu/~nilsson/MLBOOK.pdf",
+              "description": "Deep learning with TensorFlow",
+              "isCompleted": false,
+              "order": 2
+            }
+          ]
+        }
+      ],
+      "id": "ea90"
+    },
+    {
+      "id": "24f8"
+    },
+    {
+      "id": "b8a8",
+      "courseId": "2564",
+      "modules": [
+        {
+          "id": 1768970930302,
+          "title": "introduction to C++",
+          "videos": [
+            {
+              "id": 1768971003494,
+              "title": "introduction",
+              "thumbnail": "https://img.youtube.com/vi/XqZsoesa55w/maxresdefault.jpg",
+              "duration": "10:04",
+              "videoUrl": "https://youtu.be/R8rmfD9Y5-c?si=IAbg1CBLQ8Qa7sY8",
+              "ebookUrl": "https://cplusplus.com/doc/tutorial",
+              "description": "learn c++ from core to advance level ",
+              "isCompleted": false,
+              "order": 1
+            }
+          ]
+        },
+        {
+          "id": 1768970999772,
+          "title": "Module 2",
+          "videos": []
+        }
+      ]
+    }
+  ],
+  "watchHistory": [
+    {
+      "userId": "1",
+      "courseId": "3",
+      "completedVideos": [
+        1,
+        2
+      ],
+      "id": "23a8"
+    }
+  ]
 }

@@ -12,7 +12,7 @@ export default function AboutPage() {
           <h1 className="text-4xl md:text-5xl font-black leading-tight">
             Democratizing{" "}
             <span className="text-transparent bg-linear-to-r from-blue-400 to-blue-500 bg-clip-text ">AI education</span> 
-            for everyone.
+            for everyone. 
           </h1>
 
           <p className="text-lg md:text-xl text-blue-200 leading-relaxed">

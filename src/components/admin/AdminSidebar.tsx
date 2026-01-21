@@ -1,5 +1,8 @@
 'use client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useAuth } from "@/context/auth-context";
+
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import {
@@ -35,19 +38,23 @@ export default function AdminSidebar() {
     { 
       icon: <BookOpen className="h-5 w-5" />, 
       label: 'Courses', 
-      href: '/Admin/courses' 
+      href: '/Admin/Admincourses' 
     },
-    { 
-      icon: <FileText className="h-5 w-5" />, 
-      label: 'Ebooks', 
-      href: '/Admin/ebooks' 
-    },
+
     { 
       icon: <Users className="h-5 w-5" />, 
       label: 'Users', 
       href: '/Admin/users' 
     }
   ];
+
+const { logoutUser } = useAuth();
+
+const handleLogout = () => {
+  logoutUser();
+};
+
+
 
   return (
     <>
@@ -115,12 +122,14 @@ export default function AdminSidebar() {
 
 
           
-          {!isCollapsed && (
-            <button className="w-full mt-4 flex items-center justify-center px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-all text-sm font-medium group">
-              <LogOut className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-              Logout
-            </button>
-          )}
+<button
+  onClick={handleLogout}
+  className="w-full mt-4 flex items-center justify-center px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg transition-all text-sm font-medium group"
+>
+  <LogOut className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+  Logout
+</button>
+
       </aside>
 
       {isMobileMenuOpen && (

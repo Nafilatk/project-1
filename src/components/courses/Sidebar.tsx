@@ -12,7 +12,8 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
       <div className="p-4 border-b border-gray-700">
         <h2 className="font-bold text-lg">Courses</h2>
       </div>
-      
+
+
       <div className="p-2">
         {courses.map(course => (
           <button

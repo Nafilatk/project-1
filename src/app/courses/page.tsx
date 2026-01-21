@@ -1,35 +1,51 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/auth-context';
+
 import Sidebar from '@/components/courses/Sidebar';
 import VideoCard from '@/components/courses/VideoCard';
 import VideoPlayer from '@/components/courses/YoutubePlayer';
 import { Course, Video, CourseDetail } from '@/lib/types/courses';
 
 export default function CoursesPage() {
+  const { user, loading: authLoading } = useAuth();
+  const router = useRouter();
+
   const [courses, setCourses] = useState<Course[]>([]);
   const [courseDetails, setCourseDetails] = useState<CourseDetail[]>([]);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // 🔒 PROTECT PAGE
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (!authLoading && !user) {
+      router.push('/login');
+    }
+  }, [user, authLoading, router]);
+
+  // ⏳ Wait until auth check is done
+  useEffect(() => {
+    if (user) {
+      fetchData();
+    }
+  }, [user]);
 
   const fetchData = async () => {
     try {
       const [coursesRes, detailsRes] = await Promise.all([
         fetch('http://localhost:3001/courses'),
-        fetch('http://localhost:3001/courseDetails')
+        fetch('http://localhost:3001/courseDetails'),
       ]);
-      
+
       const coursesData = await coursesRes.json();
       const detailsData = await detailsRes.json();
-      
+
       setCourses(coursesData);
       setCourseDetails(detailsData);
-      
+
       if (coursesData.length > 0) {
         setSelectedCourse(coursesData[0]);
       }
@@ -53,12 +69,23 @@ export default function CoursesPage() {
     detail => detail.courseId === selectedCourse?.id
   );
 
-  const allVideos = currentCourseDetails?.modules?.flatMap(module => module.videos) || [];
+  const allVideos =
+    currentCourseDetails?.modules?.flatMap(module => module.videos) || [];
 
+  // 🔄 AUTH LOADING
+  if (authLoading || !user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <p className="text-white">Checking authentication...</p>
+      </div>
+    );
+  }
+
+  // 📦 DATA LOADING
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-white">Loading...</div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <p className="text-white">Loading courses...</p>
       </div>
     );
   }
@@ -81,22 +108,26 @@ export default function CoursesPage() {
             {/* Course Header */}
             <div className="mb-6">
               <h1 className="text-3xl font-bold">{selectedCourse.name}</h1>
-              <p className="text-gray-400 mt-2">{selectedCourse.description}</p>
+              <p className="text-gray-400 mt-2">
+                {selectedCourse.description}
+              </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Video Player - 2/3 width */}
+              {/* Video Player */}
               <div className="lg:col-span-2">
                 {selectedVideo ? (
                   <VideoPlayer video={selectedVideo} />
                 ) : (
                   <div className="bg-gray-800 rounded-lg p-8 text-center">
-                    <p className="text-gray-400">Select a video to start watching</p>
+                    <p className="text-gray-400">
+                      Select a video to start watching
+                    </p>
                   </div>
                 )}
               </div>
 
-              {/* Video List - 1/3 width */}
+              {/* Video List */}
               <div className="lg:col-span-1">
                 <div className="bg-gray-800 rounded-lg overflow-hidden">
                   <div className="p-4 border-b border-gray-700">
@@ -105,7 +136,7 @@ export default function CoursesPage() {
                       {allVideos.length} videos
                     </p>
                   </div>
-                  
+
                   <div className="max-h-125 overflow-y-auto">
                     {allVideos.map(video => (
                       <VideoCard
