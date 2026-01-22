@@ -105,6 +105,24 @@
       "role": "user",
       "isBlock": false,
       "created_at": "2026-01-20T07:24:27.365Z"
+    },
+    {
+      "id": "1b950f28-55aa-4cf0-a37f-bb5a9949a445",
+      "name": "Nasrin tk ",
+      "email": "nasrin@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "isBlock": false,
+      "created_at": "2026-01-22T07:39:07.995Z"
+    },
+    {
+      "id": "f0f66320-1474-4a17-bff6-61840531a0c1",
+      "name": "nashva naseehaa",
+      "email": "nashe@gmail.com",
+      "password": "123456",
+      "role": "user",
+      "isBlock": false,
+      "created_at": "2026-01-22T08:45:21.387Z"
     }
   ],
   "categories": [
@@ -184,6 +202,15 @@
       "duration": "20 hrs",
       "level": "Beginner",
       "thumbnail": "https://pin.it/rpXSdHflB"
+    },
+    {
+      "id": "efa4",
+      "name": "Flutter",
+      "description": "Learn App Development",
+      "categoryId": "1",
+      "duration": "20",
+      "level": "Beginner",
+      "thumbnail": "https://img.youtube.com/vi/XqZsoesa55w/maxresdefault.jpg"
     }
   ],
   "courseDetails": [
@@ -303,7 +330,7 @@
               "videoUrl": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
               "ebookUrl": "https://www.npmjs.com/package/react-pdf",
               "description": "Create React App, JSX, components",
-              "isCompleted": true,
+              "isCompleted": false,
               "order": 1
             },
             {
@@ -314,7 +341,7 @@
               "videoUrl": "https://www.youtube.com/watch?v=9bZkp7q19f0",
               "ebookUrl": "https://www.npmjs.com/package/react-pdf",
               "description": "useState, useEffect, custom hooks",
-              "isCompleted": true,
+              "isCompleted": false,
               "order": 2
             },
             {
@@ -487,17 +514,52 @@
           "videos": []
         }
       ]
+    },
+    {
+      "id": "d08d",
+      "courseId": "efa4",
+      "modules": [
+        {
+          "id": 1768979115188,
+          "title": "Main Module",
+          "videos": [
+            {
+              "id": 1768979229810,
+              "title": "Introduction",
+              "thumbnail": "https://img.youtube.com/vi/XqZsoesa55w/maxresdefault.jpg",
+              "duration": "15:00",
+              "videoUrl": "https://www.youtube.com/watch?v=XqZsoesa55w",
+              "ebookUrl": "https://docs.flutter.dev/",
+              "description": "Introduction to flutter",
+              "isCompleted": false,
+              "order": 1
+            }
+          ]
+        }
+      ]
     }
   ],
   "watchHistory": [
     {
-      "userId": "1",
-      "courseId": "3",
+      "id": "8394",
+      "userId": "b01fa8bd-16c2-4ddd-83c6-9fe5550b0c8e",
+      "courseId": "1",
       "completedVideos": [
         1,
         2
       ],
-      "id": "23a8"
+      "isCourseCompleted": false,
+      "completedAt": null
+    },
+    {
+      "id": "7e33",
+      "userId": "f0f66320-1474-4a17-bff6-61840531a0c1",
+      "courseId": "1",
+      "completedVideos": [
+        1
+      ],
+      "isCourseCompleted": false,
+      "completedAt": null
     }
   ]
 }

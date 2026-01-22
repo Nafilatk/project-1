@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-white mt-20">
+    <footer className="border-t bg-black ">
       <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-4 gap-8 text-sm">
 
         <div>
           <h2 className="text-xl font-bold">
-            Learnest<span className="text-blue-800">.ai</span>
+           <span className="text-white">Learnest</span> <span className="text-blue-800">.ai</span>
           </h2>
           <p className="mt-3 text-gray-600">
             Learn skills that matter. Courses and ebooks designed for real-world success.
@@ -17,7 +17,7 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold mb-3">Platform</h3>
           <ul className="space-y-2 text-gray-600">
-            <li><Link href="/courses" className="hover:text-blue-600">Courses</Link></li>
+            <li><Link href="/Admincourses" className="hover:text-blue-600">Courses</Link></li>
             <li><Link href="/ebook" className="hover:text-blue-600">Ebooks</Link></li>
             <li><Link href="/about" className="hover:text-blue-600">About</Link></li>
           </ul>
@@ -34,8 +34,8 @@ export default function Footer() {
 
         <div>
           <h3 className="font-semibold mb-3">Contact</h3>
-          <p className="text-gray-600">support@learnest.ai</p>
-          <p className="text-gray-600 mt-2">© 2025 Learnest.ai</p>
+          <p className="text-gray-600">learnest@gamil.com</p>
+          <p className="text-gray-600 mt-2">© 2026 Learnest.ai</p>
         </div>
 
       </div>
