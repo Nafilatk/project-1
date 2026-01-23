@@ -49,6 +49,12 @@ export default function Navbar() {
               >
                 About
               </Link>
+                            <Link
+                href="/progress"
+                className="transition-colors hover:text-blue-800"
+              >
+                Progress
+              </Link>
             </>
           )}
         </nav>
