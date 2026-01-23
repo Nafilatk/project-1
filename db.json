@@ -563,6 +563,27 @@
       ],
       "isCourseCompleted": true,
       "completedAt": "2026-01-22T10:44:46.881Z"
+    },
+    {
+      "id": "365e",
+      "userId": "f0f66320-1474-4a17-bff6-61840531a0c1",
+      "courseId": "2",
+      "completedVideos": [
+        1,
+        2
+      ],
+      "isCourseCompleted": false,
+      "completedAt": null
+    },
+    {
+      "id": "a5f4",
+      "userId": "f0f66320-1474-4a17-bff6-61840531a0c1",
+      "courseId": "3",
+      "completedVideos": [
+        1
+      ],
+      "isCourseCompleted": false,
+      "completedAt": null
     }
   ]
 }
