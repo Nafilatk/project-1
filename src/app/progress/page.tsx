@@ -84,7 +84,6 @@ export default function ProgressPage() {
       }
     );
 
-    // Animate stats cards with staggered effect
     if (statsRef.current) {
       gsap.fromTo(statsRef.current.children,
         { scale: 0.8, opacity: 0 },
@@ -102,7 +101,6 @@ export default function ProgressPage() {
       );
     }
 
-    // Animate sections
     gsap.fromTo(sectionsRef.current?.children || [],
       { y: 30, opacity: 0 },
       {
@@ -119,7 +117,6 @@ export default function ProgressPage() {
       }
     );
 
-    // Animate individual course cards with wave effect
     courseCardsRef.current.forEach((card, i) => {
       if (card) {
         gsap.fromTo(card,
@@ -146,7 +143,6 @@ export default function ProgressPage() {
     });
   };
 
-  /* ---------------- HELPERS ---------------- */
   const getVideosByCourse = (courseId: string): Video[] => {
     const detail = courseDetails.find(d => d.courseId === courseId);
     return detail ? detail.modules.flatMap(m => m.videos) : [];
@@ -160,7 +156,6 @@ export default function ProgressPage() {
     setActiveCourse(activeCourse === courseId ? null : courseId);
   };
 
-  /* ---------------- LOADING ---------------- */
   if (loading || authLoading) {
     return (
       <div className="min-h-screen bg-linear-to-br from-white to-blue-50 flex items-center justify-center">
@@ -198,11 +193,10 @@ export default function ProgressPage() {
     );
   }
 
-  /* ---------------- UI ---------------- */
   return (
     <div className="min-h-screen bg-linear-to-br from-white via-blue-50 to-white p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
-        {/* Animated Header */}
+
         <div className="mb-12 text-center">
           <h1 
             ref={titleRef}
@@ -214,7 +208,6 @@ export default function ProgressPage() {
             Track, Learn, and Grow Your Skills 📈
           </p>
           
-          {/* Progress Stats */}
           <div ref={statsRef} className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white border border-blue-200 p-6 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group">
               <div className="flex items-center gap-3 mb-4">
@@ -277,7 +270,6 @@ export default function ProgressPage() {
         </div>
 
         <div ref={sectionsRef}>
-          {/* 📘 COMPLETED COURSES - Blue Theme */}
           {watchHistory.filter(h => h.isCourseCompleted).length > 0 && (
             <section className="mb-12">
               <div className="flex items-center gap-3 mb-6">
@@ -307,7 +299,6 @@ export default function ProgressPage() {
                         className="bg-white border border-blue-300 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:border-blue-400 hover:scale-[1.02] transition-all duration-500 group cursor-pointer overflow-hidden relative"
                         onClick={() => toggleCourseDetails(history.courseId)}
                       >
-                        {/* Green completion badge */}
                         <div className="absolute top-4 right-4 px-3 py-1 bg-green-100 border border-green-300 text-green-700 rounded-full text-sm font-semibold animate-bounce-slow">
                           COMPLETED
                         </div>
@@ -321,7 +312,6 @@ export default function ProgressPage() {
                           </p>
                         </div>
                         
-                        {/* Progress with green accent */}
                         <div className="space-y-2">
                           <div className="flex justify-between text-sm">
                             <span className="text-green-600 font-semibold flex items-center gap-1">
@@ -334,7 +324,6 @@ export default function ProgressPage() {
                           </div>
                         </div>
                         
-                        {/* View details button */}
                         <div className="mt-6 flex justify-center">
                           <div className="px-4 py-2 bg-blue-50 text-blue-700 border border-blue-200 rounded-lg text-sm font-semibold flex items-center gap-2 group-hover:bg-blue-100 group-hover:border-blue-300 transition-all duration-300">
                             <span>View Details</span>
@@ -348,7 +337,6 @@ export default function ProgressPage() {
             </section>
           )}
 
-          {/* 🎥 ALL COURSES PROGRESS */}
           <section>
             <div className="flex items-center gap-3 mb-6">
               <div className="p-3 bg-linear-to-r from-blue-500 to-blue-600 rounded-xl shadow-md">
@@ -378,7 +366,6 @@ export default function ProgressPage() {
                     ref={el => { courseCardsRef.current[watchHistory.filter(h => h.isCourseCompleted).length + index] = el}}
                     className="bg-white border border-blue-200 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:border-blue-300 transition-all duration-500 overflow-hidden group"
                   >
-                    {/* Progress Header */}
                     <div 
                       className="flex flex-col lg:flex-row lg:items-center justify-between mb-6 cursor-pointer"
                       onClick={() => toggleCourseDetails(history.courseId)}
@@ -400,7 +387,6 @@ export default function ProgressPage() {
                       </div>
                       
                       <div className="flex items-center gap-6">
-                        {/* Animated circular progress */}
                         <div className="relative">
                           <div className="w-20 h-20">
                             <svg className="w-full h-full" viewBox="0 0 100 100">
@@ -440,11 +426,10 @@ export default function ProgressPage() {
                       </div>
                     </div>
 
-                    {/* Expandable Details */}
                     {activeCourse === history.courseId && (
                       <div className="mt-6 animate-slide-down">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                          {/* Completed Videos */}
+
                           <div className="bg-linear-to-br from-blue-50 to-white border border-blue-200 rounded-xl p-5">
                             <div className="flex items-center gap-3 mb-4">
                               <div className="p-2 bg-blue-100 rounded-lg">
@@ -484,7 +469,6 @@ export default function ProgressPage() {
                             )}
                           </div>
 
-                          {/* Pending Videos */}
                           <div className="bg-linear-to-br from-white to-blue-50 border border-blue-200 rounded-xl p-5">
                             <div className="flex items-center gap-3 mb-4">
                               <div className="p-2 bg-blue-100 rounded-lg">
@@ -528,7 +512,6 @@ export default function ProgressPage() {
                           </div>
                         </div>
                         
-                        {/* Continue Button */}
                         {!history.isCourseCompleted && pendingVideos.length > 0 && (
                           <div className="mt-6 text-center">
                             <button
@@ -548,11 +531,10 @@ export default function ProgressPage() {
           </section>
         </div>
 
-        Floating Action Button
+        {/* Floating Action Button */}
         <div className="fixed bottom-8 right-8 z-10">
           <button
             onClick={() => {
-              // Scroll to top animation
               gsap.to(window, { duration: 1, scrollTo: { y: 0 }, ease: "power2.inOut" });
             }}
             className="p-4 bg-blue-600 text-white rounded-full hover:scale-110 transform transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-blue-500/50 hover:bg-blue-700 border border-blue-700 animate-float"
@@ -562,7 +544,6 @@ export default function ProgressPage() {
         </div>
       </div>
 
-      {/* Add custom styles */}
       <style jsx global>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 4px;

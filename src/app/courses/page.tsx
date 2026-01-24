@@ -247,7 +247,7 @@ export default function CoursesPage() {
                     </p>
                   </div>
 
-                  <div className="max-h-[600px] overflow-y-auto">
+                  <div className="max-h-150 overflow-y-auto">
                     {allVideos.map(video => (
                       <VideoCard
                         key={video.id}

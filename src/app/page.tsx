@@ -142,7 +142,7 @@ export default function EduPlatform() {
       {/* --- CTA SECTION --- */}
       <section className="py-40 flex flex-col items-center">
         <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+          <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-purple-600 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
           <button className="relative px-20 py-10 bg-black rounded-full text-4xl font-black border border-white/10">
             START LEARNING
           </button>
