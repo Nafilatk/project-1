@@ -10,13 +10,13 @@ import {
 export default function UserRow(props: any) {
   const { user, onToggleBlock, onDelete, formatDate } = props;
 
+  
+
   return (
     <tr className="hover:bg-gray-50">
       <td className="px-6 py-4 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white flex items-center justify-center font-semibold">
-          {user.avatarUrl ? (
-            <img src={user.avatarUrl} className="w-10 h-10 rounded-full" />
-          ) : (
+        <div className="w-10 h-10 rounded-full  bg-blue-900  text-white flex items-center justify-center ${roleColor.avatar} font-semibold">
+         { (
             user.name[0].toUpperCase()
           )}
         </div>

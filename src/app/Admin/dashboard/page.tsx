@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminSidebar from '@/components/admin/adminbar/AdminSidebar';
 
-import DashboardHeader from './DashboardHeader';
-import StatsCards from './StatsCards';
-import RecentUsers from './RecentUsers';
-import RecentCourses from './RecentCourses';
-import QuickActions from './QuickActions';
-import DashboardAnimations from './DashboardAnimations';
+import DashboardHeader from '@/components/admin/admindash/DashHeader';
+import StatsCards from '@/components/admin/admindash/StatsCard';
+import RecentUsers from '@/components/admin/admindash/RecentUsers';
+import RecentCourses from '@/components/admin/admindash/RecentCourses';
+import QuickActions from '@/components/admin/admindash/QuickActions';
+import DashboardAnimations from '@/components/admin/admindash/DashAnimations';
 
 export default function DashboardPage() {
   const [users, setUsers] = useState<any[]>([]);
@@ -35,9 +35,17 @@ export default function DashboardPage() {
       const blocked = u.data.filter((x: any) => x.isBlock).length;
       const active = u.data.length - blocked;
 
-      const totalVideos = d.data.reduce((t: number, cd: any) =>
-        t + cd.modules.reduce((m: number, mo: any) => m + mo.videos.length, 0), 0
-      );
+const totalVideos = d.data.reduce((total: number, detail: any) => {
+  if (!Array.isArray(detail.modules)) return total;
+
+  return (
+    total +
+    detail.modules.reduce((moduleTotal: number, module: any) => {
+      return moduleTotal + (module.videos?.length || 0);
+    }, 0)
+  );
+}, 0);
+
 
       setStats({
         totalUsers: u.data.length,

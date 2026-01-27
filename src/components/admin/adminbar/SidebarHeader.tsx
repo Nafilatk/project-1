@@ -1,4 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
 export default function SidebarHeader({
   isCollapsed,
@@ -11,9 +12,16 @@ export default function SidebarHeader({
     <div className="p-6 border-b border-gray-200 shrink-0">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-linear-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-sm">
-            <span className="text-white font-bold text-lg">A</span>
+          <div className="w-10 h-10 relative rounded-xl overflow-hidden shadow-sm">
+            <Image
+              src="/logo.svg" 
+              alt="Learnest.ai Logo"
+              width={40}
+              height={40}
+              className="object-cover"
+            />
           </div>
+          
           {!isCollapsed && (
             <div>
               <h1 className="text-xl font-bold text-gray-800">Learnest.ai</h1>

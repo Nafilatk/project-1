@@ -37,7 +37,6 @@ export default function AdminSidebar() {
         toggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       />
 
-      {/* DESKTOP SIDEBAR */}
       <aside
         className={`hidden lg:flex flex-col bg-white border-r border-gray-200 h-screen transition-all duration-300 shadow-sm ${
           isCollapsed ? 'w-20' : 'w-64'

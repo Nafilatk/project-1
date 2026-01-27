@@ -141,13 +141,13 @@
   ],
   "courses": [
     {
-      "id": "1",
       "name": "Python",
-      "categoryId": "2",
       "description": "Master Python from basics to advanced",
-      "thumbnail": "/assets/courses/python-thumb.jpg",
+      "categoryId": "2",
       "duration": "15 hours",
-      "level": "Beginner"
+      "level": "Beginner",
+      "thumbnail": "https://www.python.org/static/community_logos/python-logo-master.png",
+      "id": "1"
     },
     {
       "id": "2",
@@ -204,13 +204,13 @@
       "thumbnail": "https://pin.it/rpXSdHflB"
     },
     {
-      "id": "efa4",
       "name": "Flutter",
       "description": "Learn App Development",
       "categoryId": "1",
       "duration": "20",
       "level": "Beginner",
-      "thumbnail": "https://img.youtube.com/vi/XqZsoesa55w/maxresdefault.jpg"
+      "thumbnail": "/assets/courses/default-thumb.jpg",
+      "id": "efa4"
     }
   ],
   "courseDetails": [
@@ -516,7 +516,6 @@
       ]
     },
     {
-      "id": "d08d",
       "courseId": "efa4",
       "modules": [
         {
@@ -536,7 +535,8 @@
             }
           ]
         }
-      ]
+      ],
+      "id": "d08d"
     }
   ],
   "watchHistory": [

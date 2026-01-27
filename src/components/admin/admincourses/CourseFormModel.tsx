@@ -1,253 +1,295 @@
 'use client';
 
-import {
-  Plus,
-  Trash2,
-  Save,
-  X
-} from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { Plus, Save, X, Trash2 } from 'lucide-react';
+import gsap from 'gsap';
 
-export default function CourseFormModal(props: any) {
-  const {
-    setFormOpen,
-    editingCourse,
+interface CourseFormProps {
+  isOpen: boolean;
+  isEditing: boolean;
+  formData: any;
+  categories: any[];
+  modules: any[];
+  onClose: () => void;
+  onSave: () => void;
+  onFormChange: (field: string, value: any) => void;
+  onModuleChange: (moduleIndex: number, field: string, value: any) => void;
+  onVideoChange: (moduleIndex: number, videoIndex: number, field: string, value: string) => void;
+  onAddModule: () => void;
+  onDeleteModule: (moduleIndex: number) => void;
+  onAddVideo: (moduleIndex: number) => void;
+  onRemoveVideo: (moduleIndex: number, videoIndex: number) => void;
+}
 
-    name, setName,
-    description, setDescription,
-    categoryId, setCategoryId,
-    duration, setDuration,
-    level, setLevel,
-    thumbnail, setThumbnail,
+export default function CourseForm({
+  isOpen,
+  isEditing,
+  formData,
+  categories,
+  modules,
+  onClose,
+  onSave,
+  onFormChange,
+  onModuleChange,
+  onVideoChange,
+  onAddModule,
+  onDeleteModule,
+  onAddVideo,
+  onRemoveVideo
+}: CourseFormProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
 
-    modules, setModules,
-    categories,
-
-    courseDetails,
-    fetchAll,
-  } = props;
-
-  /* ================= MODULE FUNCTIONS ================= */
-
-  const addModule = () => {
-    setModules([
-      ...modules,
-      {
-        id: Date.now(),
-        title: `Module ${modules.length + 1}`,
-        videos: [],
-      },
-    ]);
-  };
-
-  const deleteModule = (moduleIndex: number) => {
-    if (modules.length <= 1) {
-      alert('At least one module is required');
-      return;
+  useEffect(() => {
+    if (modalRef.current && isOpen) {
+      gsap.from(modalRef.current, {
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.4,
+        ease: "back.out(1.2)"
+      });
     }
-    if (!confirm('Are you sure you want to delete this module?')) return;
+  }, [isOpen]);
 
-    const updated = [...modules];
-    updated.splice(moduleIndex, 1);
-    setModules(updated);
-  };
-
-  const addVideo = (moduleIndex: number) => {
-    const updated = [...modules];
-    updated[moduleIndex].videos.push({
-      id: Date.now(),
-      title: '',
-      thumbnail: '',
-      duration: '',
-      videoUrl: '',
-      ebookUrl: '',
-      description: '',
-      isCompleted: false,
-      order: updated[moduleIndex].videos.length + 1,
-    });
-    setModules(updated);
-  };
-
-  const removeVideo = (moduleIndex: number, videoIndex: number) => {
-    const updated = [...modules];
-    updated[moduleIndex].videos.splice(videoIndex, 1);
-    setModules(updated);
-  };
-
-  const updateModuleTitle = (moduleIndex: number, value: string) => {
-    const updated = [...modules];
-    updated[moduleIndex].title = value;
-    setModules(updated);
-  };
-
-  const updateVideo = (
-    moduleIndex: number,
-    videoIndex: number,
-    field: string,
-    value: string
-  ) => {
-    const updated = [...modules];
-    // @ts-ignore
-    updated[moduleIndex].videos[videoIndex][field] = value;
-    setModules(updated);
-  };
-
-  /* ================= SAVE COURSE ================= */
-
-  const saveCourse = async () => {
-    try {
-      let courseId = editingCourse?.id;
-
-      const courseData = {
-        name,
-        description,
-        categoryId,
-        duration,
-        level,
-        thumbnail: thumbnail || '/assets/courses/default-thumb.jpg',
-      };
-
-      if (editingCourse) {
-        await fetch(`http://localhost:3001/courses/${editingCourse.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(courseData),
-        });
-      } else {
-        const res = await fetch('http://localhost:3001/courses', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(courseData),
-        });
-        const newCourse = await res.json();
-        courseId = newCourse.id;
-      }
-
-      const existingDetail = courseDetails.find(
-        (cd: any) => cd.courseId === courseId
-      );
-
-      const detailData = {
-        courseId,
-        modules,
-      };
-
-      if (existingDetail) {
-        await fetch(
-          `http://localhost:3001/courseDetails/${existingDetail.id}`,
-          {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(detailData),
-          }
-        );
-      } else {
-        await fetch('http://localhost:3001/courseDetails', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(detailData),
-        });
-      }
-
-      setFormOpen(false);
-      fetchAll();
-    } catch (err) {
-      console.error(err);
-      alert('Failed to save course');
-    }
-  };
-
-  /* ================= JSX ================= */
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-5xl h-[90vh] flex flex-col">
-
-        {/* HEADER */}
-        <div className="shrink-0 p-6 border-b border-gray-200">
+      <div 
+        ref={modalRef}
+        className="bg-white dark:bg-gray-900 rounded-xl shadow-xl w-full max-w-5xl h-[90vh] flex flex-col"
+      >
+        <div className="shrink-0 p-6 border-b border-gray-200 dark:border-gray-700">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold text-gray-800">
-              {editingCourse ? 'Edit Course' : 'Add New Course'}
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+              {isEditing ? 'Edit Course' : 'Add New Course'}
             </h2>
             <button
-              onClick={() => setFormOpen(false)}
-              className="p-2 hover:bg-gray-100 rounded-lg"
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg text-gray-500 dark:text-gray-400"
             >
               <X size={24} />
             </button>
           </div>
         </div>
 
-        {/* BODY */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
-
-          {/* BASIC INFO */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <input value={name} onChange={e => setName(e.target.value)} placeholder="Course Name" />
-            <select value={categoryId} onChange={e => setCategoryId(e.target.value)}>
-              <option value="">Select category</option>
-              {categories.map((c: any) => (
-                <option key={c.id} value={c.id}>{c.name}</option>
-              ))}
-            </select>
-            <input value={duration} onChange={e => setDuration(e.target.value)} placeholder="Duration" />
-            <select value={level} onChange={e => setLevel(e.target.value)}>
-              <option>Beginner</option>
-              <option>Intermediate</option>
-              <option>Advanced</option>
-            </select>
-          </div>
-
-          <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Description" />
-          <input value={thumbnail} onChange={e => setThumbnail(e.target.value)} placeholder="Thumbnail URL" />
-
-          {/* MODULES */}
-          <div>
-            <button onClick={addModule} className="mb-4 flex items-center gap-2">
-              <Plus size={16} /> Add Module
-            </button>
-
-            {modules.map((module: any, mi: number) => (
-              <div key={module.id} className="border p-4 mb-4 rounded">
+        <div className="flex-1 overflow-y-auto p-6">
+          <div className="space-y-6">
+            {/* Course Basic Info */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Course Name *
+                </label>
                 <input
-                  value={module.title}
-                  onChange={e => updateModuleTitle(mi, e.target.value)}
+                  type="text"
+                  placeholder="Course name"
+                  value={formData.name}
+                  onChange={e => onFormChange('name', e.target.value)}
+                  className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
                 />
+              </div>
 
-                <button onClick={() => deleteModule(mi)}>Delete Module</button>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Category *
+                </label>
+                <select
+                  value={formData.categoryId}
+                  onChange={e => onFormChange('categoryId', e.target.value)}
+                  className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="">Select category</option>
+                  {categories.map((c: any) => (
+                    <option key={c.id} value={c.id}>
+                      {c.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-                <button onClick={() => addVideo(mi)}>Add Video</button>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Duration
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g., 15 hours"
+                  value={formData.duration}
+                  onChange={e => onFormChange('duration', e.target.value)}
+                  className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
 
-                {module.videos.map((video: any, vi: number) => (
-                  <div key={video.id} className="border p-3 mt-2">
-                    <input
-                      value={video.title}
-                      onChange={e => updateVideo(mi, vi, 'title', e.target.value)}
-                      placeholder="Video title"
-                    />
-                    <input
-                      value={video.videoUrl}
-                      onChange={e => updateVideo(mi, vi, 'videoUrl', e.target.value)}
-                      placeholder="Video URL"
-                    />
-                    <button onClick={() => removeVideo(mi, vi)}>
-                      <Trash2 size={14} />
-                    </button>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Level
+                </label>
+                <select
+                  value={formData.level}
+                  onChange={e => onFormChange('level', e.target.value)}
+                  className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Description *
+              </label>
+              <textarea
+                placeholder="Course description"
+                value={formData.description}
+                onChange={e => onFormChange('description', e.target.value)}
+                rows={3}
+                className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Thumbnail URL
+              </label>
+              <input
+                type="text"
+                placeholder="https://example.com/image.jpg"
+                value={formData.thumbnail}
+                onChange={e => onFormChange('thumbnail', e.target.value)}
+                className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            {/* Modules Section */}
+            <div>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white">Course Modules & Videos</h3>
+                <button 
+                  onClick={onAddModule}
+                  type="button"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 text-blue-700 dark:text-blue-400 rounded-lg text-sm font-medium transition-colors duration-200"
+                >
+                  <Plus size={16} />
+                  Add Module
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                {modules.map((module, moduleIndex) => (
+                  <div key={module.id} className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div className="flex justify-between items-center mb-4">
+                      <div className="flex-1">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                          Module Title
+                        </label>
+                        <div className="flex items-center gap-2">
+                          <input
+                            type="text"
+                            placeholder="Module title"
+                            value={module.title}
+                            onChange={e => onModuleChange(moduleIndex, 'title', e.target.value)}
+                            className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          />
+                          {modules.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => onDeleteModule(moduleIndex)}
+                              className="inline-flex items-center gap-1 px-3 py-2 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/40 rounded-lg text-sm font-medium transition-colors duration-200"
+                            >
+                              <Trash2 size={14} />
+                              Delete
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                      <button 
+                        onClick={() => onAddVideo(moduleIndex)}
+                        type="button"
+                        className="ml-4 inline-flex items-center gap-1 px-3 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/40 rounded-lg text-sm font-medium transition-colors duration-200"
+                      >
+                        <Plus size={14} />
+                        Add Video
+                      </button>
+                    </div>
+
+                    {/* Videos in Module */}
+                    <div className="space-y-4">
+                      {module.videos.map((video: any, videoIndex: number) => (
+                        <div key={video.id} className="bg-white dark:bg-gray-900 p-4 rounded border border-gray-200 dark:border-gray-700">
+                          <div className="flex justify-between items-start mb-4">
+                            <h4 className="font-medium text-gray-800 dark:text-white">Video {videoIndex + 1}</h4>
+                            <button
+                              type="button"
+                              onClick={() => onRemoveVideo(moduleIndex, videoIndex)}
+                              className="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Video Title *
+                              </label>
+                              <input
+                                type="text"
+                                placeholder="Video title"
+                                value={video.title}
+                                onChange={e => onVideoChange(moduleIndex, videoIndex, 'title', e.target.value)}
+                                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                required
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                Video URL *
+                              </label>
+                              <input
+                                type="text"
+                                placeholder="https://youtube.com/watch?v=..."
+                                value={video.videoUrl}
+                                onChange={e => onVideoChange(moduleIndex, videoIndex, 'videoUrl', e.target.value)}
+                                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                required
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
 
-        {/* FOOTER */}
-        <div className="p-6 border-t border-gray-200 flex justify-end gap-3">
-          <button onClick={() => setFormOpen(false)}>Cancel</button>
-          <button onClick={saveCourse} className="flex items-center gap-2">
-            <Save size={18} />
-            {editingCourse ? 'Update Course' : 'Create Course'}
-          </button>
+        {/* Form Actions */}
+        <div className="shrink-0 p-6 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+          <div className="flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-6 py-2.5 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg font-medium transition-colors duration-200"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={onSave}
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200"
+            >
+              <Save size={20} />
+              {isEditing ? 'Update Course' : 'Create Course'}
+            </button>
+          </div>
         </div>
-
       </div>
     </div>
   );

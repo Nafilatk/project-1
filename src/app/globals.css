@@ -112,3 +112,22 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   border: 2px solid #ffffff;
 }
+
+.stat-card {
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+/* If you want to customize the dark mode colors further */
+@media (prefers-color-scheme: dark) {
+  .dark\:bg-gray-900 {
+    background-color: #111827;
+  }
+  
+  .dark\:border-gray-700 {
+    border-color: #374151;
+  }
+}

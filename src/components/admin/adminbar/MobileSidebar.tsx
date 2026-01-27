@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { LogOut } from 'lucide-react';
 import { menuItems } from './MenuItems';
+import Image from 'next/image';
 
 export default function MobileSidebar({
   isOpen,
@@ -23,12 +24,18 @@ export default function MobileSidebar({
       />
 
       <div className="lg:hidden fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 shadow-xl">
-        {/* HEADER */}
+
         <div className="p-6 border-b border-gray-200">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-linear-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-              <span className="text-white font-bold text-lg">A</span>
-            </div>
+          <div className="w-10 h-10 relative rounded-xl overflow-hidden shadow-sm">
+            <Image
+              src="/logo.svg" 
+              alt="Learnest.ai Logo"
+              width={40}
+              height={40}
+              className="object-cover"
+            />
+          </div>
             <div>
               <h1 className="text-xl font-bold text-gray-800">Learnest.ai</h1>
               <p className="text-xs text-gray-500">Admin Panel</p>
