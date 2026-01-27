@@ -15,7 +15,7 @@ import {
   PlayCircle,
   Shield
 } from 'lucide-react';
-import AdminSidebar from '@/components/admin/AdminSidebar';
+import AdminSidebar from '@/components/admin/adminbar/AdminSidebar';
 
 type User = {
   id: string;

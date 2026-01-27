@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { adminApi } from '@/lib/admin-api';
-import AdminSidebar from '@/components/admin/AdminSidebar';
+import AdminSidebar from '@/components/admin/adminbar/AdminSidebar';
 import { 
   Search, 
   User, 
