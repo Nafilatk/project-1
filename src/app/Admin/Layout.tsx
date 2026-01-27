@@ -32,8 +32,8 @@ export default function AdminSidebar() {
   };
 
   const handleLogout = () => {
-    logoutUser();          // ✅ clears user + localStorage
-    router.push('/login'); // ✅ redirect
+    logoutUser();          
+    router.push('/login'); 
   };
 
   const menuItems = [
@@ -56,7 +56,7 @@ export default function AdminSidebar() {
 
   return (
     <>
-      {/* MOBILE MENU BUTTON */}
+{/* m */}
       <button
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-gray-800 rounded-lg text-white border border-gray-700"
@@ -64,7 +64,7 @@ export default function AdminSidebar() {
         {isMobileMenuOpen ? <X /> : <Menu />}
       </button>
 
-      {/* ================= DESKTOP SIDEBAR ================= */}
+
       <aside
         className={`hidden lg:flex flex-col bg-gray-900 border-r border-gray-800 h-screen transition-all duration-300 ${
           isCollapsed ? 'w-20' : 'w-64'
@@ -127,6 +127,18 @@ export default function AdminSidebar() {
         )}
       </aside>
 
+
+
+
+
+
+
+
+
+
+
+
+
       {/* ================= MOBILE OVERLAY ================= */}
       {isMobileMenuOpen && (
         <div
@@ -176,6 +188,8 @@ export default function AdminSidebar() {
             Logout
           </button>
         </div>
+
+        
       </div>
     </>
   );
