@@ -5,32 +5,28 @@ import {
   useState,
   ChangeEvent,
   FormEvent,
+  useRef,
 } from "react";
 import { useRouter } from "next/navigation";
+import gsap from "gsap";
 import { api } from "@/lib/axios";
 import type { User } from "@/lib/auth-types";
 import { useAuth } from "@/context/auth-context";
-import AvatarSection from "@/components/Profile/AvatarSection";
 import TabsComponent from "@/components/Profile/TabsComponent";
 import PersonalInfoForm from "@/components/Profile/PersonalInfoForm";
 import SecurityForm from "@/components/Profile/SecurityForm";
 import AccountActions from "@/components/Profile/AccountActions";
-import {PersonalForm,ForgotForm,TabKey} from "@/types/profile"
+import {PersonalForm,ForgotForm,TabKey} from "@/lib/types/profile"
 
 export default function ProfileSettingsPage() {
   const router = useRouter();
   const { user, logoutUser } = useAuth();
 
   const [activeTab, setActiveTab] = useState<TabKey>("personal");
-
-  const [personalForm, setPersonalForm] = useState<PersonalForm | null>(
-    null
-  );
-  const [avatarFile, setAvatarFile] = useState<File | null>(null);
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-
+  const [personalForm, setPersonalForm] = useState<PersonalForm | null>(null);
   const [forgotForm, setForgotForm] = useState<ForgotForm>({
     email: "",
+    currentPassword : "",
     newPassword: "",
     confirmPassword: "",
   });
@@ -39,9 +35,12 @@ export default function ProfileSettingsPage() {
   const [isSavingPersonal, setIsSavingPersonal] = useState(false);
   const [isResettingPassword, setIsResettingPassword] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!user) router.replace("/login");
@@ -62,14 +61,13 @@ export default function ProfileSettingsPage() {
           name: u.name ?? "",
           bio: u.bio ?? "",
           phone: u.phone ?? "",
-          email: u.email,
-          avatarUrl: u.avatarUrl ?? "",
+          email: u.email ?? "",
         };
 
         setPersonalForm(base);
-        setAvatarPreview(base.avatarUrl || null);
         setForgotForm({
           email: u.email,
+          currentPassword: "",
           newPassword: "",
           confirmPassword: "",
         });
@@ -78,6 +76,8 @@ export default function ProfileSettingsPage() {
         setError("Failed to load profile.");
       } finally {
         setIsLoading(false);
+        // Animate after data loads
+        setTimeout(() => animatePage(), 100);
       }
     };
 
@@ -85,10 +85,101 @@ export default function ProfileSettingsPage() {
   }, [user]);
 
   useEffect(() => {
-    if (!success) return;
-    const id = window.setTimeout(() => setSuccess(null), 3000);
-    return () => window.clearTimeout(id);
+    if (success) {
+      // Animate success message
+      const successEl = document.querySelector('[data-success]');
+      if (successEl) {
+        gsap.fromTo(successEl,
+          { scale: 0.8, opacity: 0, y: -10 },
+          { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.2)" }
+        );
+      }
+      
+      const id = window.setTimeout(() => {
+        if (successEl) {
+          gsap.to(successEl, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.3,
+            onComplete: () => setSuccess(null)
+          });
+        } else {
+          setSuccess(null);
+        }
+      }, 3000);
+      return () => window.clearTimeout(id);
+    }
   }, [success]);
+
+  useEffect(() => {
+    if (error) {
+      // Animate error message
+      const errorEl = document.querySelector('[data-error]');
+      if (errorEl) {
+        gsap.fromTo(errorEl,
+          { x: -20, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
+        );
+      }
+    }
+  }, [error]);
+
+  const animatePage = () => {
+    if (!containerRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Header animation
+      gsap.fromTo(headerRef.current,
+        { y: -40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+      );
+
+      // Main card animation
+      gsap.fromTo(cardRef.current,
+        { scale: 0.95, opacity: 0, y: 30 },
+        { 
+          scale: 1, 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.7, 
+          delay: 0.2, 
+          ease: "power3.out" 
+        }
+      );
+
+      // Tab content animation on change
+      const content = document.querySelector('[data-tab-content]');
+      if (content) {
+        gsap.fromTo(content,
+          { opacity: 0, x: 20 },
+          { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }
+        );
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
+  };
+
+  const handleTabChange = (tab: TabKey) => {
+    // Tab switch animation
+    const content = document.querySelector('[data-tab-content]');
+    if (content) {
+      gsap.to(content, {
+        opacity: 0,
+        x: -20,
+        duration: 0.2,
+        onComplete: () => {
+          setActiveTab(tab);
+          gsap.fromTo(content,
+            { opacity: 0, x: 20 },
+            { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }
+          );
+        }
+      });
+    } else {
+      setActiveTab(tab);
+    }
+  };
 
   const handlePersonalChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -100,15 +191,7 @@ export default function ProfileSettingsPage() {
     setSuccess(null);
   };
 
-  const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setAvatarFile(file);
-    const url = URL.createObjectURL(file);
-    setAvatarPreview(url);
-    setError(null);
-    setSuccess(null);
-  };
+    
 
   const validatePersonal = () => {
     if (!personalForm) return "Form not ready.";
@@ -135,22 +218,29 @@ export default function ProfileSettingsPage() {
       setError(null);
       setSuccess(null);
 
-      let avatarUrlToSave = personalForm.avatarUrl;
-      if (avatarFile) {
-        avatarUrlToSave = `/uploads/${avatarFile.name}`;
-      }
 
       await api.patch(`/users/${user.id}`, {
         name: personalForm.name,
         bio: personalForm.bio,
         phone: personalForm.phone,
-        avatarUrl: avatarUrlToSave,
       });
 
       setPersonalForm((prev) =>
-        prev ? { ...prev, avatarUrl: avatarUrlToSave } : prev
+        prev ? { ...prev } : prev
       );
       setSuccess("Personal information updated.");
+      
+      // Success animation
+      const saveButton = e.currentTarget.querySelector('button[type="submit"]');
+      if (saveButton) {
+        gsap.to(saveButton, {
+          scale: 1.1,
+          duration: 0.2,
+          yoyo: true,
+          repeat: 1,
+          ease: "power2.out"
+        });
+      }
     } catch (e) {
       console.error(e);
       setError("Failed to update personal info.");
@@ -168,6 +258,8 @@ export default function ProfileSettingsPage() {
 
   const validateForgot = () => {
     if (!forgotForm.email.trim()) return "Email is required.";
+    if (!forgotForm.currentPassword.trim())
+    return "Current password is required.";
     if (!forgotForm.newPassword.trim())
       return "New password is required.";
     if (forgotForm.newPassword.length < 6)
@@ -200,6 +292,11 @@ export default function ProfileSettingsPage() {
       }
       const u = res.data[0];
 
+          if (u.password !== forgotForm.currentPassword) {
+      setError("Current password is incorrect.");
+      return;
+    }
+
       await api.patch(`/users/${u.id}`, {
         password: forgotForm.newPassword,
       });
@@ -207,6 +304,7 @@ export default function ProfileSettingsPage() {
       setSuccess("Password updated. You can now log in with the new password.");
       setForgotForm((prev) => ({
         ...prev,
+        currentPassword: "",
         newPassword: "",
         confirmPassword: "",
       }));
@@ -219,12 +317,20 @@ export default function ProfileSettingsPage() {
   };
 
   const handleLogout = () => {
-    logoutUser();
-    router.replace("/login");
+    // Animate logout
+    gsap.to(containerRef.current, {
+      opacity: 0,
+      scale: 0.95,
+      duration: 0.4,
+      onComplete: () => {
+        logoutUser();
+        router.replace("/login");
+      }
+    });
   };
 
   const handleDeleteAccount = async () => {
-    if (!user || !confirm("Are you sure you want to delete your account?")) {
+    if (!user || !confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
       return;
     }
 
@@ -235,12 +341,19 @@ export default function ProfileSettingsPage() {
 
       await api.delete(`/users/${user.id}`);
 
-      logoutUser();
-      router.replace("/signup");
+      // Animate before redirect
+      gsap.to(containerRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.5,
+        onComplete: () => {
+          logoutUser();
+          router.replace("/signup");
+        }
+      });
     } catch (e) {
       console.error(e);
       setError("Failed to delete account.");
-    } finally {
       setIsDeleting(false);
     }
   };
@@ -248,75 +361,137 @@ export default function ProfileSettingsPage() {
   if (!user) return null;
 
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-12">
-      <div className="mx-auto flex max-w-6xl gap-8">
-        <section className="flex-1">
-          <div className="group relative mb-8">
-            <h1 className="text-3xl font-black text-white tracking-tight">
-              Profile Settings
-            </h1>
-            <div className="absolute -inset-1 bg-linear-to-r from-blue-400 via-blue-500 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-60 transition-all duration-500 -z-10" />
-          </div>
-          
-          <p className="text-lg text-blue-300 mb-12 leading-relaxed">
-            Manage your personal information, login security, and account.
-          </p>
+<main
+  ref={containerRef}
+  className="min-h-screen bg-white text-gray-900 px-4 py-8 sm:px-6 lg:px-8"
+>
+  <div className="mx-auto max-w-7xl">
 
-          <AvatarSection
-            personalForm={personalForm}
-            avatarPreview={avatarPreview}
-            onAvatarChange={handleAvatarChange}
-          />
+    {/* HEADER – full width */}
+    <div ref={headerRef} className="space-y-4 mb-8">
+      <div className="group relative">
+        <h1 className="text-3xl sm:text-4xl font-bold bg-blue-950 bg-clip-text text-transparent">
+          Profile Settings
+        </h1>
+        <div className="absolute -bottom-1 left-0 w-56 h-1 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full group-hover:w-32 transition-all duration-300"></div>
+      </div>
 
-          <div className="mt-8 rounded-3xl border border-blue-900/40 bg-black/70 shadow-[0_20px_60px_rgba(59,130,246,0.15)] backdrop-blur-md overflow-hidden group">
-            <TabsComponent
-              activeTab={activeTab}
-              onTabChange={setActiveTab}
-            />
+      <p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
+        Manage your personal information, login security, and account settings.
+      </p>
+    </div>
 
-            <div className="p-8 relative z-10">
-              {error && (
-                <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-2xl text-red-300 text-sm font-medium">
-                  {error}
-                </div>
-              )}
-              {success && (
-                <div className="mb-6 p-4 bg-blue-500/20 border border-blue-500/50 rounded-2xl text-blue-200 text-sm font-medium">
-                  {success}
-                </div>
-              )}
+    {/* MAIN GRID */}
+    <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8">
 
-              {!isLoading && personalForm && activeTab === "personal" && (
-                <PersonalInfoForm
-                  personalForm={personalForm}
-                  isSavingPersonal={isSavingPersonal}
-                  onChange={handlePersonalChange}
-                  onSubmit={handleSavePersonal}
-                />
-              )}
-
-              {!isLoading && activeTab === "security" && (
-                <SecurityForm
-                  forgotForm={forgotForm}
-                  isResettingPassword={isResettingPassword}
-                  onChange={handleForgotChange}
-                  onSubmit={handleResetPassword}
-                />
-              )}
-              {!isLoading && activeTab === "account" && (
-                <AccountActions
-                  onLogout={handleLogout}
-                  onDeleteAccount={handleDeleteAccount}
-                  isDeleting={isDeleting}
-                />
-              )}
+      {/* ================= SIDEBAR ================= */}
+      <aside className="sticky top-6 h-fit rounded-2xl bg-blue-50 border border-slate-200 shadow-lg p-6 space-y-6">
+        {personalForm && (
+          <>
+            {/* Letter Avatar */}
+            <div className="flex justify-center">
+              <div className="w-28 h-28 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600 
+                              flex items-center justify-center text-white text-5xl font-bold shadow-lg">
+                {personalForm.name.charAt(0).toUpperCase()}
+              </div>
             </div>
 
-            {/* Card Glare Effect */}
-            <div className="absolute inset-0 bg-linear-to-br from-blue-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl pointer-events-none" />
+            {/* Name + Email */}
+            <div className="text-center space-y-1">
+              <h2 className="text-xl font-bold text-gray-900">
+                {personalForm.name}
+              </h2>
+              <p className="text-sm text-gray-600">
+                {personalForm.email}
+              </p>
+            </div>
+
+            {/* Bio */}
+            {personalForm.bio && (
+              <div className="rounded-xl bg-white p-4 text-sm text-gray-600 leading-relaxed shadow-sm">
+                {personalForm.bio}
+              </div>
+            )}
+          </>
+        )}
+      </aside>
+
+      {/* ================= CONTENT ================= */}
+      <div
+        ref={cardRef}
+        className="rounded-2xl bg-blue-50 shadow-lg shadow-slate-200/50 
+                   border border-slate-200 overflow-y-auto 
+                   max-h-[calc(100vh-7rem)] scrollbar-hide"
+      >
+        <TabsComponent
+          activeTab={activeTab}
+          onTabChange={handleTabChange}
+        />
+
+        <div className="p-6 sm:p-8 relative">
+
+          {/* ERROR / SUCCESS */}
+          <div className="space-y-4 mb-6">
+            {error && (
+              <div
+                data-error
+                className="p-4 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-100 rounded-xl text-rose-700 text-sm font-medium shadow-sm"
+              >
+                {error}
+              </div>
+            )}
+
+            {success && (
+              <div
+                data-success
+                className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 rounded-xl text-emerald-700 text-sm font-medium shadow-sm"
+              >
+                {success}
+              </div>
+            )}
           </div>
-        </section>
+
+          {/* TAB CONTENT */}
+          <div data-tab-content className="transition-all duration-300">
+            {!isLoading && personalForm && activeTab === "personal" && (
+              <PersonalInfoForm
+                personalForm={personalForm}
+                isSavingPersonal={isSavingPersonal}
+                onChange={handlePersonalChange}
+                onSubmit={handleSavePersonal}
+              />
+            )}
+
+            {!isLoading && activeTab === "security" && (
+              <SecurityForm
+                forgotForm={forgotForm}
+                isResettingPassword={isResettingPassword}
+                onChange={handleForgotChange}
+                onSubmit={handleResetPassword}
+              />
+            )}
+
+            {!isLoading && activeTab === "account" && (
+              <AccountActions
+                onLogout={handleLogout}
+                onDeleteAccount={handleDeleteAccount}
+                isDeleting={isDeleting}
+              />
+            )}
+          </div>
+        </div>
       </div>
-    </main>
-  );
+    </div>
+
+    {/* LOADER */}
+    {isLoading && (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-indigo-600 font-medium">
+          Loading profile...
+        </div>
+      </div>
+    )}
+  </div>
+</main>
+  )
 }

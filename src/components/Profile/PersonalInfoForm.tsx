@@ -1,6 +1,9 @@
-import { FormEvent, ChangeEvent } from "react";
+'use client';
+
+import { FormEvent, ChangeEvent, useEffect, useRef } from "react";
+import gsap from "gsap";
 import PrimaryButton from "@/components/buttons";
-import type { PersonalForm } from "@/types/profile";
+import type { PersonalForm } from "@/lib/types/profile"
 
 interface PersonalInfoFormProps {
   personalForm: PersonalForm | null;
@@ -15,87 +18,163 @@ export default function PersonalInfoForm({
   onChange,
   onSubmit,
 }: PersonalInfoFormProps) {
+  const formRef = useRef<HTMLFormElement>(null);
+  const inputsRef = useRef<(HTMLInputElement | HTMLTextAreaElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!formRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Form entrance animation
+      gsap.fromTo(formRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
+      );
+
+      // Inputs sequential animation
+      gsap.fromTo(inputsRef.current,
+        { x: -20, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.1,
+          delay: 0.2,
+          ease: "power3.out"
+        }
+      );
+    }, formRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const handleInputFocus = (index: number) => {
+    const input = inputsRef.current[index];
+    if (input) {
+      gsap.to(input.parentElement, {
+        scale: 1.02,
+        duration: 0.2,
+        ease: "power2.out"
+      });
+    }
+  };
+
+  const handleInputBlur = (index: number) => {
+    const input = inputsRef.current[index];
+    if (input) {
+      gsap.to(input.parentElement, {
+        scale: 1,
+        duration: 0.2,
+        ease: "power2.out"
+      });
+    }
+  };
+
   if (!personalForm) return null;
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6 text-sm">
+    <form 
+      ref={formRef}
+      onSubmit={onSubmit} 
+      className="space-y-6 text-sm"
+    >
       <div className="group relative">
-        <h2 className="text-base font-bold text-white tracking-tight">
+        <h2 className="text-lg font-bold text-blue-950 tracking-tight mb-6">
           Basic Information
         </h2>
-        <div className="absolute -inset-1 bg-linear-to-r from-blue-400 via-blue-500 to-blue-600 rounded-xl blur opacity-30 group-hover:opacity-60 transition-all duration-500 -z-10" />
       </div>
 
       {/* Full Name */}
-      <div className="group relative">
-        <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-blue-400/70">
+      <div className="group relative space-y-2">
+        <label className="block text-sm font-semibold text-gray-700">
           Full Name
         </label>
-        <div className="relative">
+        <div className="relative transition-all duration-300 hover:scale-[1.01]">
           <input
+            ref={el => { inputsRef.current[0] = el; }}
             type="text"
             name="name"
             value={personalForm.name}
             onChange={onChange}
-            className="group relative w-full rounded-2xl border border-blue-900/50 bg-blue-950/60 px-4 py-3 text-sm font-medium text-white placeholder-blue-400/50 focus:border-blue-500/70 focus:bg-blue-900/80 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:shadow-[0_0_0_3px_rgba(59,130,246,0.1)] transition-all duration-300 backdrop-blur-sm hover:border-blue-800/70 hover:shadow-[0_5px_15px_rgba(59,130,246,0.1)]"
+            onFocus={() => handleInputFocus(0)}
+            onBlur={() => handleInputBlur(0)}
+            className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-md"
           />
-          <div className="absolute inset-0 bg-linear-to-r from-blue-400/10 to-blue-500/10 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl blur pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur pointer-events-none" />
         </div>
       </div>
 
       {/* Email */}
-      <div className="group relative">
-        <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-blue-400/70">
+      <div className="group relative space-y-2">
+        <label className="block text-sm font-semibold text-gray-700">
           Email Address (read-only)
-        </label>
-        <input
-          type="email"
-          name="email"
-          value={personalForm.email}
-          readOnly
-          className="group relative w-full cursor-not-allowed rounded-2xl border border-blue-900/40 bg-blue-950/40 px-4 py-3 text-sm font-medium text-blue-200 opacity-70 hover:opacity-90 transition-all duration-300 backdrop-blur-sm"
-        />
-      </div>
-
-      {/* Phone */}
-      <div className="group relative">
-        <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-blue-400/70">
-          Phone
         </label>
         <div className="relative">
           <input
+            ref={el => { inputsRef.current[1] = el; }}
+            type="email"
+            name="email"
+            value={personalForm.email}
+            readOnly
+            className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-600 cursor-not-allowed focus:outline-none"
+          />
+        </div>
+      </div>
+
+      {/* Phone */}
+      <div className="group relative space-y-2">
+        <label className="block text-sm font-semibold text-gray-700">
+          Phone Number
+        </label>
+        <div className="relative transition-all duration-300 hover:scale-[1.01]">
+          <input
+            ref={el => { inputsRef.current[2] = el; }}
             type="tel"
             name="phone"
             value={personalForm.phone}
             onChange={onChange}
+            onFocus={() => handleInputFocus(2)}
+            onBlur={() => handleInputBlur(2)}
             placeholder="+91 98765 43210"
-            className="group relative w-full rounded-2xl border border-blue-900/50 bg-blue-950/60 px-4 py-3 text-sm font-medium text-white placeholder-blue-400/50 focus:border-blue-500/70 focus:bg-blue-900/80 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:shadow-[0_0_0_3px_rgba(59,130,246,0.1)] transition-all duration-300 backdrop-blur-sm hover:border-blue-800/70 hover:shadow-[0_5px_15px_rgba(59,130,246,0.1)]"
+            className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-md"
           />
-          <div className="absolute inset-0 bg-linear-to-r from-blue-400/10 to-blue-500/10 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl blur pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur pointer-events-none" />
         </div>
       </div>
 
       {/* Bio */}
-      <div className="group relative">
-        <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-blue-400/70">
+      <div className="group relative space-y-2">
+        <label className="block text-sm font-semibold text-gray-700">
           Bio / Headline
         </label>
-        <div className="relative">
+        <div className="relative transition-all duration-300 hover:scale-[1.01]">
           <textarea
+            ref={el => { inputsRef.current[3] = el; }}
             name="bio"
             value={personalForm.bio}
             onChange={onChange}
+            onFocus={() => handleInputFocus(3)}
+            onBlur={() => handleInputBlur(3)}
             rows={4}
             placeholder="Tell us a little about yourself..."
-            className="group relative w-full rounded-2xl border border-blue-900/50 bg-blue-950/60 px-4 py-3 text-sm font-medium text-white placeholder-blue-400/50 resize-vertical focus:border-blue-500/70 focus:bg-blue-900/80 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:shadow-[0_0_0_3px_rgba(59,130,246,0.1)] transition-all duration-300 backdrop-blur-sm hover:border-blue-800/70 hover:shadow-[0_5px_15px_rgba(59,130,246,0.1)]"
+            className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 resize-none focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-md"
           />
-          <div className="absolute inset-0 bg-linear-to-rv from-blue-400/10 to-blue-500/10 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl blur pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur pointer-events-none" />
         </div>
       </div>
 
-      <div className="pt-2">
-        <PrimaryButton type="submit" disabled={isSavingPersonal}>
-          {isSavingPersonal ? "Saving..." : "Save personal info"}
+      <div className="pt-4">
+        <PrimaryButton 
+          type="submit" 
+          disabled={isSavingPersonal}
+          className="w-full sm:w-auto"
+        >
+          {isSavingPersonal ? (
+            <span className="flex items-center gap-2">
+              <span className="animate-spin">⟳</span>
+              Saving...
+            </span>
+          ) : "Save Personal Info"}
         </PrimaryButton>
       </div>
     </form>

@@ -131,3 +131,11 @@ input[type="range"]::-moz-range-thumb {
     border-color: #374151;
   }
 }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
