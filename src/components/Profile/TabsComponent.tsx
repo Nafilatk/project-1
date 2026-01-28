@@ -81,7 +81,7 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
           onClick={() => handleTabClick("personal")}
         >
           <span className="relative z-10">Personal Info</span>
-          <div className="absolute -bottom-px left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+          <div className="absolute -bottom-px left-0 right-0 h-0.5 bg-linear-to-r from-blue-500 to-blue-600 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
         </button>
         
         <button
@@ -94,7 +94,7 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
           onClick={() => handleTabClick("security")}
         >
           <span className="relative z-10">Login & Security</span>
-          <div className="absolute -bottom-px left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+          <div className="absolute -bottom-px left-0 right-0 h-0.5 bg-linear-to-r from-blue-500 to-blue-600 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
         </button>
         
         <button
@@ -107,7 +107,7 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
           onClick={() => handleTabClick("account")}
         >
           <span className="relative z-10">Account</span>
-          <div className="absolute -bottom-px left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+          <div className="absolute -bottom-px left-0 right-0 h-0.5 bg-linear-to-r from-blue-500 to-blue-600 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
         </button>
       </div>
 
@@ -115,7 +115,7 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
       <div className="relative">
         <div 
           ref={indicatorRef}
-          className="absolute bottom-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full shadow-md shadow-blue-500/30 transition-all duration-300"
+          className="absolute bottom-0 h-1 bg-linear-to-r from-blue-500 to-blue-600 rounded-full shadow-md shadow-blue-500/30 transition-all duration-300"
         />
       </div>
     </div>

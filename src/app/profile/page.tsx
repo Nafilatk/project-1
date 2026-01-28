@@ -373,7 +373,7 @@ export default function ProfileSettingsPage() {
         <h1 className="text-3xl sm:text-4xl font-bold bg-blue-950 bg-clip-text text-transparent">
           Profile Settings
         </h1>
-        <div className="absolute -bottom-1 left-0 w-56 h-1 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full group-hover:w-32 transition-all duration-300"></div>
+        <div className="absolute -bottom-1 left-0 w-56 h-1 bg-linear-to-r from-indigo-500 to-blue-500 rounded-full group-hover:w-32 transition-all duration-300"></div>
       </div>
 
       <p className="text-lg text-slate-600 max-w-3xl leading-relaxed">
@@ -390,7 +390,7 @@ export default function ProfileSettingsPage() {
           <>
             {/* Letter Avatar */}
             <div className="flex justify-center">
-              <div className="w-28 h-28 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600 
+              <div className="w-28 h-28 rounded-full bg-linear-to-br from-indigo-500 to-blue-600 
                               flex items-center justify-center text-white text-5xl font-bold shadow-lg">
                 {personalForm.name.charAt(0).toUpperCase()}
               </div>
@@ -435,7 +435,7 @@ export default function ProfileSettingsPage() {
             {error && (
               <div
                 data-error
-                className="p-4 bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-100 rounded-xl text-rose-700 text-sm font-medium shadow-sm"
+                className="p-4 bg-linear-to-r from-rose-50 to-pink-50 border border-rose-100 rounded-xl text-rose-700 text-sm font-medium shadow-sm"
               >
                 {error}
               </div>
@@ -444,7 +444,7 @@ export default function ProfileSettingsPage() {
             {success && (
               <div
                 data-success
-                className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-100 rounded-xl text-emerald-700 text-sm font-medium shadow-sm"
+                className="p-4 bg-linear-to-r from-emerald-50 to-teal-50 border border-emerald-100 rounded-xl text-emerald-700 text-sm font-medium shadow-sm"
               >
                 {success}
               </div>

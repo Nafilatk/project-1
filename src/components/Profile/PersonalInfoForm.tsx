@@ -100,7 +100,7 @@ export default function PersonalInfoForm({
             onBlur={() => handleInputBlur(0)}
             className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-md"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur pointer-events-none" />
         </div>
       </div>
 
@@ -138,7 +138,7 @@ export default function PersonalInfoForm({
             placeholder="+91 98765 43210"
             className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-md"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur pointer-events-none" />
         </div>
       </div>
 
@@ -159,7 +159,7 @@ export default function PersonalInfoForm({
             placeholder="Tell us a little about yourself..."
             className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 resize-none focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:shadow-lg transition-all duration-300 hover:border-blue-400 hover:shadow-md"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-r from-blue-500/0 via-blue-500/10 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl blur pointer-events-none" />
         </div>
       </div>
 
