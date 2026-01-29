@@ -17,7 +17,6 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
   useEffect(() => {
     if (!tabsRef.current) return;
 
-    // Entrance animation for tabs
     gsap.fromTo(tabsRef.current.children,
       { y: -20, opacity: 0 },
       {
@@ -39,7 +38,6 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
     const { width, left } = activeButton.getBoundingClientRect();
     const containerLeft = tabsRef.current?.getBoundingClientRect().left || 0;
 
-    // Animate indicator to active tab
     gsap.to(indicatorRef.current, {
       left: left - containerLeft,
       width: width,
@@ -51,7 +49,6 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
   const handleTabClick = (tab: TabKey) => {
     onTabChange(tab);
     
-    // Button click animation
     const button = tabsRef.current?.querySelector(`[data-tab="${tab}"]`);
     if (button) {
       gsap.fromTo(button,
@@ -111,7 +108,6 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
         </button>
       </div>
 
-      {/* Animated indicator */}
       <div className="relative">
         <div 
           ref={indicatorRef}

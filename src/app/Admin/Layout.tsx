@@ -70,7 +70,6 @@ export default function AdminSidebar() {
           isCollapsed ? 'w-20' : 'w-64'
         }`}
       >
-        {/* HEADER */}
         <div className="p-6 border-b border-gray-800 flex items-center justify-between">
           {!isCollapsed && (
             <div>
@@ -91,7 +90,6 @@ export default function AdminSidebar() {
           </button>
         </div>
 
-        {/* NAV */}
         <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
           {menuItems.map(item => (
             <Link
@@ -113,7 +111,6 @@ export default function AdminSidebar() {
           ))}
         </nav>
 
-        {/* LOGOUT */}
         {!isCollapsed && (
           <div className="p-4 border-t border-gray-800">
             <button

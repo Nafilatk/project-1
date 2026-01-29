@@ -51,8 +51,7 @@ export default function ActiveCourses({
 
   return (
     <section>
-      {/* HEADER */}
-      <div className="flex items-center gap-3 mb-6">
+     <div className="flex items-center gap-3 mb-6">
         <div className="p-3 bg-linear-to-r from-blue-500 to-blue-600 rounded-xl shadow-md">
           <span className="text-2xl text-white">📊</span>
         </div>
@@ -87,7 +86,6 @@ export default function ActiveCourses({
                 courseCardsRef.current[index] = el;
               }}
             >
-              {/* TOP SECTION */}
               <div
                 className="flex flex-col lg:flex-row lg:items-center justify-between mb-6 cursor-pointer"
                 onClick={() => toggleCourseDetails(history.courseId)}
@@ -117,7 +115,6 @@ export default function ActiveCourses({
                   </div>
                 </div>
 
-                {/* PROGRESS CIRCLE */}
                 <div className="flex items-center gap-6">
                   <div className="relative">
                     <div className="w-20 h-20">
@@ -166,7 +163,6 @@ export default function ActiveCourses({
                 </div>
               </div>
 
-              {/* EXPANDED DETAILS */}
               {activeCourse === history.courseId && (
                 <CourseDetails
                   completedVideos={completedVideos}

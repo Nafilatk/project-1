@@ -18,7 +18,7 @@ export default function ConditionalLayout({ children }: Props) {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 pt-20">
       {children}
       </main>
       <Footer />

@@ -102,7 +102,6 @@ export default function SecurityForm({
         To update your password, please confirm your current password.
       </p>
 
-      {/* Email */}
       <div className="space-y-2">
         <label className="block font-semibold text-gray-700">
           Email Address
@@ -119,7 +118,6 @@ export default function SecurityForm({
         />
       </div>
 
-      {/* Current Password */}
       <div className="space-y-2">
         <label className="block font-semibold text-gray-700">
           Current Password
@@ -138,7 +136,6 @@ export default function SecurityForm({
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
-        {/* New Password */}
         <div className="space-y-2">
           <label className="block font-semibold text-gray-700">
             New Password
@@ -156,7 +153,6 @@ export default function SecurityForm({
           />
         </div>
 
-        {/* Confirm Password */}
         <div className="space-y-2">
           <label className="block font-semibold text-gray-700">
             Confirm Password

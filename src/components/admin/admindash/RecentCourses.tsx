@@ -30,7 +30,6 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Color scheme - Updated for white theme
   const categoryColors: Record<string, { bg: string; text: string }> = {
     'Development': { bg: 'bg-blue-50', text: 'text-blue-600' },
     'Design': { bg: 'bg-purple-50', text: 'text-purple-600' },
@@ -39,12 +38,10 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
     'default': { bg: 'bg-gray-100', text: 'text-gray-600' }
   };
 
-  // GSAP animations
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Container entry animation
       gsap.from(containerRef.current, {
         y: 20,
         opacity: 0,
@@ -53,7 +50,6 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
         delay: 0.2
       });
 
-      // Item stagger animation
       gsap.from(itemRefs.current, {
         x: -15,
         opacity: 0,
@@ -63,7 +59,6 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
         delay: 0.4
       });
 
-      // Hover animations
       itemRefs.current.forEach(item => {
         if (!item) return;
         
@@ -102,7 +97,6 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
         });
       });
 
-      // Stats counter animation
       const statItems = containerRef.current?.querySelectorAll('.stat-item');
       if (statItems) {
         gsap.from(statItems, {
@@ -120,25 +114,20 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
     return () => ctx.revert();
   }, []);
 
-  // Get color for category
   const getCategoryColor = (category?: string) => {
     if (!category) return categoryColors.default;
     return categoryColors[category] || categoryColors.default;
   };
 
-  // Get video count
   const getVideoCount = (courseId: string | number) => {
     const detail = courseDetails.find(d => d.courseId === courseId);
     return detail?.modules.reduce((total, module) => total + module.videos.length, 0) || 0;
   };
 
-  // Get student count
   const getStudentCount = (courseId: string | number) => {
     const detail = courseDetails.find(d => d.courseId === courseId);
     return detail?.students || 0;
   };
-
-  // Get duration
   const getDuration = (courseId: string | number) => {
     const detail = courseDetails.find(d => d.courseId === courseId);
     return detail?.duration || 'N/A';
@@ -151,7 +140,6 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
       ref={containerRef}
       className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow transition-all duration-300"
     >
-      {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
           <h3 className="text-xl font-semibold text-gray-800">Recent Courses</h3>
@@ -171,7 +159,6 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
         </Link>
       </div>
 
-      {/* Course List */}
       <div className="space-y-2">
         {recentCourses.map((c, index) => {
           const videoCount = getVideoCount(c.id);
@@ -202,7 +189,6 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
                   </div>
                 </div>
 
-                {/* Course Stats */}
                 <div className="flex items-center gap-4 mt-3">
                   <div className="flex items-center gap-1 stat-item">
                     <Play className="w-3 h-3 text-gray-400" />
@@ -238,7 +224,6 @@ export default function RecentCourses({ courses, courseDetails }: RecentCoursesP
         })}
       </div>
 
-      {/* Empty State */}
       {recentCourses.length === 0 && (
         <div className="text-center py-8">
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">

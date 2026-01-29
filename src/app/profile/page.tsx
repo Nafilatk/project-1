@@ -76,7 +76,6 @@ export default function ProfileSettingsPage() {
         setError("Failed to load profile.");
       } finally {
         setIsLoading(false);
-        // Animate after data loads
         setTimeout(() => animatePage(), 100);
       }
     };
@@ -86,7 +85,6 @@ export default function ProfileSettingsPage() {
 
   useEffect(() => {
     if (success) {
-      // Animate success message
       const successEl = document.querySelector('[data-success]');
       if (successEl) {
         gsap.fromTo(successEl,
@@ -113,7 +111,6 @@ export default function ProfileSettingsPage() {
 
   useEffect(() => {
     if (error) {
-      // Animate error message
       const errorEl = document.querySelector('[data-error]');
       if (errorEl) {
         gsap.fromTo(errorEl,
@@ -128,13 +125,11 @@ export default function ProfileSettingsPage() {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Header animation
       gsap.fromTo(headerRef.current,
         { y: -40, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
       );
 
-      // Main card animation
       gsap.fromTo(cardRef.current,
         { scale: 0.95, opacity: 0, y: 30 },
         { 
@@ -147,7 +142,6 @@ export default function ProfileSettingsPage() {
         }
       );
 
-      // Tab content animation on change
       const content = document.querySelector('[data-tab-content]');
       if (content) {
         gsap.fromTo(content,
@@ -161,7 +155,6 @@ export default function ProfileSettingsPage() {
   };
 
   const handleTabChange = (tab: TabKey) => {
-    // Tab switch animation
     const content = document.querySelector('[data-tab-content]');
     if (content) {
       gsap.to(content, {
@@ -230,7 +223,6 @@ export default function ProfileSettingsPage() {
       );
       setSuccess("Personal information updated.");
       
-      // Success animation
       const saveButton = e.currentTarget.querySelector('button[type="submit"]');
       if (saveButton) {
         gsap.to(saveButton, {
@@ -317,7 +309,6 @@ export default function ProfileSettingsPage() {
   };
 
   const handleLogout = () => {
-    // Animate logout
     gsap.to(containerRef.current, {
       opacity: 0,
       scale: 0.95,
@@ -341,7 +332,6 @@ export default function ProfileSettingsPage() {
 
       await api.delete(`/users/${user.id}`);
 
-      // Animate before redirect
       gsap.to(containerRef.current, {
         opacity: 0,
         scale: 0.9,
@@ -367,7 +357,6 @@ export default function ProfileSettingsPage() {
 >
   <div className="mx-auto max-w-7xl">
 
-    {/* HEADER – full width */}
     <div ref={headerRef} className="space-y-4 mb-8">
       <div className="group relative">
         <h1 className="text-3xl sm:text-4xl font-bold bg-blue-950 bg-clip-text text-transparent">
@@ -381,14 +370,11 @@ export default function ProfileSettingsPage() {
       </p>
     </div>
 
-    {/* MAIN GRID */}
     <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8">
 
-      {/* ================= SIDEBAR ================= */}
       <aside className="sticky top-6 h-fit rounded-2xl bg-blue-50 border border-slate-200 shadow-lg p-6 space-y-6">
         {personalForm && (
           <>
-            {/* Letter Avatar */}
             <div className="flex justify-center">
               <div className="w-28 h-28 rounded-full bg-linear-to-br from-indigo-500 to-blue-600 
                               flex items-center justify-center text-white text-5xl font-bold shadow-lg">
@@ -396,7 +382,6 @@ export default function ProfileSettingsPage() {
               </div>
             </div>
 
-            {/* Name + Email */}
             <div className="text-center space-y-1">
               <h2 className="text-xl font-bold text-gray-900">
                 {personalForm.name}
@@ -406,7 +391,6 @@ export default function ProfileSettingsPage() {
               </p>
             </div>
 
-            {/* Bio */}
             {personalForm.bio && (
               <div className="rounded-xl bg-white p-4 text-sm text-gray-600 leading-relaxed shadow-sm">
                 {personalForm.bio}
@@ -416,7 +400,6 @@ export default function ProfileSettingsPage() {
         )}
       </aside>
 
-      {/* ================= CONTENT ================= */}
       <div
         ref={cardRef}
         className="rounded-2xl bg-blue-50 shadow-lg shadow-slate-200/50 
@@ -430,7 +413,6 @@ export default function ProfileSettingsPage() {
 
         <div className="p-6 sm:p-8 relative">
 
-          {/* ERROR / SUCCESS */}
           <div className="space-y-4 mb-6">
             {error && (
               <div
@@ -451,7 +433,6 @@ export default function ProfileSettingsPage() {
             )}
           </div>
 
-          {/* TAB CONTENT */}
           <div data-tab-content className="transition-all duration-300">
             {!isLoading && personalForm && activeTab === "personal" && (
               <PersonalInfoForm
@@ -483,7 +464,6 @@ export default function ProfileSettingsPage() {
       </div>
     </div>
 
-    {/* LOADER */}
     {isLoading && (
       <div className="flex items-center justify-center h-64">
         <div className="text-indigo-600 font-medium">

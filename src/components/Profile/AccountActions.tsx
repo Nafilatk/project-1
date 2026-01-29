@@ -13,14 +13,12 @@ export default function AccountActions({
 }: AccountActionsProps) {
   return (
     <div className="space-y-6 text-sm">
-      {/* Section Title */}
       <div className="group relative">
         <h1 className="text-lg font-bold text-blue-950 tracking-tight">
           Account actions
         </h1>
       </div>
 
-      {/* Logout Card */}
       <div className="group relative rounded-2xl border border-blue-900/40 bg-black/60 p-6 hover:bg-blue-950/50 transition-all duration-500 backdrop-blur-md overflow-hidden">
         <div className="relative z-10">
           <p className="text-base font-bold text-blue-200 mb-2">
@@ -42,11 +40,9 @@ export default function AccountActions({
           </button>
         </div>
 
-        {/* Card Glare */}
         <div className="absolute inset-0 bg-linear-to-r from-blue-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
       </div>
 
-      {/* Delete Account Card */}
       <div className="group relative rounded-2xl border border-red-500/40 bg-red-950/60 p-6 shadow-[0_10px_30px_rgba(239,68,68,0.15)] hover:shadow-[0_20px_50px_rgba(239,68,68,0.25)] hover:bg-red-900/50 transition-all duration-500 backdrop-blur-md overflow-hidden">
         <div className="relative z-10">
           <p className="text-base font-bold text-red-300 mb-2">
@@ -72,7 +68,6 @@ export default function AccountActions({
           </button>
         </div>
 
-        {/* Card Glare */}
         <div className="absolute inset-0 bg-linear-to-r from-red-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
       </div>
     </div>

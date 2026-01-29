@@ -68,12 +68,10 @@ export default function QuickActions() {
     }
   ];
 
-  // GSAP Animations
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Container entry animation
       gsap.from(containerRef.current, {
         y: 20,
         opacity: 0,
@@ -82,7 +80,6 @@ export default function QuickActions() {
         delay: 0.2
       });
 
-      // Card stagger animation
       gsap.from(cardRefs.current, {
         y: 30,
         opacity: 0,
@@ -93,7 +90,6 @@ export default function QuickActions() {
         delay: 0.4
       });
 
-      // Icon animation
       gsap.from(iconRefs.current, {
         scale: 0,
         rotation: -10,
@@ -103,7 +99,6 @@ export default function QuickActions() {
         delay: 0.6
       });
 
-      // Hover animations
       cardRefs.current.forEach((card, index) => {
         if (!card) return;
         
@@ -111,14 +106,12 @@ export default function QuickActions() {
         const colors = colorClasses[quickActions[index].color];
 
         card.addEventListener('mouseenter', () => {
-          // Card lift
           gsap.to(card, {
             y: -4,
             duration: 0.2,
             ease: "power2.out"
           });
 
-          // Icon bounce
           if (icon) {
             gsap.to(icon, {
               scale: 1.1,
@@ -128,7 +121,6 @@ export default function QuickActions() {
             });
           }
 
-          // Arrow animation
           const arrow = card.querySelector('.action-arrow');
           if (arrow) {
             gsap.to(arrow, {
@@ -140,14 +132,12 @@ export default function QuickActions() {
         });
 
         card.addEventListener('mouseleave', () => {
-          // Card reset
-          gsap.to(card, {
+                    gsap.to(card, {
             y: 0,
             duration: 0.2,
             ease: "power2.out"
           });
 
-          // Icon reset
           if (icon) {
             gsap.to(icon, {
               scale: 1,
@@ -157,7 +147,6 @@ export default function QuickActions() {
             });
           }
 
-          // Arrow reset
           const arrow = card.querySelector('.action-arrow');
           if (arrow) {
             gsap.to(arrow, {
@@ -179,7 +168,6 @@ export default function QuickActions() {
       ref={containerRef}
       className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow transition-all duration-300"
     >
-      {/* Header */}
       <div className="flex justify-between items-center mb-6">
         <div>
           <h3 className="text-xl font-semibold text-gray-800">Quick Actions</h3>
@@ -189,7 +177,6 @@ export default function QuickActions() {
         </div>
       </div>
 
-      {/* Actions Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {quickActions.map((action, index) => {
           const colors = colorClasses[action.color];

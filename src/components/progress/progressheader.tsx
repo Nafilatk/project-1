@@ -40,7 +40,6 @@ export default function DashboardHeader({
 
   return (
     <div className="mb-12 text-center">
-      {/* TITLE */}
       <h1
         ref={titleRef}
         className="text-4xl md:text-5xl font-bold mb-4 text-blue-900"
@@ -52,7 +51,6 @@ export default function DashboardHeader({
         Track, Learn, and Grow Your Skills 📈
       </p>
 
-      {/* STATS */}
       <div
         ref={statsRef}
         className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6"

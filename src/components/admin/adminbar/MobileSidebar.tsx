@@ -43,8 +43,7 @@ export default function MobileSidebar({
           </div>
         </div>
 
-        {/* NAV */}
-        <nav className="p-4">
+\        <nav className="p-4">
           {menuItems.map(item => (
             <Link
               key={item.href}
@@ -62,7 +61,6 @@ export default function MobileSidebar({
           ))}
         </nav>
 
-        {/* LOGOUT */}
         <div className="p-4 border-t border-gray-200">
           <button
             onClick={() => {

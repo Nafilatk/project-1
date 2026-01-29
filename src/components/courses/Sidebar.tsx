@@ -15,12 +15,10 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
   const headerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  // GSAP animations
   useEffect(() => {
     if (!sidebarRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Sidebar entry animation
       gsap.from(sidebarRef.current, {
         x: -50,
         opacity: 0,
@@ -29,7 +27,6 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
         delay: 0.1
       });
 
-      // Header animation
       if (headerRef.current) {
         gsap.from(headerRef.current, {
           y: -20,
@@ -40,7 +37,6 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
         });
       }
 
-      // Button stagger animation
       gsap.from(buttonRefs.current, {
         x: -30,
         opacity: 0,
@@ -50,7 +46,6 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
         delay: 0.5
       });
 
-      // Hover animations for buttons
       buttonRefs.current.forEach(button => {
         if (!button) return;
         
@@ -58,7 +53,7 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
           if (button !== buttonRefs.current.find(b => b && b.dataset.selected === 'true')) {
             gsap.to(button, {
               x: 5,
-              backgroundColor: 'rgba(37, 99, 235, 0.05)', // blue-600 with low opacity
+              backgroundColor: 'rgba(37, 99, 235, 0.05)', 
               duration: 0.2,
               ease: "power2.out"
             });
@@ -82,7 +77,6 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
     return () => ctx.revert();
   }, []);
 
-  // Level badge colors - No orange
   const getLevelColor = (level: string, isSelected: boolean) => {
     if (isSelected) {
       return 'bg-blue-300 text-blue-900';
@@ -112,7 +106,6 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
       className="h-screen bg-blue-50  border-gray-300 flex flex-col sticky top-0 left-0"
       style={{ height: '100vh' }}
     >
-      {/* Header */}
       <div 
         ref={headerRef}
         className="p-5 border-b border-gray-200 bg-blue-50"
@@ -123,7 +116,6 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
         </p>
       </div>
 
-      {/* Scrollable Course List */}
       <div className="flex-1 overflow-y-auto">
         <div className="p-3">
           {courses.map((course, index) => {
@@ -144,17 +136,14 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
                   }
                 `}
               >
-                {/* Selection indicator - Using bright yellow instead of orange */}
                 {isSelected && (
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-yellow-400"></div>
                 )}
 
-                {/* Course name */}
                 <div className={`font-semibold ${isSelected ? 'text-white' : 'text-gray-800'}`}>
                   {course.name}
                 </div>
                 
-                {/* Course level badge */}
                 <div className="mt-2">
                   <span className={`
                     inline-block px-3 py-1 text-xs font-medium rounded-full transition-all duration-200
@@ -165,7 +154,6 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
                   </span>
                 </div>
 
-                {/* Progress indicator (optional) */}
                 {course.duration && (
                   <div className="mt-3 pt-2 border-t border-gray-100/30">
                     <div className="flex items-center justify-between text-xs">
@@ -179,7 +167,6 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
                   </div>
                 )}
 
-                {/* Hover arrow for unselected */}
                 {!isSelected && (
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                     <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,7 +182,6 @@ export default function Sidebar({ courses, selectedCourse, onCourseSelect }: Sid
 
 
 
-      {/* Custom scrollbar styling */}
       <style jsx>{`
         div::-webkit-scrollbar {
           width: 6px;

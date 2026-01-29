@@ -16,11 +16,10 @@
       "email": "asnifp@gmail.com",
       "password": "123456",
       "role": "user",
-      "isBlock": false,
+      "isBlock": true,
       "created_at": "2025-12-19T05:23:37.425Z",
       "bio": "",
-      "phone": "",
-      "avatarUrl": "/uploads/Screenshot 2025-04-25 094230.png"
+      "phone": ""
     },
     {
       "id": "b01fa8bd-16c2-4ddd-83c6-9fe5550b0c8e",
@@ -31,8 +30,7 @@
       "isBlock": false,
       "created_at": "2025-12-20T06:46:12.359Z",
       "bio": "heyy iam nafila tk ",
-      "phone": "+918113854750",
-      "avatarUrl": "/uploads/Screenshot 2025-04-25 094230.png"
+      "phone": "+918113854750"
     },
     {
       "id": "ef11c7cf-daa3-4ec3-bd94-d68c79aff6e7",
@@ -64,8 +62,7 @@
       "isBlock": false,
       "created_at": "2025-12-23T10:22:30.476Z",
       "bio": "",
-      "phone": "+918113854750",
-      "avatarUrl": ""
+      "phone": "+918113854750"
     },
     {
       "id": "4f53e189-5182-49a5-ab95-6951135117ef",
@@ -76,8 +73,7 @@
       "isBlock": false,
       "created_at": "2025-12-26T09:38:11.182Z",
       "bio": "perfection.............\n",
-      "phone": "+918113854750",
-      "avatarUrl": "/uploads/Screenshot 2025-04-25 094230.png"
+      "phone": "+918113854750"
     },
     {
       "id": "c0ad2609-6a7e-42c5-805f-d46b99b035b1",
@@ -146,62 +142,62 @@
       "categoryId": "2",
       "duration": "15 hours",
       "level": "Beginner",
-      "thumbnail": "https://www.python.org/static/community_logos/python-logo-master.png",
+      "thumbnail": "https://i.pinimg.com/736x/ed/66/63/ed666327dd3ce274d94f2b3547155891.jpg",
       "id": "1"
     },
     {
-      "id": "2",
       "name": "Java",
-      "categoryId": "2",
       "description": "Complete Java development course",
-      "thumbnail": "/assets/courses/java-thumb.jpg",
-      "duration": "20 hours",
-      "level": "Intermediate"
-    },
-    {
-      "id": "3",
-      "name": "React",
-      "categoryId": "1",
-      "description": "Build modern React apps with hooks & TypeScript",
-      "thumbnail": "/assets/courses/react-thumb.jpg",
-      "duration": "12 hours",
-      "level": "Intermediate"
-    },
-    {
-      "id": "4",
-      "name": "Angular",
-      "categoryId": "1",
-      "description": "Professional Angular development",
-      "thumbnail": "/assets/courses/angular-thumb.jpg",
-      "duration": "18 hours",
-      "level": "Intermediate"
-    },
-    {
-      "id": "5",
-      "name": "MERN",
-      "categoryId": "1",
-      "description": "Full-stack MERN stack development",
-      "thumbnail": "/assets/courses/mern-thumb.jpg",
-      "duration": "25 hours",
-      "level": "Advanced"
-    },
-    {
-      "id": "6",
-      "name": "Machine Learning",
       "categoryId": "2",
-      "description": "ML algorithms and practical implementations",
-      "thumbnail": "/assets/courses/ml-thumb.jpg",
-      "duration": "22 hours",
-      "level": "Advanced"
+      "duration": "20 hours",
+      "level": "Intermediate",
+      "thumbnail": "https://i.pinimg.com/1200x/8d/0c/72/8d0c72f49aaa0a6a35d34c7b98035baa.jpg",
+      "id": "2"
     },
     {
-      "id": "2564",
+      "name": "React",
+      "description": "Build modern React apps with hooks & TypeScript",
+      "categoryId": "1",
+      "duration": "12 hours",
+      "level": "Intermediate",
+      "thumbnail": "https://i.pinimg.com/736x/f5/b9/91/f5b9918f76b778e799b6aa54c270061e.jpg",
+      "id": "3"
+    },
+    {
+      "name": "Angular",
+      "description": "Professional Angular development",
+      "categoryId": "1",
+      "duration": "18 hours",
+      "level": "Intermediate",
+      "thumbnail": "https://i.pinimg.com/1200x/e6/f3/20/e6f3204bd34862cd764314637857e193.jpg",
+      "id": "4"
+    },
+    {
+      "name": "MERN",
+      "description": "Full-stack MERN stack development",
+      "categoryId": "1",
+      "duration": "25 hours",
+      "level": "Advanced",
+      "thumbnail": "https://i.pinimg.com/1200x/b1/ec/c4/b1ecc4a01673166ba7923f3f2773ead5.jpg",
+      "id": "5"
+    },
+    {
+      "name": "Machine Learning",
+      "description": "ML algorithms and practical implementations",
+      "categoryId": "2",
+      "duration": "22 hours",
+      "level": "Advanced",
+      "thumbnail": "https://i.pinimg.com/1200x/24/2f/77/242f7717de61bcd907d46a64590dc481.jpg",
+      "id": "6"
+    },
+    {
       "name": "C++",
       "description": "core to advance level ",
       "categoryId": "1",
       "duration": "20 hrs",
       "level": "Beginner",
-      "thumbnail": "https://pin.it/rpXSdHflB"
+      "thumbnail": "https://i.pinimg.com/736x/73/d0/5b/73d05b3cd98616b85b5d84dd3931ba14.jpg",
+      "id": "2564"
     },
     {
       "name": "Flutter",
@@ -209,8 +205,26 @@
       "categoryId": "1",
       "duration": "20",
       "level": "Beginner",
-      "thumbnail": "/assets/courses/default-thumb.jpg",
+      "thumbnail": "https://i.pinimg.com/1200x/44/51/b1/4451b16f14d94961bbc5a1a29c2d3459.jpg",
       "id": "efa4"
+    },
+    {
+      "id": "a002",
+      "name": "vue.js",
+      "description": "Learn Vue.js ",
+      "categoryId": "1",
+      "duration": "10",
+      "level": "Beginner",
+      "thumbnail": "https://i.pinimg.com/1200x/c5/5f/50/c55f50cb7be3c17582cc0e28f961fe56.jpg"
+    },
+    {
+      "name": "Next.js",
+      "description": "Learn Next.js from core to advance",
+      "categoryId": "1",
+      "duration": "10",
+      "level": "Beginner",
+      "thumbnail": "https://i.pinimg.com/736x/5e/b9/5e/5eb95eaf598d1007befaa78d038c2b2f.jpg",
+      "id": "07b8"
     }
   ],
   "courseDetails": [
@@ -250,7 +264,7 @@
               "duration": "18:20",
               "videoUrl": "https://www.youtube.com/watch?v=_WMPA3t3CbQ",
               "ebookUrl": "https://mast.iittp.ac.in/ATSNPDE25/PythonBasics.pdf",
-              "description": "Writing functions, parameters, return values, importing modules",
+              "description": "Writing functions, parameters, return values",
               "isCompleted": false,
               "order": 3
             },
@@ -488,7 +502,6 @@
       "id": "24f8"
     },
     {
-      "id": "b8a8",
       "courseId": "2564",
       "modules": [
         {
@@ -513,7 +526,8 @@
           "title": "Module 2",
           "videos": []
         }
-      ]
+      ],
+      "id": "b8a8"
     },
     {
       "courseId": "efa4",
@@ -537,6 +551,52 @@
         }
       ],
       "id": "d08d"
+    },
+    {
+      "id": "c579",
+      "courseId": "a002",
+      "modules": [
+        {
+          "id": 1769665099887,
+          "title": "Main Module",
+          "videos": [
+            {
+              "id": 1769665152465,
+              "title": "Introduction ",
+              "thumbnail": "https://img.youtube.com/vi/XqZsoesa55w/maxresdefault.jpg",
+              "duration": "14",
+              "videoUrl": "https://www.youtube.com/watch?v=XqZsoesa55w",
+              "ebookUrl": "https://vuejs.org/guide/introduction.html",
+              "description": "Introduction to Vue.js ",
+              "isCompleted": false,
+              "order": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "courseId": "07b8",
+      "modules": [
+        {
+          "id": 1769671161447,
+          "title": "Main Module",
+          "videos": [
+            {
+              "id": 1769671239717,
+              "title": "Introduction to Next.js",
+              "thumbnail": "https://img.youtube.com/vi/XqZsoesa55w/maxresdefault.jpg",
+              "duration": "10:30",
+              "videoUrl": "https://www.youtube.com/watch?v=XqZsoesa55w",
+              "ebookUrl": "https://nextjs.org/docs",
+              "description": "Introduction",
+              "isCompleted": false,
+              "order": 1
+            }
+          ]
+        }
+      ],
+      "id": "f0f1"
     }
   ],
   "watchHistory": [

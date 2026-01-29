@@ -24,19 +24,16 @@ export default function CoursesPage() {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [loading, setLoading] = useState(true);
 
-  /* ---------------- GSAP Animations ---------------- */
   useEffect(() => {
     if (!containerRef.current || loading || authLoading) return;
 
     const ctx = gsap.context(() => {
-      // Main container entry
       gsap.from(containerRef.current, {
         opacity: 0,
         duration: 0.8,
         ease: "power2.out"
       });
 
-      // Header animation
       if (headerRef.current) {
         gsap.from(headerRef.current.children, {
           y: -20,
@@ -48,7 +45,6 @@ export default function CoursesPage() {
         });
       }
 
-      // Content animation
       if (contentRef.current) {
         gsap.from(contentRef.current.children, {
           y: 30,
@@ -65,14 +61,12 @@ export default function CoursesPage() {
     return () => ctx.revert();
   }, [loading, authLoading, selectedCourse]);
 
-  /* ---------------- AUTH CHECK ---------------- */
   useEffect(() => {
     if (!authLoading && !user) {
       router.push('/login');
     }
   }, [user, authLoading, router]);
 
-  /* ---------------- FETCH DATA ---------------- */
   useEffect(() => {
     if (user) fetchData();
   }, [user]);
@@ -103,7 +97,6 @@ export default function CoursesPage() {
     }
   };
 
-  /* ---------------- HANDLERS ---------------- */
   const handleCourseSelect = (course: Course) => {
     setSelectedCourse(course);
     setSelectedVideo(null);
@@ -113,7 +106,6 @@ export default function CoursesPage() {
     setSelectedVideo(video);
   };
 
-  /* ---------------- DERIVED DATA ---------------- */
   const currentCourseDetails = courseDetails.find(
     d => d.courseId === selectedCourse?.id
   );
@@ -132,11 +124,9 @@ export default function CoursesPage() {
     allVideos.length > 0 &&
     completedVideoIds.length === allVideos.length;
 
-  /* ---------------- VIDEO COMPLETE ---------------- */
   const handleVideoComplete = async () => {
     if (!user || !selectedCourse || !selectedVideo) return;
 
-    // Find course details
     const courseDetail = courseDetails.find(
       d => d.courseId === selectedCourse.id
     );
@@ -149,7 +139,6 @@ export default function CoursesPage() {
       h => h.courseId === selectedCourse.id
     );
 
-    /* -------- CREATE WATCH HISTORY -------- */
     if (!history) {
       const completedVideos = [selectedVideo.id];
 
@@ -175,10 +164,8 @@ export default function CoursesPage() {
       return;
     }
 
-    /* -------- ALREADY COMPLETED -------- */
     if (history.completedVideos.includes(selectedVideo.id)) return;
 
-    /* -------- UPDATE HISTORY -------- */
     const updatedCompletedVideos = [
       ...history.completedVideos,
       selectedVideo.id,
@@ -207,7 +194,6 @@ export default function CoursesPage() {
     );
   };
 
-  /* ---------------- LOADING ---------------- */
   if (authLoading || loading || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
@@ -219,13 +205,11 @@ export default function CoursesPage() {
     );
   }
 
-  /* ---------------- UI ---------------- */
   return (
     <div 
       ref={containerRef}
       className="h-screen bg-white text-gray-800 flex overflow-hidden"
     >
-      {/* SIDEBAR */}
       <div className="w-64 bg-white border-r border-gray-200">
         <Sidebar
           courses={courses}
@@ -234,7 +218,6 @@ export default function CoursesPage() {
         />
       </div>
 
-      {/* MAIN CONTENT */}
       <div className="flex-1 p-6 overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         <style jsx>{`
           .no-scrollbar::-webkit-scrollbar {
@@ -244,7 +227,6 @@ export default function CoursesPage() {
         
         {selectedCourse && (
           <div className="max-w-7xl mx-auto">
-            {/* COURSE HEADER */}
             <div 
               ref={headerRef}
               className="mb-8 p-6 bg-linear-to-r from-blue-50 to-white rounded-xl border border-gray-200"
@@ -256,7 +238,6 @@ export default function CoursesPage() {
                 {selectedCourse.description}
               </p>
               
-              {/* Course Stats */}
               <div className="flex items-center gap-6 mt-4">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -281,7 +262,6 @@ export default function CoursesPage() {
               </div>
             </div>
 
-            {/* COURSE COMPLETED BANNER */}
             {isCourseCompleted && (
               <div className="mb-6 bg-linear-to-r from-green-50 to-emerald-50 border border-green-200 p-5 rounded-xl shadow-sm">
                 <div className="flex items-center gap-3">
@@ -304,7 +284,6 @@ export default function CoursesPage() {
               ref={contentRef}
               className="grid grid-cols-1 lg:grid-cols-3 gap-8"
             >
-              {/* VIDEO PLAYER */}
               <div className="lg:col-span-2">
                 {selectedVideo ? (
                   <VideoPlayer
@@ -334,10 +313,8 @@ export default function CoursesPage() {
                 )}
               </div>
 
-              {/* PLAYLIST */}
               <div className="lg:col-span-1">
                 <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                  {/* Playlist Header */}
                   <div className="p-5 border-b border-gray-200 bg-linear-to-r from-gray-50 to-white">
                     <div className="flex items-center justify-between">
                       <div>
@@ -354,7 +331,6 @@ export default function CoursesPage() {
                       </div>
                     </div>
                     
-                    {/* Progress Bar */}
                     <div className="mt-4">
                       <div className="flex justify-between text-xs text-gray-600 mb-1">
                         <span>Progress</span>
@@ -369,7 +345,6 @@ export default function CoursesPage() {
                     </div>
                   </div>
 
-                  {/* Videos List */}
                   <div className="max-h-[calc(100vh-300px)] overflow-y-auto no-scrollbar">
                     {allVideos.map((video, index) => (
                       <VideoCard

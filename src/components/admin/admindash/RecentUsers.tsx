@@ -22,7 +22,6 @@ export default function RecentUsers({ users }: RecentUsersProps) {
 
   const recent = [...users].slice(0, 5);
 
-  // Color mapping for roles - Updated for white theme
   const roleColors: Record<string, { bg: string; text: string; avatar: string }> = {
     Admin: { 
       bg: 'bg-green-50', 
@@ -37,12 +36,10 @@ export default function RecentUsers({ users }: RecentUsersProps) {
     }
   };
 
-  // GSAP animations
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Container entry animation
       gsap.from(containerRef.current, {
         y: 20,
         opacity: 0,
@@ -51,7 +48,6 @@ export default function RecentUsers({ users }: RecentUsersProps) {
         delay: 0.2
       });
 
-      // Row stagger animation
       gsap.from(rowsRef.current, {
         x: -15,
         opacity: 0,
@@ -61,7 +57,6 @@ export default function RecentUsers({ users }: RecentUsersProps) {
         delay: 0.4
       });
 
-      // Hover animations for rows
       rowsRef.current.forEach(row => {
         if (!row) return;
         
@@ -86,7 +81,6 @@ export default function RecentUsers({ users }: RecentUsersProps) {
     return () => ctx.revert();
   }, []);
 
-  // Get role color classes
   const getRoleColor = (role: string) => {
     const normalizedRole = role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();
     return roleColors[normalizedRole] || roleColors.default;

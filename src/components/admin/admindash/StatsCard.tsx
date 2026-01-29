@@ -41,12 +41,10 @@ export default function StatsCards({ stats }: any) {
     },
   ];
 
-  // GSAP Animations
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Container entry animation
       gsap.from(containerRef.current, {
         y: 30,
         opacity: 0,
@@ -55,7 +53,6 @@ export default function StatsCards({ stats }: any) {
         delay: 0.1
       });
 
-      // Card stagger animation
       gsap.from(cardRefs.current, {
         y: 20,
         opacity: 0,
@@ -66,7 +63,6 @@ export default function StatsCards({ stats }: any) {
         delay: 0.3
       });
 
-      // Icon animation
       gsap.from(iconRefs.current, {
         scale: 0,
         rotation: -15,
@@ -76,7 +72,6 @@ export default function StatsCards({ stats }: any) {
         delay: 0.5
       });
 
-      // Value counting animation
       valueRefs.current.forEach((ref, index) => {
         if (!ref) return;
         
@@ -95,7 +90,6 @@ export default function StatsCards({ stats }: any) {
         });
       });
 
-      // Hover animations
       cardRefs.current.forEach((card, index) => {
         if (!card) return;
 

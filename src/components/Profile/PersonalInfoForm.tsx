@@ -25,13 +25,11 @@ export default function PersonalInfoForm({
     if (!formRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Form entrance animation
       gsap.fromTo(formRef.current,
         { y: 30, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
       );
 
-      // Inputs sequential animation
       gsap.fromTo(inputsRef.current,
         { x: -20, opacity: 0 },
         {
@@ -84,7 +82,6 @@ export default function PersonalInfoForm({
         </h2>
       </div>
 
-      {/* Full Name */}
       <div className="group relative space-y-2">
         <label className="block text-sm font-semibold text-gray-700">
           Full Name
@@ -104,7 +101,6 @@ export default function PersonalInfoForm({
         </div>
       </div>
 
-      {/* Email */}
       <div className="group relative space-y-2">
         <label className="block text-sm font-semibold text-gray-700">
           Email Address (read-only)
@@ -121,7 +117,6 @@ export default function PersonalInfoForm({
         </div>
       </div>
 
-      {/* Phone */}
       <div className="group relative space-y-2">
         <label className="block text-sm font-semibold text-gray-700">
           Phone Number
@@ -142,7 +137,6 @@ export default function PersonalInfoForm({
         </div>
       </div>
 
-      {/* Bio */}
       <div className="group relative space-y-2">
         <label className="block text-sm font-semibold text-gray-700">
           Bio / Headline

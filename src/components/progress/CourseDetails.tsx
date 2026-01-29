@@ -22,7 +22,6 @@ export default function CourseDetails({
     <div className="mt-6 animate-slide-down">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        {/* COMPLETED VIDEOS */}
         <div className="bg-linear-to-br from-blue-50 to-white border border-blue-200 rounded-xl p-5">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-blue-100 rounded-lg">
@@ -66,7 +65,6 @@ export default function CourseDetails({
           )}
         </div>
 
-        {/* PENDING VIDEOS */}
         <div className="bg-linear-to-br from-white to-blue-50 border border-blue-200 rounded-xl p-5">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 bg-blue-100 rounded-lg">
@@ -114,7 +112,6 @@ export default function CourseDetails({
         </div>
       </div>
 
-      {/* CONTINUE BUTTON */}
       {!isCourseCompleted && pendingVideos.length > 0 && (
         <div className="mt-6 text-center">
           <button

@@ -73,7 +73,7 @@ const totalVideos = d.data.reduce((total: number, detail: any) => {
 
   return (
     <>
-      <DashboardAnimations /> {/* 👈 GSAP HOOK */}
+      <DashboardAnimations /> 
 
       <div className="flex h-screen overflow-hidden">
         <AdminSidebar />

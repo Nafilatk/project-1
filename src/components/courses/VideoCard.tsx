@@ -22,13 +22,11 @@ export default function VideoCard({
   const modalRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
 
-  // GSAP animations
   useEffect(() => {
     if (!cardRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Card entry animation
-      gsap.from(cardRef.current, {
+            gsap.from(cardRef.current, {
         x: -20,
         opacity: 0,
         duration: 0.4,
@@ -36,7 +34,6 @@ export default function VideoCard({
         delay: 0.1
       });
 
-      // Icon animation
       if (iconRef.current) {
         gsap.from(iconRef.current, {
           scale: 0,
@@ -47,7 +44,6 @@ export default function VideoCard({
         });
       }
 
-      // Hover animation
       const card = cardRef.current;
       if (card) {
         card.addEventListener('mouseenter', () => {
@@ -78,7 +74,6 @@ export default function VideoCard({
     return () => ctx.revert();
   }, [isSelected]);
 
-  // Modal animations
   useEffect(() => {
     if (showPDF && modalRef.current) {
       gsap.from(modalRef.current, {
@@ -151,7 +146,6 @@ export default function VideoCard({
               )}
             </div>
 
-            {/* Progress indicator for selected video */}
             {isSelected && (
               <div className="mt-3 pt-3 border-t border-gray-200/50">
                 <div className="flex items-center gap-2 text-xs text-gray-600">
@@ -169,7 +163,6 @@ export default function VideoCard({
         </div>
       </button>
 
-      {/* PDF Modal */}
       {showPDF && video.ebookUrl && (
         <div 
           ref={modalRef}
@@ -179,7 +172,6 @@ export default function VideoCard({
             bg-white rounded-xl flex flex-col shadow-2xl border border-gray-200
             ${isFullscreen ? 'w-screen h-screen rounded-none' : 'w-full h-[90vh] max-w-5xl'}
           `}>
-            {/* Header */}
             <div className="flex items-center justify-between p-5 border-b border-gray-200 bg-linear-to-r from-blue-50 to-white">
               <div>
                 <h3 className="text-gray-800 font-semibold text-lg">{video.title} - E-Book</h3>
@@ -202,7 +194,6 @@ export default function VideoCard({
               </div>
             </div>
 
-            {/* PDF Viewer */}
             <div className="flex-1">
               <iframe
                 src={`${video.ebookUrl}#toolbar=1`}
@@ -211,7 +202,6 @@ export default function VideoCard({
               />
             </div>
 
-            {/* Footer */}
             <div className="p-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
               <p className="text-sm text-gray-600">
                 Use the toolbar above to navigate through the document

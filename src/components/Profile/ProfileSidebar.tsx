@@ -28,7 +28,6 @@ export default function ProfileSidebar({ personalForm }: ProfileSidebarProps) {
   return (
     <aside className="sticky top-6 h-fit w-full max-w-xs rounded-2xl bg-white border shadow-lg p-6 space-y-6">
       
-      {/* Letter Avatar */}
       <div className="flex justify-center">
         <div
           ref={circleRef}
@@ -39,7 +38,6 @@ export default function ProfileSidebar({ personalForm }: ProfileSidebarProps) {
         </div>
       </div>
 
-      {/* User Info */}
       <div className="text-center space-y-1">
         <h2 className="text-xl font-bold text-gray-900">
           {personalForm.name || "Your Name"}
@@ -49,7 +47,6 @@ export default function ProfileSidebar({ personalForm }: ProfileSidebarProps) {
         </p>
       </div>
 
-      {/* Bio */}
       {personalForm.bio && (
         <div className="rounded-xl bg-slate-50 p-4 text-sm text-gray-600 leading-relaxed">
           {personalForm.bio}

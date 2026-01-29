@@ -24,13 +24,11 @@ export default function DashboardHeader() {
     hour12: true
   });
 
-  // GSAP Animations
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Container entry animation
-      gsap.from(containerRef.current, {
+            gsap.from(containerRef.current, {
         y: 30,
         opacity: 0,
         duration: 0.6,
@@ -38,7 +36,6 @@ export default function DashboardHeader() {
         delay: 0.1
       });
 
-      // Title animation - Fade in with slide up
       if (titleRef.current) {
         gsap.from(titleRef.current, {
           y: -20,
@@ -49,7 +46,6 @@ export default function DashboardHeader() {
         });
       }
 
-      // Subtitle fade in
       if (subtitleRef.current) {
         gsap.from(subtitleRef.current, {
           opacity: 0,
@@ -59,8 +55,6 @@ export default function DashboardHeader() {
           delay: 0.5
         });
       }
-
-      // Date card animation
       if (dateRef.current) {
         gsap.from(dateRef.current, {
           x: 30,
@@ -70,7 +64,6 @@ export default function DashboardHeader() {
           delay: 0.8
         });
 
-        // Continuous subtle pulse on calendar icon
         const calendarIcon = dateRef.current.querySelector('.calendar-icon');
         if (calendarIcon) {
           gsap.to(calendarIcon, {
@@ -84,7 +77,6 @@ export default function DashboardHeader() {
         }
       }
 
-      // Background elements animation
       const bgElements = containerRef.current?.querySelectorAll('.bg-element');
       if (bgElements && bgElements.length > 0) {
         gsap.from(bgElements, {
@@ -107,7 +99,6 @@ export default function DashboardHeader() {
       ref={containerRef}
       className="relative bg-linear-to-r from-white to-gray-50 p-6 rounded-2xl border border-gray-200 shadow-sm overflow-hidden"
     >
-      {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="bg-element absolute -top-20 -right-20 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
         <div className="bg-element absolute -bottom-20 -left-20 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl"></div>
@@ -116,7 +107,6 @@ export default function DashboardHeader() {
 
       <div className="relative z-10">
         <div className="flex flex-col md:flex-row justify-between gap-6 items-start md:items-center">
-          {/* Left Section - Title and Stats */}
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-3">
               <h1 
@@ -135,7 +125,6 @@ export default function DashboardHeader() {
             </p>
           </div>
 
-          {/* Right Section - Date */}
           <div 
             ref={dateRef}
             className="bg-white px-5 py-4 rounded-xl border border-gray-200 shadow-sm min-w-60"

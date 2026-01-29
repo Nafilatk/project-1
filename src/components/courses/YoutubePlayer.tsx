@@ -17,12 +17,10 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  // GSAP animations
   useEffect(() => {
     if (!containerRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Container entry animation
       gsap.from(containerRef.current, {
         y: 30,
         opacity: 0,
@@ -31,7 +29,6 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
         delay: 0.1
       });
 
-      // Video container animation
       if (videoContainerRef.current) {
         gsap.from(videoContainerRef.current, {
           scale: 0.95,
@@ -42,7 +39,6 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
         });
       }
 
-      // Content animation
       if (contentRef.current) {
         gsap.from(contentRef.current.children, {
           y: 20,
@@ -54,7 +50,6 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
         });
       }
 
-      // Button hover animation
       if (buttonRef.current) {
         const button = buttonRef.current;
         
@@ -81,7 +76,6 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
         });
       }
 
-      // Play button pulse animation if not completed
       if (!video.isCompleted) {
         const playIndicator = document.querySelector('.play-indicator');
         if (playIndicator) {
@@ -101,7 +95,6 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
     return () => ctx.revert();
   }, [video.isCompleted]);
 
-  // Extract YouTube ID
   const getYouTubeId = (url: string) => {
     const match = url.match(
       /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/
@@ -120,7 +113,6 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
       ref={containerRef}
       className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200"
     >
-      {/* Video Header */}
       <div className="p-4 border-b border-gray-200 bg-linear-to-r from-blue-50 to-white">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-bold text-gray-800">Video Player</h3>
@@ -133,7 +125,6 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
         </div>
       </div>
 
-      {/* VIDEO */}
       <div ref={videoContainerRef} className="relative">
         {youtubeId ? (
           <div className="relative">
@@ -166,14 +157,12 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
         )}
       </div>
 
-      {/* CONTENT */}
       <div 
         ref={contentRef}
         className="p-6 bg-white"
       >
         <h3 className="text-xl font-bold text-gray-800 mb-3">{video.title}</h3>
         
-        {/* Video Stats */}
         <div className="flex items-center gap-4 mb-4">
           <span className="text-sm text-gray-600 px-3 py-1 bg-gray-100 rounded-full">
             Duration: {video.duration}
@@ -190,7 +179,6 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
           {video.description}
         </p>
 
-        {/* COMPLETE BUTTON */}
         <button
           ref={buttonRef}
           onClick={onComplete}
@@ -213,13 +201,11 @@ export default function VideoPlayer({ video, onComplete }: VideoPlayerProps) {
           ) : (
             <>
               <PlayCircle size={20} />
-              <span className="font-bold">Mark as Complete</span>
-              <span className="text-xs opacity-90">Click when finished</span>
-            </>
+              <span className="font-bold">Complete</span>
+              <span className="text-xs opacity-90">Click when finished</span>            </>
           )}
         </button>
 
-        {/* Progress indicator */}
         <div className="mt-6 pt-6 border-t border-gray-100">
           <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
             <span>Progress</span>

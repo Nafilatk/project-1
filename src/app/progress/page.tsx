@@ -37,20 +37,17 @@ export default function ProgressPage() {
   const [loading, setLoading] = useState(true);
   const [activeCourse, setActiveCourse] = useState<string | null>(null);
 
-  /* ---------------- REFS ---------------- */
   const titleRef = useRef<HTMLHeadingElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const sectionsRef = useRef<HTMLDivElement>(null);
   const courseCardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  /* ---------------- AUTH ---------------- */
   useEffect(() => {
     if (!authLoading && !user) {
       router.push('/login');
     }
   }, [user, authLoading, router]);
 
-  /* ---------------- FETCH ---------------- */
   useEffect(() => {
     if (user?.id) fetchData();
   }, [user]);
@@ -75,7 +72,6 @@ export default function ProgressPage() {
     }
   };
 
-  /* ---------------- ANIMATIONS ---------------- */
   const animatePage = () => {
     gsap.fromTo(
       titleRef.current,
@@ -118,7 +114,6 @@ export default function ProgressPage() {
     );
   };
 
-  /* ---------------- HELPERS ---------------- */
   const calculateProgress = (completed: number[], total: number) =>
     total > 0 ? Math.round((completed.length / total) * 100) : 0;
 
@@ -126,7 +121,6 @@ export default function ProgressPage() {
     setActiveCourse(prev => (prev === courseId ? null : courseId));
   };
 
-  /* ---------------- STATES ---------------- */
   if (loading || authLoading) {
     return <LoadingScreen />;
   }
@@ -135,12 +129,10 @@ export default function ProgressPage() {
     return <EmptyProgress />;
   }
 
-  /* ---------------- UI ---------------- */
   return (
     <div className="min-h-screen bg-linear-to-br from-white via-blue-50 to-white p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
 
-        {/* HEADER */}
         <DashboardHeader
           titleRef={titleRef}
           statsRef={statsRef}
@@ -149,7 +141,6 @@ export default function ProgressPage() {
         />
 
         <div ref={sectionsRef}>
-          {/* COMPLETED COURSES */}
           <CompletedCourses
             watchHistory={watchHistory}
             courses={courses}
@@ -158,7 +149,6 @@ export default function ProgressPage() {
             courseCardsRef={courseCardsRef}
           />
 
-          {/* ACTIVE COURSES */}
           <ActiveCourses
             watchHistory={watchHistory}
             courses={courses}
