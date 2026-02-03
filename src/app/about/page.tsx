@@ -8,181 +8,176 @@ import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPage() {
-  const mainRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".about-badge", {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        ease: "power3.out",
-      });
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-      gsap.from(".about-title", {
+      // 1. REFINED HEADING ANIMATION
+      // We use a slightly longer duration and a smoother stagger
+      tl.from(".char", {
+        y: "120%",           // Start further down
+        rotateX: -70,        // Less aggressive tilt for better legibility
         opacity: 0,
-        y: 30,
-        duration: 0.9,
-        delay: 0.1,
-        ease: "power3.out",
-      });
-
-      gsap.from(".about-desc", {
+        stagger: 0.025,      // Faster stagger for a "wave" effect
+        duration: 1.4,
+        transformOrigin: "0% 50% -50", // Adds depth to the rotation
+      })
+      .from(".about-badge", {
         opacity: 0,
-        y: 20,
-        stagger: 0.15,
+        y: -10,
         duration: 0.8,
-        ease: "power3.out",
-      });
-
-      gsap.from(".about-card", {
-        scrollTrigger: {
-          trigger: ".about-card",
-          start: "top 80%",
-        },
+      }, "-=1.1") // Start while letters are still animating
+      .from(".about-desc", {
         opacity: 0,
-        y: 40,
-        scale: 0.95,
+        y: 20,
+        stagger: 0.1,
         duration: 1,
-        ease: "power3.out",
-      });
-
-      gsap.from(".about-list-item", {
-        scrollTrigger: {
-          trigger: ".about-card",
-          start: "top 75%",
-        },
-        opacity: 0,
-        x: -20,
-        stagger: 0.15,
-        duration: 0.6,
-        ease: "power3.out",
-      });
-
-      gsap.from(".about-stat", {
-        scrollTrigger: {
-          trigger: ".about-stats",
-          start: "top 80%",
-        },
+      }, "-=0.9")
+      .from(".about-card", {
+        scale: 0.9,
         opacity: 0,
         y: 30,
-        stagger: 0.2,
-        duration: 0.7,
-        ease: "back.out(1.6)",
-      });
+        duration: 1.2,
+        ease: "power3.out",
+      }, "-=0.8");
+
+      // 2. SCROLL TRIGGERED CARDS
       gsap.from(".principle-card", {
         scrollTrigger: {
-          trigger: ".principles",
-          start: "top 80%",
-        },
-        opacity: 0,
-        y: 40,
-        stagger: 0.2,
-        duration: 0.9,
-        ease: "power3.out",
-      });
-
-      gsap.from(".about-cta", {
-        scrollTrigger: {
-          trigger: ".about-cta",
+          trigger: ".principles-grid",
           start: "top 85%",
         },
+        y: 50,
         opacity: 0,
-        y: 30,
-        duration: 0.8,
-        ease: "power3.out",
+        stagger: 0.15,
+        duration: 1,
+        ease: "power2.out"
       });
-    }, mainRef);
+
+      // 3. SMOOTH PARALLAX MOUSE EFFECT
+      const handleMouseMove = (e: MouseEvent) => {
+        const { clientX, clientY } = e;
+        const xPos = (clientX / window.innerWidth - 0.5);
+        const yPos = (clientY / window.innerHeight - 0.5);
+
+        // Grid rotation
+        gsap.to(gridRef.current, {
+          rotateY: xPos * 8,
+          rotateX: -yPos * 8,
+          duration: 1.5,
+          ease: "power2.out",
+        });
+
+        // Floating layers
+        gsap.to(".parallax-layer", {
+          x: xPos * 30,
+          y: yPos * 30,
+          duration: 2,
+          ease: "power2.out",
+        });
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, rootRef);
 
     return () => ctx.revert();
   }, []);
 
+  const splitText = (text: string) => {
+    return text.split("").map((char, i) => (
+      <span key={i} className="char inline-block will-change-transform">
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ));
+  };
+
   return (
-    <main
-      ref={mainRef}
-      className="min-h-screen bg-[#F7F8FA] text-[#333333]"
-    >
-      <section className="mx-auto flex max-w-5xl flex-col gap-12 px-6 pt-28 pb-20 md:flex-row md:items-start">
-        <div className="w-full md:w-1/2 space-y-8">
-          <p className="about-badge text-xs font-bold uppercase tracking-[0.25em] text-[#0056D2]">
-            About learnest.ai
-          </p>
+    <main ref={rootRef} className="relative min-h-screen w-full bg-[#030303] overflow-hidden text-white perspective-1000">
+      
+      {/* Background Decor */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div 
+          ref={gridRef}
+          className="absolute inset-0 opacity-[0.12]"
+          style={{
+            backgroundImage: `linear-gradient(#3b82f6 1px, transparent 1px), linear-gradient(90deg, #3b82f6 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
+          }}
+        />
+        <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full" />
+      </div>
 
-          <h1 className="about-title text-4xl md:text-5xl font-black leading-tight">
-            Democratizing{" "}
-            <span className="text-[#0056D2]">AI education</span> for everyone.
-          </h1>
+      <section className="relative z-10 mx-auto max-w-6xl px-6 pt-32 pb-20">
+        <div className="flex flex-col lg:flex-row gap-16 items-center">
+          
+          <div className="w-full lg:w-3/5 space-y-8">
+            <p className="about-badge text-xs font-bold uppercase tracking-[0.5em] text-blue-500">
+              [ 01 ] Discover Learnest
+            </p>
 
-          <p className="about-desc text-lg md:text-xl leading-relaxed opacity-90">
-            learnest.ai is a learning platform focused on practical AI,
-            full-stack development, and cyber security.
-          </p>
+            <h1 className="text-5xl md:text-6xl font-black leading-[0.85] tracking-tighter">
+              {/* Added vertical padding (py-2) to ensure letters aren't clipped while rotating */}
+              <div className="overflow-hidden py-2">
+                {splitText("DEMOCRATIZING")}
+              </div>
+              <div className="overflow-hidden py-2  bg-clip-text font-yellow">
+                {splitText("AI EDUCATION.")}
+              </div>
+            </h1>
 
-          <p className="about-desc text-lg md:text-xl leading-relaxed opacity-90">
-            Courses, videos, and ebooks are organized by tracks like frontend,
-            backend, and security.
-          </p>
-        </div>
+            <div className="space-y-6 max-w-xl">
+              <p className="about-desc text-xl text-white/50 leading-relaxed font-light">
+                We bridge the gap between complex neural architectures and 
+                practical, day-to-day implementation.
+              </p>
+            </div>
+          </div>
 
-        <div className="w-full md:w-1/2">
-          <div className="about-card rounded-3xl bg-white border border-[#66A6FF]/30 p-8 shadow-lg">
-            <h2 className="text-2xl font-bold mb-6 tracking-tight">
-              What you'll find here
-            </h2>
-
-            <ul className="space-y-5">
-              {[
-                "Structured video courses from basics to advanced.",
-                "Ebooks and PDFs for offline revision.",
-                "Curated playlists across AI and security.",
-                "A distraction-free modern interface.",
-              ].map((text, i) => (
-                <li
-                  key={i}
-                  className="about-list-item flex gap-4 p-3 rounded-lg"
-                >
-                  <span className="text-[#0056D2] font-bold text-xl">•</span>
-                  <span className="opacity-90">{text}</span>
-                </li>
-              ))}
-            </ul>
-
+          <div className="w-full lg:w-2/5">
+            <div className="about-card parallax-layer relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+              <div className="relative rounded-3xl bg-[#080808] border border-white/10 p-10 backdrop-blur-xl shadow-2xl">
+                <h2 className="text-xl font-bold mb-8 text-blue-400 uppercase tracking-widest">Platform Core</h2>
+                <ul className="space-y-6">
+                  {["Next-Gen Video Tracks", "Neural Revision Guides", "Live Lab Environment"].map((item, i) => (
+                    <li key={i} className="flex items-center gap-4 group/item">
+                      <div className="h-[1px] w-6 bg-blue-500/50 group-hover/item:w-10 transition-all duration-300" />
+                      <span className="text-white/60 group-hover/item:text-white transition-colors">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="principles mx-auto max-w-5xl px-6 pb-20">
-        <h2 className="text-3xl font-black mb-12 tracking-tight">
-          Core principles
-        </h2>
-
-        <div className="grid gap-8 md:grid-cols-3">
+      {/* Principles Section */}
+      <section className="relative z-10 mx-auto max-w-6xl px-6 py-20">
+        <div className="principles-grid grid gap-8 md:grid-cols-3">
           {[
-            ["Practical first", "Built around real projects."],
-            ["Clear structure", "Always know what to learn next."],
-            ["Accessible to all", "Beginner friendly, depth for pros."],
+            ["Practical-First", "Execute code while you learn, no theory bloat."],
+            ["Adaptive Path", "AI-driven curriculum that evolves with you."],
+            ["Global Access", "Built for the next billion developers."]
           ].map(([title, desc], i) => (
-            <div
-              key={i}
-              className="principle-card rounded-2xl border border-[#66A6FF]/30 bg-white p-8 shadow-sm"
-            >
-              <h3 className="mb-4 text-xl font-bold">{title}</h3>
-              <p className="opacity-90">{desc}</p>
+            <div key={i} className="principle-card p-8 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.05] transition-all duration-300">
+              <div className="mb-4 text-xs font-mono text-blue-500/50">0{i+1}</div>
+              <h3 className="text-xl font-bold mb-3 text-white/90">{title}</h3>
+              <p className="text-white/40 leading-relaxed text-sm">{desc}</p>
             </div>
           ))}
         </div>
 
-        <div className="about-cta mt-16 text-center">
-
-<Link href="/signup">
-  <button className="px-8 py-4 bg-[#0056D2] text-white rounded-xl font-semibold text-lg hover:bg-[#0046B2] transition-colors shadow-sm hover:shadow-md">
-    SignUp to Start
-  </button>
-</Link>
-
-          <p className="mt-4 opacity-80">
-            Join thousands of students building practical skills
-          </p>
+        <div className="mt-32 text-center">
+          <Link href="/signup">
+            <button className="cta-button relative px-12 py-6 bg-white text-black rounded-full font-black text-xl hover:bg-blue-600 hover:text-white transition-all duration-500 hover:px-16 uppercase shadow-[0_0_30px_rgba(59,130,246,0.2)]">
+              Initialize Journey
+            </button>
+          </Link>
         </div>
       </section>
     </main>

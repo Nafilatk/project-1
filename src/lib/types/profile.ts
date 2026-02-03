@@ -13,10 +13,14 @@ export type TabKey = "personal" | "security" | "account";
 
 export interface PersonalForm {
   name: string;
-  bio: string;
-  phone: string;
   email: string;
+  bio?: string;
+  title?: string;
+  phone?: string;
+  location?: string;
+  website?: string;
 }
+
 
 export interface SecurityFormData {
    email: string;

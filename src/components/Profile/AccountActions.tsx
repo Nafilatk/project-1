@@ -1,5 +1,9 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { LogOut, Trash2, AlertTriangle, Shield, Lock } from "lucide-react";
+
 interface AccountActionsProps {
   onLogout: () => void;
   onDeleteAccount: () => void;
@@ -11,64 +15,118 @@ export default function AccountActions({
   onDeleteAccount,
   isDeleting,
 }: AccountActionsProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const logoutRef = useRef<HTMLDivElement>(null);
+  const deleteRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    gsap.fromTo(
+      containerRef.current.children,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "power3.out",
+      }
+    );
+  }, []);
+
+  const hoverCard = (el: HTMLDivElement | null, color: string) => {
+    if (!el) return;
+    gsap.to(el, {
+      y: -6,
+      boxShadow: `0 20px 40px ${color}`,
+      duration: 0.25,
+    });
+  };
+
+  const resetCard = (el: HTMLDivElement | null) => {
+    if (!el) return;
+    gsap.to(el, {
+      y: 0,
+      boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+      duration: 0.25,
+    });
+  };
+
   return (
-    <div className="space-y-6 text-sm">
-      <div className="group relative">
-        <h1 className="text-lg font-bold text-blue-950 tracking-tight">
-          Account actions
-        </h1>
+    <div ref={containerRef} className="space-y-8">
+      {/* Header */}
+      <div className="border-b pb-2">
+        <h2 className="text-2xl font-bold">Account Management</h2>
+        <p className="text-sm text-gray-500">
+          Manage sessions and account security
+        </p>
       </div>
 
-      <div className="group relative rounded-2xl border border-blue-900/40 bg-black/60 p-6 hover:bg-blue-950/50 transition-all duration-500 backdrop-blur-md overflow-hidden">
-        <div className="relative z-10">
-          <p className="text-base font-bold text-blue-200 mb-2">
-            Sign out
-          </p>
-          <p className="text-sm text-blue-300 mb-4 leading-relaxed">
-            Log out from this device. You can log back in at any time.
-          </p>
-
-          <button
-            onClick={onLogout}
-            className="group/btn relative inline-flex items-center justify-center rounded-full border-2 border-blue-500/50 bg-blue-950/50 px-6 py-3 text-sm font-bold text-blue-300 hover:bg-blue-900/70 hover:border-blue-400/70 hover:shadow-[0_8px_20px_rgba(59,130,246,0.3)] hover:scale-[1.05] transition-all duration-300 backdrop-blur-sm overflow-hidden"
-          >
-            <span className="relative z-10 tracking-wide">
-              Logout
-            </span>
-
-            <div className="absolute inset-0 bg-linear-to-r from-blue-400/20 to-blue-500/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full blur-sm" />
-          </button>
+      {/* Logout */}
+      <div
+        ref={logoutRef}
+        onMouseEnter={() => hoverCard(logoutRef.current, "rgba(59,130,246,.2)")}
+        onMouseLeave={() => resetCard(logoutRef.current)}
+        className="rounded-2xl border border-blue-100 bg-white p-6 shadow-lg"
+      >
+        <div className="flex gap-4">
+          <div className="h-12 w-12 rounded-xl bg-blue-100 flex items-center justify-center">
+            <LogOut className="text-blue-600" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-bold text-blue-900">Sign Out</h3>
+            <p className="text-sm text-gray-600">
+              End your current session securely.
+            </p>
+          </div>
         </div>
 
-        <div className="absolute inset-0 bg-linear-to-r from-blue-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
+        <div className="mt-6 flex items-center justify-between border-t pt-4">
+          <span className="flex items-center gap-2 text-sm text-blue-700">
+            <Shield className="w-4 h-4" /> Session protected
+          </span>
+          <button
+            onClick={onLogout}
+            className="rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow"
+          >
+            Sign Out
+          </button>
+        </div>
       </div>
 
-      <div className="group relative rounded-2xl border border-red-500/40 bg-red-950/60 p-6 shadow-[0_10px_30px_rgba(239,68,68,0.15)] hover:shadow-[0_20px_50px_rgba(239,68,68,0.25)] hover:bg-red-900/50 transition-all duration-500 backdrop-blur-md overflow-hidden">
-        <div className="relative z-10">
-          <p className="text-base font-bold text-red-300 mb-2">
-            Delete account
-          </p>
-          <p className="text-sm text-red-400 mb-4 leading-relaxed">
-            This action is permanent and will remove your profile,
-            enrolled courses, and progress.
-          </p>
+      {/* Delete */}
+      <div
+        ref={deleteRef}
+        onMouseEnter={() => hoverCard(deleteRef.current, "rgba(239,68,68,.2)")}
+        onMouseLeave={() => resetCard(deleteRef.current)}
+        className="relative rounded-2xl border border-red-100 bg-white p-6 shadow-lg"
+      >
 
+        <div className="flex gap-4">
+          <div className="h-12 w-12 rounded-xl bg-red-100 flex items-center justify-center">
+            <Trash2 className="text-red-600" />
+          </div>
+          <div className="flex-1">
+            <h3 className="font-bold text-red-900">Delete Account</h3>
+            <p className="text-sm text-gray-600">
+              Permanently remove your account and data.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-6 flex items-center justify-between border-t pt-4">
+          <span className="flex items-center gap-2 text-sm text-red-700">
+            <Lock className="w-4 h-4" /> Permanent action
+          </span>
           <button
             onClick={onDeleteAccount}
             disabled={isDeleting}
-            className="group/btn relative inline-flex items-center justify-center rounded-full border-2 border-red-500/50 bg-red-950/50 px-6 py-3 text-sm font-bold text-red-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:shadow-none hover:bg-red-900/70 hover:border-red-400/70 hover:shadow-[0_8px_20px_rgba(239,68,68,0.3)] hover:scale-[1.05] transition-all duration-300 backdrop-blur-sm overflow-hidden"
+            className="rounded-xl bg-red-600 px-5 py-2.5 text-sm font-semibold text-white shadow disabled:opacity-60"
           >
-            <span className="relative z-10 tracking-wide">
-              {isDeleting ? "Deleting..." : "Delete account"}
-            </span>
-
-            {!isDeleting && (
-              <div className="absolute inset-0 bg-linear-to-r from-red-400/20 to-red-500/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full blur-sm" />
-            )}
+            {isDeleting ? "Deleting..." : "Delete"}
           </button>
         </div>
-
-        <div className="absolute inset-0 bg-linear-to-r from-red-400/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl pointer-events-none" />
       </div>
     </div>
   );
