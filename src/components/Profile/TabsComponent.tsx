@@ -20,10 +20,10 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
     if (!tabsRef.current) return;
 
     gsap.fromTo(tabsRef.current.children,
-      { 
+      {
         y: -30,
         opacity: 0,
-        scale: 0.9 
+        scale: 0.9
       },
       {
         y: 0,
@@ -69,13 +69,13 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
 
   const handleTabClick = (tab: TabKey, e: React.MouseEvent) => {
     onTabChange(tab);
-    
+
     // Create ripple effect
     const button = e.currentTarget as HTMLButtonElement;
     const rect = button.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const ripple = document.createElement('div');
     ripple.className = 'absolute rounded-full bg-white/30';
     ripple.style.left = `${x}px`;
@@ -112,21 +112,29 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
   ];
 
   return (
-    <div className="sticky top-0 z-50 bg-linear-to-b from-white/95 via-white/90 to-white/85 backdrop-blur-xl border-b border-gray-200/50 shadow-lg shadow-blue-500/5 px-4 sm:px-8 pt-6">
-      <div 
+    <div className="
+  sticky top-0 z-50
+  bg-linear-to-b from-white/95 via-white/90 to-white/85
+  backdrop-blur-xl
+  border border-gray-200/50
+  rounded-2xl
+  shadow-lg shadow-blue-500/5
+  px-4 sm:px-8 pt-6
+">
+
+  
+      <div
         ref={tabsRef}
         className="flex gap-1 sm:gap-2 relative"
       >
-        {/* Floating Background Layer */}
         <div className="absolute inset-0 -m-2 rounded-2xl bg-linear-to-br from-gray-50 to-white/50 border border-gray-100/80 shadow-inner" />
-        
-        {/* Glow Effect */}
+
         <div className="absolute inset-0 -m-2 rounded-2xl bg-linear-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 blur-xl opacity-50" />
 
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.key;
-          
+
           return (
             <button
               key={tab.key}
@@ -135,15 +143,15 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
                 group relative flex-1 flex flex-col items-center justify-center 
                 py-4 px-3 sm:px-4 rounded-2xl transition-all duration-300
                 overflow-hidden z-10
-                ${isActive 
-                  ? 'text-blue-700 bg-linear-to-b from-white to-blue-50/50 shadow-lg shadow-blue-500/20' 
+                ${isActive
+                  ? 'text-blue-700 bg-linear-to-b from-white to-blue-50/50 shadow-lg shadow-blue-500/20'
                   : 'text-gray-600 hover:text-blue-600 hover:bg-white/80 hover:shadow-md'
                 }
               `}
               onClick={(e) => handleTabClick(tab.key as TabKey, e)}
             >
               <div className="absolute inset-0 bg-linear-to-br from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
+
               {isActive && (
                 <div className="absolute inset-0 rounded-2xl p-px bg-linear-to-r from-blue-400 via-purple-400 to-cyan-400">
                   <div className="absolute inset-0 rounded-2xl bg-white" />
@@ -153,8 +161,8 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
               <div className="relative flex flex-col items-center gap-2 sm:gap-3">
                 <div className={`
                   relative p-2.5 sm:p-3 rounded-xl transition-all duration-300
-                  ${isActive 
-                    ? 'bg-linear-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/30' 
+                  ${isActive
+                    ? 'bg-linear-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/30'
                     : 'bg-linear-to-br from-gray-100 to-gray-50 group-hover:from-blue-50 group-hover:to-blue-100/50'
                   }
                 `}>
@@ -162,7 +170,7 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
                     w-4 h-4 sm:w-5 sm:h-5 transition-all duration-300 tab-icon
                     ${isActive ? 'text-white scale-110' : 'text-gray-500 group-hover:text-blue-500'}
                   `} />
-                  
+
                   {/* Icon Glow */}
                   {isActive && (
                     <div className="absolute inset-0 rounded-xl bg-linear-to-br from-blue-400 to-blue-500 blur-md opacity-50" />
@@ -181,8 +189,8 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
               {/* Active Indicator Dot */}
               <div className={`
                 absolute -bottom-1 w-1.5 h-1.5 rounded-full transition-all duration-300
-                ${isActive 
-                  ? 'bg-linear-to-r from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/50 scale-100' 
+                ${isActive
+                  ? 'bg-linear-to-r from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/50 scale-100'
                   : 'bg-gray-300 group-hover:bg-blue-400 scale-0'
                 }
               `} />
@@ -193,18 +201,18 @@ export default function TabsComponent({ activeTab, onTabChange }: TabsProps) {
 
       {/* Floating Indicator */}
       <div className="relative mt-6">
-        <div 
+        <div
           ref={indicatorRef}
           className="absolute -bottom-2 h-1.5 rounded-full bg-linear-to-r from-blue-500 via-blue-600 to-cyan-500 shadow-lg shadow-blue-500/40 transition-all duration-500"
         />
-        
+
         {/* Indicator Glow */}
         <div className="absolute -bottom-2 h-1.5 rounded-full bg-linear-to-r from-blue-400 via-blue-500 to-cyan-400 blur-md opacity-60 transition-all duration-500" />
       </div>
 
       {/* Decorative Line */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gray-300/50 to-transparent" />
-      
+
       {/* Reflective Gloss */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-b from-white/60 to-transparent rounded-t-2xl" />
     </div>

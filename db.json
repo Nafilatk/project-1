@@ -119,6 +119,17 @@
       "role": "user",
       "isBlock": false,
       "created_at": "2026-01-22T08:45:21.387Z"
+    },
+    {
+      "id": "34543fe8-382c-4aa9-9524-d11d77a4305b",
+      "name": "nafiiiiyeeeee",
+      "email": "nafi123@gmail.com",
+      "password": "123456678",
+      "role": "user",
+      "isBlock": false,
+      "created_at": "2026-02-04T04:57:01.621Z",
+      "phone": " +91 9746156270",
+      "bio": "I am Nafila tk a software developer"
     }
   ],
   "categories": [

@@ -239,6 +239,8 @@ export default function ProfileSettingsPage() {
               ref={cardRef}
               className="rounded-2xl bg-white border border-slate-200 shadow-lg"
             >
+                    <div className="h-1 bg-linear-to-r from-indigo-700 via-purple-500 to-blue-400" />
+
               <TabsComponent
                 activeTab={activeTab}
                 onTabChange={handleTabChange}
